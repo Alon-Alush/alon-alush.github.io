@@ -79,5 +79,12 @@ Here’s how the encrypted bytes look on disk:
 
 ![Encrypted representation on disk](/assets/images/unpacking/encryptedstrings/demo1.png)
 
+Hex representation:
+```
+E2 CF C6 C6 C5 86 EA C5 D8 C6 C5 CE 8B
+```
+
 And hopefully, you now understand why x64dbg misses those strings in search: They are simply encrypted.
+
+In the next chapter, we'll explain how to find the decryption routines without having to rely on a simple string search.
 
