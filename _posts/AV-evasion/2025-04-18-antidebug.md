@@ -2,7 +2,7 @@
 title: "AV Evasion: Anti-debug tricks"
 classes: wide
 header:
-  teaser: /assets/images/evadingavs/detections.png
+  teaser: /assets/images/evadingavs/anti-debug/image.jpg
 ribbon: DodgerBlue
 description: "Learn how malware evades anti-viruses (includes code examples)"
 categories:
