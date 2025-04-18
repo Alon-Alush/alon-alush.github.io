@@ -4,7 +4,7 @@ classes: wide
 header:
   teaser: /assets/images/evadingavs/detections.png
 ribbon: DodgerBlue
-description: "Learn how malware bypassses AV evasion (includes code examples)"
+description: "Learn how malware evades anti-viruses (includes code examples)"
 categories:
   - AV-evasion
 toc: true
