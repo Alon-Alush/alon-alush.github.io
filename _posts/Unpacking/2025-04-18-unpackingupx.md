@@ -27,7 +27,7 @@ Hex editor like `HxD` and modify these values:
 
 # The unpacking process
 
-The main problem is that, in most commercial programs, this won't be as straightforward. Programs often don't store the string "as-is" in the binary. Instead, they use a process called "packing", where static variables are encrypted within the binary. At runtime, these encrypted strings are unpacked through a loop of assembly instructions, then loaded into memory and displayed in the GUI. This means that, in the executable binary, instead of seeing `"Hello World"`, you'll see something like `+!��4!��=!��D!��L!��U!��^!��e!��r!��ƒ!`.
+The main problem is that, in most commercial programs, this won't be as straightforward. Programs often don't store the string "as-is" in the binary. Instead, they use a process called "packing", where static variables are encrypted within the binary. At runtime, these encrypted strings are unpacked through a loop of assembly instructions, then loaded into memory and displayed in the GUI. This means that, in the executable binary, instead of seeing `"Hello World"`, you'll see something like `+@#4$g9j&f7%$l%5.
 
 To modify these strings, we need to "unpack" the program. This means saving the executable code at a memory state where the program has already decrypted all the static string variables. This way, all the decrypted strings will be contained within our .exe file, and we could then easily change them.
 
