@@ -16,13 +16,13 @@ Malware authors work 24/7 to find breakthroughs that will allow them to create *
 
 There's even a dedicated marketplace on YouTube and Telegram for people selling their so-called "`FUD crypters`"  that will claim to make *any* exe payload (including actual rat builds) *"have almost 0 detections on virustotal:"*
 
-![Video results for searching "FUD Crypter" on Youtube](/assets/images/unpacking/evadingavs/videos.png)
+![Video results for searching "FUD Crypter" on Youtube](/assets/images/evadingavs/videos.png)
 
-![FUD crypter marketplace on Telegram](/assets/images/unpacking/evadingavs/marketplace.png)
+![FUD crypter marketplace on Telegram](/assets/images/evadingavs/marketplace.png)
 
 And here's an example of how one of these FUD crypters look like:
 
-![Video results for searching "FUD Crypter" on Youtube](/assets/images/unpacking/evadingavs/crypter.png)
+![Video results for searching "FUD Crypter" on Youtube](/assets/images/evadingavs/crypter.png)
 
 # How do they do this?
 
@@ -46,13 +46,13 @@ Instead of directly calling a CRT function like `VirtualAlloc`, malware authors 
 
 For example, instead of using `GetModuleHandleW` directly, which is very suspicious:
 
-![Direct WinAPI function usage](/assets/images/unpacking/evadingavs/crypter.png)
+![Direct WinAPI function usage](/assets/images/evadingavs/crypter.png)
 
 They will create a custom function (`myGetModuleHandle`) that is meant to **functionally replicate** the original `GetModuleHandleW`, so that, instead of calling `GetModuleHandleW`, we will call `myGetModuleHandle` which looks a lot less suspicious, since it looks like a normal function in our code.
 
 Here's an example of a custom `myGetModuleHandle` implementation that I used in my `custom .exe packer`:
 
-![Custom WinAPI function implementation](/assets/images/unpacking/evadingavs/customfunction.png)
+![Custom WinAPI function implementation](/assets/images/evadingavs/customfunction.png)
 
 As you can see, it manually walks over the linked list of modules (inside the PEB), copies the target module name (`ModuleName`) and the current module's full path (`FullDllName`) into buffers, and checks if the current module name contains (or matches) the target name (case-insensitive partial match).
 
@@ -179,7 +179,7 @@ LPVOID myVirtualAlloc(SIZE_T size, DWORD allocationType, DWORD protect) {
 }
 ```
 
-These custom functions reduced the detections of my packer to 
+These custom functions reduced the detections of my packer to around 5 detections
 
 
 
