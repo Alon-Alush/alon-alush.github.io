@@ -96,7 +96,6 @@ author:
   name             : "Alon Alush"
   avatar           : /assets/images/site_data/avatar.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Simple blog that documents my reverse engineering / malware analysis endeavors on Windows."
-  location         : "Egypt"
   email            :
   links:
     - label: "About Me"
@@ -105,31 +104,15 @@ author:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:alonalush5@gmail.com"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/Cyberagent101"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      url: "https://www.facebook.com/profile.php?id=100076430379156&mibextid=ZbWKwL"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/amr-ashraf-93bb9a1ba/"
+    - label: "Discord"
+      icon: "fab fa-fw fa-discord-square"
+      url: "https://discordapp.com/users/450639647106662402"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/Alon-Alush"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
-
 # Site Footer
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/Cyberagent101"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       # url:
