@@ -2,7 +2,7 @@
 title: "AV Evasion: The most common techniques (with code examples)"
 classes: wide
 header:
-  teaser: /assets/images/unpacking/evadingavs/videos.png
+  teaser: /assets/images/evadingavs/detections.png
 ribbon: DodgerBlue
 description: "Learn how malware bypassses AV evasion (includes code examples)"
 categories:
