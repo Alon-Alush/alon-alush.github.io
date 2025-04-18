@@ -44,7 +44,7 @@ Of course, these functions have legitimate uses, **but they're frequently used b
 
 Instead of directly calling a CRT function like `VirtualAlloc`, malware authors will create their own "custom implementations" of these functions.
 
-For example, instead of using `GetModuleHandleW` directly, which is very suspicious:
+For example, instead of calling `GetModuleHandleW` directly from the CRT (which is *hooked to death* by AV solutions):
 
 ![Direct WinAPI function usage](/assets/images/evadingavs/crtfunction.png)
 
