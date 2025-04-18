@@ -21,7 +21,7 @@ When you search for string references in x64dbg, it looks for recognizable ASCII
 
 This works for programs that store their strings as raw text, like this:
 
-![ASCII representation on disk](/assets/images/unpacking/encryptedstring/demo0.png)
+![ASCII representation on disk](/assets/images/unpacking/encryptedstrings/demo0.png)
 
 The corresponding hexadecimal for `"Hello, World!"` would look like:
 ```
@@ -86,5 +86,7 @@ E2 CF C6 C6 C5 86 EA C5 D8 C6 C5 CE 8B
 
 And hopefully, you now understand why x64dbg misses those strings in search: They are simply encrypted.
 
-In the next chapter, we'll explain how to find the decryption routines without having to rely on a simple string search.
+In the next chapter, **we'll explain how to find the decryption routines without having to rely on a simple string search**.
+
+Stay tuned!
 
