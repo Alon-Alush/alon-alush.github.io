@@ -2,7 +2,7 @@
 title: "Explaining encrypted strings in .exe files"
 classes: wide
 header:
-  teaser: /assets/images/unpacking/MinGW/demo.png
+  teaser: /assets/images/unpacking/encryptedstrings/thumbnail.png
 ribbon: DodgerBlue
 description: "Simple explanation on encryped strings in .exe files, and how to get around them when solving crackmes"
 categories:
