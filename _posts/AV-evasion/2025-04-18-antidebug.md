@@ -1,10 +1,10 @@
 ---
-title: "AV Evasion: The most common techniques (with code examples)"
+title: "AV Evasion: Anti-debug tricks"
 classes: wide
 header:
-  teaser: /assets/images/evadingavs/videos.png
+  teaser: /assets/images/evadingavs/detections.png
 ribbon: DodgerBlue
-description: "Learn how malware bypassses AV evasion (includes code examples)"
+description: "Learn how malware evades anti-viruses (includes code examples)"
 categories:
   - AV-evasion
 toc: true
@@ -12,9 +12,16 @@ toc: true
 
 # Reducing AV detections
 
-Malware authors work 24/7 to find breakthroughs that will allow them to create **FUD** (**Fully Undetected**) malware.
+One of the most common techniques malware authors use to create **FUD** (Fully Undetectable) malware is **anti-debugging**. 
 
-There's even a dedicated marketplace on YouTube and Telegram for people selling their so-called "`FUD crypters`"  that will claim to make *any* exe payload (including actual rat builds) *"have almost 0 detections on virustotal:"*
+Practically *every* anti-virus solution **opens the target executable with *some* form of debugging or inspection enabled**— Sometimes obvious, sometimes very stealthy.
+
+And I haven't heard of any reverse-engineer / malware-analyzer who doesn't have x64dbg or practically any debugging tool lying around 😅
+Surprisingly,  believe it or not: it's often the *least* suspicious reactions (like a program immediately exiting without modifying anything), that trigger antivirus detection the most. 
+
+Because of this, **instead of simply terminating when a debugger is detected**, it's usually better to **reroute execution and behave like an entirely *different* (but stil "normal-looking"**) program.
+
+For example: **instead of exiting** the program when a debugger is detected, **route** execution to an entirely different "legit" routine that acts as a random number generator, for example, and *only then* close the program.
 
 ![Video results for searching "FUD Crypter" on Youtube](/assets/images/evadingavs/videos.png)
 
