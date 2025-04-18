@@ -46,7 +46,7 @@ Instead of directly calling a CRT function like `VirtualAlloc`, malware authors 
 
 For example, instead of using `GetModuleHandleW` directly, which is very suspicious:
 
-![Direct WinAPI function usage](/assets/images/evadingavs/crypter.png)
+![Direct WinAPI function usage](/assets/images/evadingavs/crtfunction.png)
 
 They will create a custom function (`myGetModuleHandle`) that is meant to **functionally replicate** the original `GetModuleHandleW`, so that, instead of calling `GetModuleHandleW`, we will call `myGetModuleHandle` which looks a lot less suspicious, since it looks like a normal function in our code.
 
