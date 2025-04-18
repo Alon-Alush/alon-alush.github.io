@@ -94,7 +94,8 @@ analytics:
 # Site Author
 author:
   name             : "Alon Alush"
-  avatar           : /assets/images/site_data/bio-photo.png
+  avatar           : /assets/images/site_data/bio-photo.jpg
+
   bio              : "Simple blog that documents my reverse engineering / malware analysis endeavors on Windows."
   email            :
   links:
