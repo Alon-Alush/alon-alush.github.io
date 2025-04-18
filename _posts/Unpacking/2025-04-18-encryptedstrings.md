@@ -21,7 +21,7 @@ When you search for string references in x64dbg, it looks for recognizable ASCII
 
 This works for programs that store their strings as raw text, like this:
 
-![ASCII representation on disk](/assets/images/unpacking/encryptedstrings/demo0.png)
+![ASCII representation on disk](/assets/images/unpacking/encryptedstrings/demo.png)
 
 The corresponding hexadecimal for `"Hello, World!"` would look like:
 ```
@@ -30,7 +30,7 @@ The corresponding hexadecimal for `"Hello, World!"` would look like:
 
 However, real-world programs (and many crackmes) often don't store strings like that. Instead, they **encrypt** the strings — so the actual file on disk doesn't contain `"Hello, World!"`, but some meaningless-looking bytes, like this:
 
-![Encrypted representation on disk](/assets/images/unpacking/encryptedstrings/demo1.png)
+![Encrypted representation on disk](/assets/images/unpacking/encryptedstrings/demo.png)
 
 One of the most common methods used in crackmes is **XOR encryption**.  
 Here’s a basic C example to show how it works:
