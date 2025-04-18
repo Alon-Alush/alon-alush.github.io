@@ -20,7 +20,10 @@ In this project, we'll explore how to modify the strings (text) of executable fi
 Below is an example of these data segments shown in the program `CFF Explorer`, for my crackme `LSDtrip.exe`:
 ![Data segments in CFF Explorer showing the .rdata and .data sections](/assets/images/unpacking/MinGW/demo.png)
 
-As you can see, it contains the strings of the program. In these kinds of executables, where the string are statically stored in the binary, we can simply load them up in a
+As you can see, it indeed contains the strings of the program:
+
+![Modifying strings in a hex editor](/assets/images/unpacking/MinGW/demo18.png)
+ In these kinds of executables, where the string are statically stored in the binary, we can simply load them up in a
 Hex editor like `HxD` and modify these values:
 
 ![Modifying strings in a hex editor](/assets/images/unpacking/MinGW/demo2.png)
