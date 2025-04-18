@@ -179,7 +179,15 @@ LPVOID myVirtualAlloc(SIZE_T size, DWORD allocationType, DWORD protect) {
 }
 ```
 
-These custom functions reduced the detections of my packer to around 5 detections
+Combined with some other tricks, these custom functions reduced the detections of my packer to around **5 detections** on VirusTotal:
+
+![Direct WinAPI function usage](/assets/images/evadingavs/detections.png)
+
+Before the custom functions, my packer was at around **19 detections**.
+
+
+
+
 
 
 
