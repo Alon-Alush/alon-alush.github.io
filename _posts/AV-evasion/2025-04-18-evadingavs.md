@@ -50,7 +50,7 @@ For example, instead of using `GetModuleHandleW` directly, which is very suspici
 
 They will create a custom function (`myGetModuleHandle`) that is meant to **functionally replicate** the original `GetModuleHandleW`, so that, instead of calling `GetModuleHandleW`, we will call `myGetModuleHandle` which looks a lot less suspicious, since it looks like a normal function in our code.
 
-Here's an example of a custom `myGetModuleHandle` implementation that I used in my `custom .exe packer`:
+Here's an example of a custom `myGetModuleHandle` implementation that I used in my custom .exe packer:
 
 ![Custom WinAPI function implementation](/assets/images/evadingavs/customfunction.png)
 
