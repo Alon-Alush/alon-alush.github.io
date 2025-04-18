@@ -65,7 +65,7 @@ If it walks through all modules without a match:
 return NULL;
 ```
 
-For my custom packer, I implemented custom functions for `VirtualAlloc` (`myVirtualAlloc`), `LoadLibrary` (`MyLoadLibrary`), `GetModuleHandle` (`myGetModuleHandle`), `GetProcAddress` (`myGetProcAddress`).
+For my custom packer, I implemented these custom functions: `myVirtualAlloc`, `MyLoadLibrary`, `myGetModuleHandle`, `myGetProcAddress`.
 
 Below is the code for them:
 
@@ -140,7 +140,7 @@ HMODULE MyLoadLibrary(LPCWSTR lpFileName) {
 }
 ```
 
-Custom VirtualAlloc:
+Custom `VirtualAlloc`:
 
 ```c
 typedef NTSTATUS(NTAPI* pNtAllocateVirtualMemory)(
