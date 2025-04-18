@@ -65,6 +65,14 @@ If it walks through all modules without a match:
 return NULL;
 ```
 
+We can then call this function in our code. So, instead of doing:
+```c
+GetModuleHandleW(L"ntdll.dll") // <-- Hooked!
+```
+We will call our custom function:
+```c
+myGetModuleHandleW(L"ntdll.dll") // <-- Looks like a normal function!
+```
 For my custom packer, I implemented these custom functions: `myVirtualAlloc`, `MyLoadLibrary`, `myGetModuleHandle`, `myGetProcAddress`.
 
 Below is the code for them:
