@@ -15,14 +15,36 @@ toc: true
 One of the most common techniques malware authors use to create **FUD** (Fully Undetectable) malware is **anti-debugging**. 
 
 Practically *every* anti-virus solution **opens the target executable with *some* form of debugging or inspection enabled**— Sometimes obvious, sometimes very stealthy.
+Here's an example of function hooking in VirusTotal Jujubox:
 
-And I haven't heard of any reverse-engineer / malware-analyzer who doesn't have x64dbg or practically any debugging tool lying around 😅
+![VirusTotal Jujubox function hooking](/assets/images/evadingavs/anti-debug/jujubox.png)
 
-Surprisingly,  believe it or not: it's often the *least* suspicious reactions (like a program immediately exiting without modifying anything), that trigger antivirus detection the most. 
+# What you have to know
 
-Because of this, **instead of simply terminating when a debugger is detected**, it's usually better to **reroute execution and behave like an entirely *different* (but stil "normal-looking"**) program.
+Surprisingly: it's often the *least* suspicious reactions (like a program immediately exiting without modifying anything), that trigger antivirus detection the most. 
 
-For example: **instead of exiting** the program when a debugger is detected, **route** execution to an entirely different "legit" routine that acts as a random number generator, for example, and *only then* close the program.
+This is why **instead of simply terminating when a debugger is detected**, it's better to **reroute execution and behave like an entirely *different* (but still "normal-looking"**) program.
+
+For example: **instead of exiting** the program when a debugger is detected:
+```c
+if (IsDebuggerPresent()) {
+    // Debugger found
+    ExitProcess();
+    return 1;
+}
+```
+Do something like:
+```c
+if (IsDebuggerPresent()) {
+    // Debugger found
+    printf("%s", "Welcome to my Fibonacci number printer!");
+    int 
+
+    return 1;
+}
+```
+
+ **route** execution to an entirely different "legit" routine that acts as a random number generator, for example, and *only then* close the program.
 
 A classic "one-liner" anti-debug trick I used in my crackme looks like this:
 
