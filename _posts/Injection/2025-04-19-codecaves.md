@@ -44,6 +44,7 @@ Then untick "*Also scan non-executable read only memory*" (because we want to in
 You'll then be able to see a list of many empty executable addresses within the process's memory state, that you can use to write your shellcode in:
 ![Code cave addresses](/assets/images/injection/codecaves/addresses.png)
 
+# Taking advantage of code caves to inject shellcode
 
 As you may know, we can take advantage of these unused bytes to directly inject raw executable opcodes (shellcode) within the application.
 
