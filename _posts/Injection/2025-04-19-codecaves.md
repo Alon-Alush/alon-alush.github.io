@@ -69,7 +69,7 @@ unsigned char shellcode[] =
 "\x52\xff\xd0";
 ```
 
-First, we'll go to the shellcode, and add the following instructions:
+First, we'll go to the code cave, and add the following instructions:
 
 ```
 pushad
@@ -78,7 +78,7 @@ pushfd
 
 The x86 instruction `pushad` pushes all of the general-purpose register onto the stack, and the `pushfd` instruction pushes all the `EFLAGS` register onto the stack.
 
-We need these instructions because we'll need to restore the original register state and jump back to the original execution flow after executing our shellcode:
+We need these instructions because we will need to restore the original register state and jump back to the original execution flow after executing our shellcode:
 ![Writing initial instructions](/assets/images/injection/codecaves/codecaves1.png)
 
 
@@ -177,9 +177,9 @@ Now, after applying our patches in `x64dbg`, we can see that the program also la
 
 # Shellcode injection in x64 processes
 
-In x64 files, there's no `pushad` or `pushfd` instruction; you'd have to manually push all of the general-purpose registers.
+In x64, there's no `pushad` or `pushfd` instruction; you'd have to manually push all of the general-purpose registers.
 
-Before writing our shellcode, we'll write these instructions:
+So, in an x64 process, we'll write these instructions before writing our shellcode:
 ```
 push rbx
 push rcx
@@ -218,5 +218,7 @@ unsigned char array[] = {
 };
 ```
 
-Before pasting the shellcode, we'll have to
+Let's write this shellcode after the initial push instructions:
+
+![Writing the shellcode](/assets/images/injection/codecaves/x64shellcode1.png)
 
