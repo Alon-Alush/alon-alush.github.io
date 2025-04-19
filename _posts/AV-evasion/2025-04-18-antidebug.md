@@ -77,7 +77,7 @@ __readgsqword(0x60) // <-- gets the Process Environment Block address
 ```
 👉 `BeingDebugged` is a boolean (1 byte) that tells whether a debugger is attached to the process!
 
-If `BeingDebugged == 0`, then you are being debugged (Proabably by x64dbg)
+If `BeingDebugged == 1`, then you are being debugged (proabably by x64dbg)
 
 If `BeingDebugged == 0`, then no debugger attached.
 ```c
