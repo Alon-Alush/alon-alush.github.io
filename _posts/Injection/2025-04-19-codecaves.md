@@ -38,17 +38,16 @@ If you want, you can also use Cheat Engine's "Scan for code caves" feature:
 ![Writing our shellcode](/assets/images/injection/codecaves/scan.png)
 
 Then untick "*Also scan non-executable read only memory*" (because we want to inject executable shellcode):
+
 ![Clicking](/assets/images/injection/codecaves/click.png)
 
 You'll then be able to see a list of many empty executable addresses within the process's memory state, that you can use to write your shellcode in:
 ![Code cave addresses](/assets/images/injection/codecaves/addresses.png)
 
 
-
 As you may know, we can take advantage of these unused bytes to directly inject raw executable opcodes (shellcode) within the application.
 
 We can use this simple **x86 shellcode** that opens a calculator (`calc.exe`):
-
 
 ```c
 
@@ -71,7 +70,7 @@ unsigned char shellcode[] =
 
 First, we'll go to the shellcode, and add the following instructions:
 
-```asm
+```
 pushad
 pushfd
 ```
