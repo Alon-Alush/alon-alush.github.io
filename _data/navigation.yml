@@ -4,6 +4,8 @@ main:
     url: /categories/#unpacking
   - title: "AV Evasion"
     url: /categories/#evadingavs
+  - title: "Injection"
+    url: /categories/#Injection
 
   
   # - title: "Sample Collections"
