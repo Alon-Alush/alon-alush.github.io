@@ -22,9 +22,10 @@ As you may know, we can take advantage of these unused bytes to directly inject 
 
 We can use this simple **x86 shellcode** that opens a calculator (`calc.exe`):
 
-// 195 bytes small Windows/x86 null-free WinExec Calc.exe shellcode.
 
 ```c
+
+// open calc.exe (195 bytes x86 shellcode).
 unsigned char shellcode[] = 
 "\x89\xe5\x83\xec\x20\x31\xdb\x64\x8b\x5b\x30\x8b\x5b\x0c\x8b\x5b"
 "\x1c\x8b\x1b\x8b\x1b\x8b\x43\x08\x89\x45\xfc\x8b\x58\x3c\x01\xc3"
@@ -143,7 +144,7 @@ And then at the end of our shellcode, we `jmp` to the actual instruction that th
 
 ![Jumping to our shellcode](/assets/images/injection/codecaves/end.png)
 
-Now, after applying our patches in `x64dbg`, we can see that the program also launches `calc.exe` alongside its original execution:
+Now, after applying our patches in `x64dbg`, we can see that the program also launches `calc.exe` alongside its original payload:
 
 ![Successfully opening calc.exe](/assets/images/injection/codecaves/success.png)
 
