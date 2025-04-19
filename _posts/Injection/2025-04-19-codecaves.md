@@ -18,6 +18,10 @@ Code caves are a chunk of null bytes (`0x00`) in a process's memory. Here's how 
 
 ![Code cave chunk, x64dbg](/assets/images/injection/codecaves/codecaves.png)
 
+Instead of `0x00` caves, you can find `0x90` (NOP) sleds which can also function as code caves:
+
+![NOP sled, x64dbg](/assets/images/injection/codecaves/nopsleds.png)
+
 # How to find these code caves?
 
 Most of the times, it's pretty easy. Just open the target process with `x64dbg` and scroll down to the end until you see a bunch of these null instructions:
