@@ -105,10 +105,10 @@ author:
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:alonalush5@gmail.com"
     - label: "Discord"
-      icon: "fa-linkedin"
+      icon: "fab fa-discord"
       url: "https://discordapp.com/users/450639647106662402"
     - label: "GitHub"
-      icon: "fa-brands fa-github"
+      icon: "fab fa-github"
       url: "https://github.com/Alon-Alush"
 # Site Footer
 footer:
