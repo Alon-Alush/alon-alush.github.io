@@ -18,6 +18,33 @@ Code caves are a chunk of null bytes (`0x00`) in a process's memory. Here's how 
 
 ![Code cave chunk, x64dbg](/assets/images/injection/codecaves/codecaves.png)
 
+# How to find these code caves?
+
+Most of the times, it's pretty easy. Just open the target process with `x64dbg` and scroll down to the end until you see a bunch of these null instructions:
+```c
+0040269D | 0000                     | add byte ptr ds:[eax],al                |
+0040269F | 0000                     | add byte ptr ds:[eax],al                |
+004026A1 | 0000                     | add byte ptr ds:[eax],al                |
+004026A3 | 0000                     | add byte ptr ds:[eax],al                |
+004026A5 | 0000                     | add byte ptr ds:[eax],al                |
+004026A7 | 0000                     | add byte ptr ds:[eax],al                |
+004026A9 | 0000                     | add byte ptr ds:[eax],al                |
+```
+You can then paste your shellcode in place of these null instructions (tutorial below).
+
+If you want, you can also use Cheat Engine's "Scan for code caves" feature:
+
+
+![Writing our shellcode](/assets/images/injection/codecaves/scan.png)
+
+Then untick "*Also scan non-executable read only memory*" (because we want to inject executable shellcode):
+![Clicking](/assets/images/injection/codecaves/click.png)
+
+You'll then be able to see a list of many empty executable addresses within the process's memory state, that you can use to write your shellcode in:
+![Code cave addresses](/assets/images/injection/codecaves/addresses.png)
+
+
+
 As you may know, we can take advantage of these unused bytes to directly inject raw executable opcodes (shellcode) within the application.
 
 We can use this simple **x86 shellcode** that opens a calculator (`calc.exe`):
@@ -147,6 +174,5 @@ And then at the end of our shellcode, we `jmp` to the actual instruction that th
 Now, after applying our patches in `x64dbg`, we can see that the program also launches `calc.exe` alongside its original payload:
 
 ![Successfully opening calc.exe](/assets/images/injection/codecaves/success.png)
-
 
 
