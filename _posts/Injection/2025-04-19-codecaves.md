@@ -241,7 +241,7 @@ At address `00007FF6B1431408`, the Entry Point instruction is located. I will mo
 jmp 0x00007FF6B14323F4 // this address contains the first instruction in our shellcode
 ```
 
-![Jumping to the start of the shellcode](/assets/images/injection/codecaves/modification.png)
+![Jumping to the start of the shellcode](/assets/images/injection/codecaves/jumpingback.png)
 
 At the end, we jump back to the instruction that comes right after that initial jump, so the program continues as if nothing happened.
 
