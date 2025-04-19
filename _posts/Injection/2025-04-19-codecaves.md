@@ -175,4 +175,4 @@ Now, after applying our patches in `x64dbg`, we can see that the program also la
 
 ![Successfully opening calc.exe](/assets/images/injection/codecaves/success.png)
 
-
+Later, I'll explain how to inject shellcode in x64 processes. Stay tuned!
