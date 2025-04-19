@@ -232,10 +232,14 @@ After writing our shellcode, we'll pop the general purpose registers:
 Now, **from somewhere within the actual process's execution flow**, we will have to jump to the start of our shellcode so that it gets executed.
 
 
-The start of our shellcode is located here, at address `00007FF6CBA423F4`:
-![Shellcode starting address](/assets/images/injection/codecaves/starting.png)
-
- So I will modify the entry point instruction instruction with a `jmp` to the beginning of our shellcode at `00007FF6CBA423F4`:
+This is the starting instruction of our shellcode:
+```c
+00007FF6B14323F4 | 53                       | push rbx                                |
+```
+At address `00007FF6B1431408`, the Entry Point instruction is located. I will modify that instruction with a jmp to the start of our shellcode:
+```c
+jmp 0x00007FF6B14323F4 // this address contains the first instruction in our shellcode
+```
 ![Jumping to the start of the shellcode](/assets/images/injection/codecaves/modification.png)
 
 
