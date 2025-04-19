@@ -38,13 +38,28 @@ Do something like:
 if (IsDebuggerPresent()) {
     // Debugger found
     printf("%s", "Welcome to my Fibonacci number printer!");
-    int 
-
+    unsigned long long sum = 0;
+    unsigned long long num1 = 0;
+    unsigned long long num2 = 1;
+    unsigned long long upto;
+    printf("Generate fibonacci numbers up to:");
+    scanf("%d", upto);
+    printf("%d\n", num1);
+    printf("%d\n", num2);
+    while (sum < upto) {
+        sum = num1 + num2;
+        printf("%d\n", sum);
+        num1 = num2;
+        num2 = sum;
+    }
     return 1;
 }
+// Nefarious code goes here!
 ```
 
  **route** execution to an entirely different "legit" routine that acts as a random number generator, for example, and *only then* close the program.
+
+# Anti-debugging methods
 
 A classic "one-liner" anti-debug trick I used in my crackme looks like this:
 
