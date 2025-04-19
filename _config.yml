@@ -105,7 +105,7 @@ author:
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:alonalush5@gmail.com"
     - label: "Discord"
-      icon: "fa-brands fa-discord"
+      icon: "fa-linkedin"
       url: "https://discordapp.com/users/450639647106662402"
     - label: "GitHub"
       icon: "fa-brands fa-github"
