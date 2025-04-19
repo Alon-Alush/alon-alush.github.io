@@ -1,5 +1,5 @@
 ---
-title: "AV Evasion: The most common techniques (with code examples)"
+title: "AV Evasion: Custom WinAPI function implementations"
 classes: wide
 header:
   teaser: /assets/images/evadingavs/customfunctions/detections.png
@@ -26,13 +26,9 @@ And here's an example of how one of these FUD crypters look like:
 
 # How do they do this?
 
-It's a combination of many different techniques. In this post, we'll cover the most basic ones:
+It's a combination of many different techniques. In this post, we'll cover the most basic one:
 
 - Custom WinAPI function implementations
-
-- String Encryption
-
-- Packing
 
 Let's start with custom WinAPI function implementations:
 

@@ -1,17 +1,8 @@
 # main links
 main:
-  - title: "Malware Analysis"
-    url: /categories/#malware-analysis
-  - title: "Forensic investigation"
-    url: /categories/#forensic-investigation
-  - title: "vulnerability research"
-    url: /categories/#vulnerability_research
-  - title: "Offensive"
-    url: /categories/#offensive
-  - title: "CTF"
-    url: /categories/#ctf
-  - title: "All Categories"
-    url: /categories
+  - title: "Unpacking"
+    url: /categories/#unpacking
+  - title: "AV Evasion"
   
   # - title: "Sample Collections"
   #   url: /collection-archive/
