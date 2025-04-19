@@ -103,7 +103,7 @@ author:
       icon: "fas fa-fw fa-link"
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:alonalush5@gmail.com"
+      url: "alonalush5@gmail.com"
     - label: "Discord"
       icon: "fab fa-discord"
       url: "https://discordapp.com/users/450639647106662402"
