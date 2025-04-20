@@ -346,6 +346,6 @@ mov qword ptr ss:[rsp+18],rbx
 jmp cracked27 codecave.7FF601E3140D // <--- Jumping back
 ```
 
-And we can see that the patched file opens calc.exe alongside its original payload:
+And we can see that the patched file opens `calc.exe` alongside its original payload:
 
 ![x64 open calculator](/assets/images/injection/codecaves/calc.png)
