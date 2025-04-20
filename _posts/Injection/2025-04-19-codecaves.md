@@ -170,7 +170,7 @@ So first, let's modify that instruction instruction to `jmp` to the start of our
 So instead of `jmp 0x00401D14`, it will be `jmp 00401D5D`:
 ![Jumping to our shellcode](/assets/images/injection/codecaves/oep.png)
 
-And then at the end of our shellcode, we `jmp` to the actual instruction that the original `jmp` went to (`0x00401D14`):
+And then at the end of our shellcode, we add a `jmp` instruction to the address that the original `jmp` was meant to jump to (`0x00401D14`):
 
 ![Jumping to our shellcode](/assets/images/injection/codecaves/end.png)
 
