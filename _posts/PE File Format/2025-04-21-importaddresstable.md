@@ -16,12 +16,12 @@ An `.exe` uses the Import Address Table **to dynamically resolve the addresses w
 
 # Example
 
-[MessageBoxA implementation](/assets/images/pefileformat/address.png)
+![MessageBoxA implementation](/assets/images/pefileformat/address.png)
 `user32.dll` -> `MessageBoxA` -> `75EA05B0`
 
 Here, we can see that function implementation of MessageBoxA resides in the address `0x75EA05B0` in memory.
 
-[MessageBoxA implementation](/assets/images/pefileformat/messagebox.png)
+![MessageBoxA implementation](/assets/images/pefileformat/messagebox.png)
 
 So the question is, how does the program *know* that MessageBoxA resides here `0x75EA05B0`? 
 
