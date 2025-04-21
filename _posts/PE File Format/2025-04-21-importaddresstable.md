@@ -4,7 +4,7 @@ classes: wide
 header:
   teaser: /assets/images/injection/codecaves/codecaves.png
 ribbon: DodgerBlue
-description: "Detailed explanation regarding the Import Address Table (IAT) structure in Portable Executable (PE) file"
+description: "Explaining in detail the Import Address Table (IAT) structure in Portable Executable (PE) file"
 categories:
   - PE File Format
 toc: true
