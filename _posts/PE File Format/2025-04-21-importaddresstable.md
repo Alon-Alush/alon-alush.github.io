@@ -25,5 +25,6 @@ Here, we can see that function implementation of MessageBoxA resides in the addr
 
 So the question is, how does the program *know* that MessageBoxA resides here `0x75EA05B0`? 
 
-The answer is that the Import Address Table contains **RVAs** from the Image Base to the function's implementation in memory
-This address is not hardcoded, but rather dynamically resolved.
+The answer is that the Import Address Table contains the name of every function that is imported by the program, **alongside RVAs from the Image Base to the function's implementation in memory.**
+
+The program uses the Import Address Table to dynamically resolve the addresses of these functions.
