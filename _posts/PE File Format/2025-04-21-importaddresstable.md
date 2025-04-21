@@ -12,8 +12,7 @@ toc: true
 
 # PE file format: Import Address Table
 
-An `.exe` uses the Import Address Table **to dynamically resolve the addresses where an external function's resides resides in memory**.
-
+The Import Address Table stores the memory addresses of external functions that the program uses
 # Example
 
 Here, we can see that function implementation of MessageBoxA resides in the address `0x75EA05B0` in memory.
@@ -22,7 +21,7 @@ Here, we can see that function implementation of MessageBoxA resides in the addr
 
 ![MessageBoxA implementation](/assets/images/pefileformat/messagebox.png)
 
-**How does the program *know* that MessageBoxA resides here `0x75EA05B0`?**
+**When calling MessageBoxA, how does the program *know* that MessageBoxA resides here `0x75EA05B0`?**
 
 This is where the Import Address Table comes into play: it contains the **RVAs (Relative Virtual Addresses)** from the Image Base to the function's implementation in memory.
 
@@ -45,7 +44,6 @@ The IAT itself contains several fields:
 
 ![MessageBoxA implementation](/assets/images/pefileformat/fields.png)
 
-- `u1.AddressOfData`: Before loading, this is a pointer (RVA) to an `IMAGE_IMPORT_BY_NAME` structure (where the function name is stored)
+- `u1.AddressOfData`: After loading, it contains the RVAs of the external functions' memory address in memory.
 - `u1.Ordinal` : If the function is imported by `ordinal` (number) instead of by name.
-- `u1.ForwarderString`: Relative Virtual Address (RVA) that points to an ASCII string inside the PE file. This string specifies a forwarded import — meaning the imported function actually resides in another DLL.
-- 
+- `u1.ForwarderString`: If the imported function is [*forwarded*](https://devblogs.microsoft.com/oldnewthing/20060719-24/?p=30473) to another DLL, this field contains an RVA to an ASCII string in memory that includes the name of the forwarded module and the actual function name inside it (e.g. `NTDLL.RtlExitUserThread`).
