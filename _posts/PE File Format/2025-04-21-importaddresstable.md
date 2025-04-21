@@ -48,6 +48,7 @@ The IAT itself contains several fields:
 
 ![MessageBoxA implementation](/assets/images/pefileformat/fields.png)
 
-- `u1.AddressOfData`: **Before loading (on-disk)**, this is a pointer (RVA) to an `IMAGE_IMPORT_BY_NAME` structure (where the function name is stored). After loading, the loader fills it with absolute addresses of external functions in memory.
+- `u1.AddressOfData`: **Before loading (on-disk)**, this is a pointer (RVA) to an `IMAGE_IMPORT_BY_NAME` structure (where the function name is stored).
 - `u1.Ordinal` : If the function is imported by `ordinal` (number) instead of by name.
 - `u1.ForwarderString`: If a function is [*forwarded*](https://devblogs.microsoft.com/oldnewthing/20060719-24/?p=30473), this field contains an RVA to ASCII strings in memory that includes the name of the forwarded module and the function inside it to look for (e.g. `NTDLL.RtlExitUserThread`).
+- `u1.Function` After the loader resolves the import, the `u1.Function` field is populated with the **absolute memory address** of the function in memory.
