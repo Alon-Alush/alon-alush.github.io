@@ -2,7 +2,7 @@
 title: "PE file format: Import Address Table"
 classes: wide
 header:
-  teaser: /assets/images/injection/codecaves/codecaves.png
+  teaser: /assets/images/pefileformat/iat/image.png
 ribbon: DodgerBlue
 description: "Explaining in detail the Import Address Table (IAT) structure in Portable Executable (PE) file"
 categories:
@@ -19,7 +19,7 @@ Here, we can see that function implementation of MessageBoxA resides in the addr
 
 `user32.dll` -> `MessageBoxA` -> `75EA05B0`
 
-![MessageBoxA implementation](/assets/images/pefileformat/messagebox.png)
+![MessageBoxA implementation](/assets/images/pefileformat/iat/messagebox.png)
 
 **When calling MessageBoxA, how does the program *know* that MessageBoxA resides here `0x75EA05B0`?**
 
@@ -46,7 +46,7 @@ Here, `firstThunk` is a pointer to the Import Address Table in memory.
 
 The IAT itself contains several fields:
 
-![MessageBoxA implementation](/assets/images/pefileformat/fields.png)
+![MessageBoxA implementation](/assets/images/pefileformat/iat/fields.png)
 
 - `u1.AddressOfData`: **Before loading (on-disk)**, this is a pointer (RVA) to an `IMAGE_IMPORT_BY_NAME` structure (where the function name is stored).
 - `u1.Ordinal` : If the function is imported by `ordinal` (number) instead of by name.
