@@ -81,19 +81,14 @@ Total size: 2 + (13 × 2) + (10 × 4) = 2 + 26 + 40 = exactly **64 bytes without
 
 2 words: **backwards compatibility**. 
 
-See, the PE format was designed *as an extension* of the old DOS MZ and NE format, and back then, PE was a *new kid on the block*, and DOS loaders back then would freak out when they user attempted to run a PE `.exe` on DOS. So, in order to not make the DOS loaders freak out when they see a PE executable, they required *every* PE file contain this ASCII string:
+See, the PE format was designed *as an extension* of the old DOS MZ and NE format, and back then, PE was a *new kid on the block*, and DOS loaders back then would freak out when they user attempted to run a PE `.exe` on DOS. So, in order to not make the DOS loaders freak out when they see a PE executable, they required *every* PE file contain this DOS stub:
 
 ```c
 This program cannot be run in DOS mode
 ```
 
-Looking back, this *"might've"* been a mistake move by Microsoft😅. The PE format evolved to be a much more powerful and modular format afterward, *way* more than originally speculated, and leaving the old DOS-MZ format to die in the shadows. Yet, every PE file in existence still contains 36 bytes worth of ASCII bloat
+So if a DOS loader (or a user in DOS) tries to execute the file, they don't crash or hang; instead, they immediately see this message in the console.
 
-```c
-This program cannot be run in DOS mode
-```
-```
-54 68 69 73 20 70 72 6F 67 72 61 6D 20 63 61 6E 6E 6F 74 20 62 65 20 72 75 6E 20 69 6E 20 44 4F 53 20 6D 6F 64 65 // hex representation of the ASCII string
-```
+Looking back, this *"might've"* been a mistake move by Microsoft😅. The PE format evolved to be a much more powerful and modular format afterward, *way* more than originally speculated, and leaving the old DOS-MZ format to be forgotten in the shadows. **Nobody** Yet, every PE file in existence *still* contains those 36 bytes worth of ASCII bloat.
 
-Surely we don't need every PE file to remind us this, right?.. *right?*
+Surely, not every PE file must contain that "*This program cannot.. blah blah blah*" .. *right?*
