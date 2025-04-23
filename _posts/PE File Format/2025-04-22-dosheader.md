@@ -81,13 +81,15 @@ Total size: 2 + (13 × 2) + (10 × 4) = 2 + 26 + 40 = exactly **64 bytes without
 
 2 words: **backwards compatibility**. 
 
-See, the PE format was designed *as an extension* of the old DOS MZ and NE format, and back then, PE was a *new kid on the block*. Both the old NE and PE formats ended with a `.exe` extension, so whenever a user attempted to run a PE `.exe` on MS-DOS, the DOS loaders would freak out, generating random bugs. So, in order to not make the DOS loaders freak out when they see a PE executable, they required *every* PE file contain this DOS stub:
+See, the PE format was designed *as an extension* of the old [DOS MZ executable format](https://en.wikipedia.org/wiki/DOS_MZ_executable). Back then, the Portable Executable format was a *new kid on the block*. Both the old DOS MZ format and PE format ended with a `.exe` extension, so whenever a user attempted to run a PE `.exe` on MS-DOS, **the DOS loaders would freak out** because they expected a DOS MZ format for `.exe` extensions, not PE. 
+
+So, in order to not make the DOS loaders freak out when they see a PE executable, they required *every* PE file contain this DOS stub:
 
 ```c
 This program cannot be run in DOS mode
 ```
 
-So that if a DOS loader (or a user in DOS) tries to execute the file, they don't crash or hang; instead, they immediately see this message in the console:
+So that if a DOS loader (or a user in DOS) tries to execute a PE file, they don't crash or hang; instead, they immediately see this message in the console:
 
 ![This program cannot be run in DOS mode](/assets/images/pefileformat/dosheader/loader.png)
 
