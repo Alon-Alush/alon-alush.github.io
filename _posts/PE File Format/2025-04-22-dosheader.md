@@ -32,7 +32,7 @@ If you try to run the executable in a DOS environment, the stub typically displa
 
 ![e_lfanew field](/assets/images/pefileformat/dosheader/image-2.png)
 
-Here, we can see that `e_lfanew` corresponds to the byte sequence `C8 00 00 00`.
+Here, we can see that `e_lfanew` field corresponds to the byte sequence `C8 00 00 00`. That means the offset to the NT headers is `0xC8`, ignoring the null values.
 
 So, **to find the NT header in HxD**, let's go to offset `C8` that we got from the `e_lfanew` field, this offset is relative to the file start (`begin`):
 
