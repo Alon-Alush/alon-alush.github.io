@@ -81,7 +81,14 @@ Total size: 2 + (13 × 2) + (10 × 4) = 2 + 26 + 40 = exactly **64 bytes without
 
 2 words: **backwards compatibility**. 
 
-See, the PE format was designed *as an extension* of the old DOS MZ and NE format, so they keeped the DOS header. Looking back, this might've been a mistake move by Microsoft, because the PE format evolved to be a much more powerful and modular system afterward, *way* more than originally speculated.
+See, the PE format was designed *as an extension* of the old DOS MZ and NE format, so they keeped the DOS header. Looking back, this might've been a mistake move by Microsoft, because the PE format evolved to be a much more powerful and modular system afterward, *way* more than originally speculated, yet every PE file in existence still needs this 113 bytes worth of bloat:
+
+```
+This program cannot be run in DOS mode
+```
+```
+54 68 69 73 20 70 72 6F 67 72 61 6D 20 63 61 6E 6E 6F 74 20 62 65 20 72 75 6E 20 69 6E 20 44 4F 53 20 6D 6F 64 65 // hex representation of the ASCII string
+```
 
 
 
