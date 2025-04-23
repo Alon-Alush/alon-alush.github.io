@@ -14,10 +14,9 @@ toc: true
 
 **First of all, what's the DOS header?**
 
-The DOS header is a small structure at very beginning of executable files in the DOS MZ format (like `.exe` files). It's often called the **MZ header** because the first two bytes are the ASCII characters "`MZ`"—the initials of Mark Zbikowski, one of its designers.
+The DOS header is a small structure at very beginning of executable files in the DOS MZ format (like `.exe` files), and preserved on PE files for backwards compatibility. It's often called the **MZ header** because the first two bytes are the ASCII characters "`MZ`"—the initials of Mark Zbikowski, one of its designers.
 
-![e_magic field](/assets/images/pefileformat/dosheader/image.png)
-
+![MZ](/assets/images/pefileformat/dosheader/image.png)
 
 If you try to run the executable in a DOS environment, the stub typically displays this famous message:
 ```
@@ -43,6 +42,9 @@ So, **to find the NT header in HxD**, let's go to offset `C8` that we got from t
 
 Can see you see the `PE` signature that I highlighted? it marks the start of the **IMAGE_NT_HEADERS** structure, and Windows uses `e_lfanew` to find the offset to that structure.
 
+Below is a diagram I made, illustrating it:
+
+![Sections diagram I made](/assets/images/pefileformat/dosheader/diagram.png)
 
 # C representation of IMAGE_DOS_HEADER
 
@@ -83,7 +85,7 @@ Total size: 2 + (13 × 2) + (10 × 4) = 2 + 26 + 40 = exactly **64 bytes without
 
 See, the PE format was designed *as an extension* of the old [DOS MZ executable format](https://en.wikipedia.org/wiki/DOS_MZ_executable). Back then, the Portable Executable format was a *new kid on the block*. Both the old DOS MZ format and PE format ended with a `.exe` extension, so whenever a user attempted to run a PE `.exe` on MS-DOS, **the DOS loaders would freak out** because they expected a DOS MZ format for `.exe` extensions, not PE. 
 
-So, in order to not make the DOS loaders freak out when they see a PE executable, they required *every* PE file contain this DOS stub:
+So, in order to not make the DOS loaders freak out when they see a PE executable, they required *every* PE file contain this DOS stub inside the DOS header:
 
 ```c
 This program cannot be run in DOS mode
@@ -94,3 +96,7 @@ So that if a DOS loader (or a user in DOS) tries to execute a PE file, they don'
 ![This program cannot be run in DOS mode](/assets/images/pefileformat/dosheader/loader.png)
 
 Looking back, this *"might've"* been a mistake move by Microsoft😅. The PE format evolved to be a much more powerful and modular format afterward, *way* more than originally speculated, and leaving the old DOS-MZ format to be forgotten in the shadows. Yet, every PE file in existence *still* contains those 36 bytes worth of ASCII bloat, to remind *DOS loaders* from 40 years ago that our modern `.exe` file cannot be run on DOS systems.
+
+# DOS stub code injection
+
+The DOS header (and the DOS stub) **can technically be modified to inject custom code**. Back in the days of DOS-MZ, malware authors would inject their custom 16-bit DOS code into the DOS header itself. Then, when a DOS machine tries to run the modified `.exe`, it will execute the injected DOS code instead of the boring "This program cannot be run in DOS mode" message. 
