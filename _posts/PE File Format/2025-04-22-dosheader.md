@@ -87,8 +87,8 @@ See, the PE format was designed *as an extension* of the old DOS MZ and NE forma
 This program cannot be run in DOS mode
 ```
 
-So if a DOS loader (or a user in DOS) tries to execute the file, they don't crash or hang; instead, they immediately see this message in the console.
+So if a DOS loader (or a user in DOS) tries to execute the file, they don't crash or hang; instead, they immediately see this message in the console:
 
-Looking back, this *"might've"* been a mistake move by Microsoft😅. The PE format evolved to be a much more powerful and modular format afterward, *way* more than originally speculated, and leaving the old DOS-MZ format to be forgotten in the shadows. **Nobody** Yet, every PE file in existence *still* contains those 36 bytes worth of ASCII bloat.
+![This program cannot be run in DOS mode](/assets/images/pefileformat/dosheader/loader.png)
 
-Surely, not every PE file must contain that "*This program cannot.. blah blah blah*" .. *right?*
+Looking back, this *"might've"* been a mistake move by Microsoft😅. The PE format evolved to be a much more powerful and modular format afterward, *way* more than originally speculated, and leaving the old DOS-MZ format to be forgotten in the shadows. Yet, every PE file in existence *still* contains those 36 bytes worth of ASCII bloat, to remind *DOS loaders* from 40 years ago that our modern `.exe` file cannot be run on DOS systems.
