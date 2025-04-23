@@ -73,9 +73,15 @@ typedef struct _IMAGE_DOS_HEADER {
 
 The struct has 14 `WORD` fields (2 bytes each) and 10 `DWORD` fields (4 bytes each), plus the 2-byte `e_magic`.
 
-Total size: 2 + (13 × 2) + (10 × 4) = 2 + 26 + 40 = **68 bytes**.
+Total size: 2 + (13 × 2) + (10 × 4) = 2 + 26 + 40 = exactly **64 bytes without paddling**.
 
-But, due to structure paddling, it's usually **64 bytes** in practice.
+# Why is the DOS header still there?
+
+**A lot of you right now may be confused:** Why does every PE file need a DOS header, despite modern Windows system not even running DOS programs?
+
+2 words: **backwards compatibility**. 
+
+See, the PE format was designed *as an extension* of the old DOS MZ and NE format, so they keeped the DOS header. Looking back, this might've been a mistake move by Microsoft, because the PE format evolved to be a much more powerful and modular system afterward, *way* more than originally speculated.
 
 
 
