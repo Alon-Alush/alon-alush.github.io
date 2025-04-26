@@ -22,10 +22,22 @@ First, a dump of the protector popped up in May 2023:
 
 Then a more complete archive was posted (7 Dec 2023) and spread rapidly across GitHub, forums, and X:
 
-![VMProtect full archive on GIThUB](/assets/images/unpacking/vmprotectleak/full.png)
- 
- But *"breached"* ≠ *“instantly broken”*; having the source code doesn't hand attackers a magic "*de-virtualize.exe*. It just drops the difficulty from "dark art" to "grad-school project". 
+![VMProtect posted on GitHub](/assets/images/unpacking/vmprotectleak/full.png)
 
 # The two big leaks (so far)
 
 - **May 2023** : Large chunk of VMProtect 3.x codebase leaked, first public confirmation that the code was in the wild.[[1]](https://forum.tuts4you.com/topic/44205-leaked-vmprotect-sources/?utm_source=chatgpt.com)[[2]](https://www.risky.biz/RBNEWS146/)[[3]](https://www.unknowncheats.me/forum/general-programming-and-reversing/583253-vmprotect-source-leak.html)[[4]](https://x.com/gmhzxy/status/1563608617169096708)
+
+- **December 2023** : **A second, packaged dump advertised as the "full" source was released on Github. Still missing a few files such as the ARM back-end, demanglers, but enough to compile parts of the tool:
+
+![VMProtect full archive on github](/assets/images/unpacking/vmprotectleak/github.png)
+
+No evidence of an *internal* hack at VMPSoft, the consensus is an outsider snagged the code (likely from a customer portal or reseller) and let it roam free. 
+
+# Is VMProtect "cracked" now?
+
+Yes and no; having source code made it possible to partially compile VMProtect:
+
+![VMProtect full archive on github](/assets/images/unpacking/vmprotectleak/partial.png)
+
+**There's still no "one-click unpack" tool** available because the leaks lack some core virtualization/processor modules.
