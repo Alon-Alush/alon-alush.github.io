@@ -12,7 +12,7 @@ toc: true
 
 # VMProtect leak
 
-In 2023, [VMProtect](https://vmpsoft.com/), a commercial virtualization-based protector for executable files, has been leaked — not once, but *twice*.
+In 2023, [VMProtect](https://vmpsoft.com/), a commercial virtualization-based protector for executable files, was leaked — not once, but *twice*.
 
 First, a dump of the protector popped up in May 2023:
 
@@ -26,6 +26,8 @@ Then, about half a year later, the more complete archive was leaked (7 Dec 2023)
 
 ![VMProtect posted on GitHub](/assets/images/unpacking/vmprotectleak/full.png)
 
+
+
 # Timeline
 
 - **May 2023** : Large chunk of VMProtect 3.x codebase leaked, first public confirmation that the code was in the wild.[[1]](https://forum.tuts4you.com/topic/44205-leaked-vmprotect-sources/?utm_source=chatgpt.com)[[2]](https://www.risky.biz/RBNEWS146/)[[3]](https://www.unknowncheats.me/forum/general-programming-and-reversing/583253-vmprotect-source-leak.html)[[4]](https://x.com/gmhzxy/status/1563608617169096708)
@@ -38,7 +40,7 @@ There was no evidence of an *internal* hack at VMPSoft, the consensus is an outs
 
 # Is VMProtect "cracked" now?
 
-Yes and no; having source code made it possible to partially compile VMProtect:
+Yes and no; having the source code made it possible to partially compile VMProtect:
 
 ![VMProtect full archive on github](/assets/images/unpacking/vmprotectleak/partial.png)
 
