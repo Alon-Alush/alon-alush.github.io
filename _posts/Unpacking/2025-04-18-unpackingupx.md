@@ -10,10 +10,7 @@ categories:
 toc: true
 ---
 
-# Unpacking
-
-
-# MinGW
+# Unpacking UPX
 
 In this project, we'll explore how to modify the strings (text) of executable files. When we run an executable file, strings like "Hello World!" that appear on the GUI are usually located in the `rdata` or `.data` segments. These are parts of the PE file structure used by the program to hold constant values like string literals.
 
