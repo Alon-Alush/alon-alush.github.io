@@ -60,3 +60,4 @@ Personally, I see this as a *temporary* blow to VMProtect's reputation in the so
 
 ![VMProtect full archive on github](/assets/images/unpacking/vmprotectleak/website.png)
 
+I hope you found this post interesting! 
