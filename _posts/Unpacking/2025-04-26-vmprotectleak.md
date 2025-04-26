@@ -34,7 +34,7 @@ Then, about half a year later, the more complete archive was leaked (7 Dec 2023)
 
 ![VMProtect full archive on github](/assets/images/unpacking/vmprotectleak/github.png)
 
-There was no evidence of an *internal* hack at VMPSoft, the consensus is an outsider stole the code (likely from a customer portal or reseller) and let it roam free. 
+There was no evidence of an *internal* hack at VMPSoft, the consensus is an outsider stole the code (likely from a customer portal or reseller) and leaked it. 
 
 # Is VMProtect "cracked" now?
 
