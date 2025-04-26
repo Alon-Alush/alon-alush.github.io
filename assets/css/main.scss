@@ -1,21 +1,8 @@
-/* Add this to your Jekyll custom CSS */
-li {
-    line-height: 1.6; /* Improve spacing between lines */
-    margin-bottom: 0.75em; /* Add space after list items */
-  }
-  
-  li a {
-    padding-left: 4px; /* Space between text and link */
-    padding-right: 4px;
-  }
-  
-  strong {
-    font-weight: 600; /* Softer bold */
-  }
-  
-  body {
-    font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', sans-serif; /* Nicer font */
-    font-size: 16px;
-    color: #ddd; /* Lighter text for dark themes */
-  }
-  
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
