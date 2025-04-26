@@ -44,17 +44,23 @@ Yes and no; having the source code made it possible to partially compile VMProte
 
 ![VMProtect full archive on github](/assets/images/unpacking/vmprotectleak/partial.png)
 
-**There's still no "one-click unpack" tool** available because the leaks lack some core virtualization/processor modules.
+The core virtualization module (`intel.cc`) was of main interest to reverse engineers / crackers; in total, it amounted to roughly 31000 lines of raw C++!
+
+![VMProtect full archive on github](/assets/images/unpacking/vmprotectleak/core.png)
+
+![VMProtect full archive on github](/assets/images/unpacking/vmprotectleak/cor2.png)
 
 # The community's response
 
-Overall, the reverse engineering community welcomed the breach of VMProtect, with some even describing it as a "Christmas gift":
+Overall, the reverse engineering community welcomed the breach of VMProtect, with some even describing it as a "Christmas gift" 🎁:
 
 ![VMProtect full archive on github](/assets/images/unpacking/vmprotectleak/responses.png)
 
-Others thought the breach was an "invaluable resource" for wannabe reverse engineers:
+`securemk` thought the breach was an "invaluable resource" for wannabe reverse engineers like him:
 
 ![VMProtect full archive on github](/assets/images/unpacking/vmprotectleak/responses1.png)
+
+
 
 # Moving forward
 

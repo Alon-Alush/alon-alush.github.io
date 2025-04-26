@@ -4,7 +4,7 @@ classes: wide
 header:
   teaser: /assets/images/pefileformat/iat/image.png
 ribbon: DodgerBlue
-description: "Explaining the DOS header in Portable Executable (PE) files."
+description: "Explaining the DOS header in Windows executable formats"
 categories:
   - PE File Format
 toc: true
@@ -14,7 +14,7 @@ toc: true
 
 **First of all, what's the DOS header?**
 
-The DOS header is a small structure at very beginning of executable files in the DOS MZ format (like `.exe` files), and preserved on PE files for backwards compatibility. It's often called the **MZ header** because the first two bytes are the ASCII characters "`MZ`"—the initials of Mark Zbikowski, one of its designers.
+The DOS header is a structure first introduced in DOS MZ format (like `.exe` files), and preserved on PE files for backwards compatibility. It's often called the **MZ header** because the first two bytes are the ASCII characters "`MZ`"—the initials of Mark Zbikowski, one of its designers.
 
 ![MZ](/assets/images/pefileformat/dosheader/image.png)
 
