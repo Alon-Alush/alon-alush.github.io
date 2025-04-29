@@ -46,9 +46,7 @@ Yes and no; having the source code made it possible to partially compile VMProte
 
 The core virtualization module (`intel.cc`) was of main interest to reverse engineers / crackers; in total, it amounted to roughly 31000 lines of raw C++!
 
-![VMProtect full archive on github](/assets/images/unpacking/vmprotectleak/core.png)
-
-![VMProtect full archive on github](/assets/images/unpacking/vmprotectleak/cor2.png)
+![VMProtect full archive on github](/assets/images/unpacking/vmprotectleak/intel.png)
 
 # The community's response
 
