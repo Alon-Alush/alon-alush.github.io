@@ -18,7 +18,7 @@ First, a dump of the protector popped up in May 2023:
 
 ![VMProtect initial leak](/assets/images/unpacking/vmprotectleak/dump.png)
 
-This leak was shared via the Chinese Kanxue Security Forum:
+This dump was shared via the Chinese Kanxue Security Forum, frequently used for sharing software cracks:
 
 ![forum leak](/assets/images/unpacking/vmprotectleak/forum.png)
 
