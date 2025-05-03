@@ -109,4 +109,4 @@ Now let's run this patched PE in `DOSBox`, a very popular MS-DOS emulator:
 
 ![Injected code in DOSBox](/assets/images/pefileformat/dosheader/result.png)
 
-As you can see, instead of printing the generic "This program cannot be run in DOS mode", it ran our injected code that printed `@AlonAlush` name in green 5 times, as we expected. Of course, you can modify the DOS stub to run any 16-bit machine code you'd like.
+As you can see, instead of printing the generic "This program cannot be run in DOS mode", our exe ran the injected code that printed `@AlonAlush` name in green 5 times, as we expected. Of course, you can modify the DOS stub to run any 16-bit machine code you'd like.
