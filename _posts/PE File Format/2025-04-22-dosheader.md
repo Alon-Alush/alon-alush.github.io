@@ -101,7 +101,7 @@ Looking back, this *"might've"* been a mistake move by Microsoft😅. The PE for
 
 The DOS header (and the DOS stub) **can be modified to inject custom code**. Back in the days of DOS-MZ, malware authors would inject their custom 16-bit DOS code into the DOS header itself. Then, when a DOS machine tries to run the modified `.exe`, it will execute the injected DOS code instead of the boring "This program cannot be run in DOS mode" message. 
 
-To demonstrate, I'll inject a custom C shellcode that prints "`Alon Alush`" 5 times in green (in place of the DOS stub):
+To demonstrate, I'll take a random PE executable and inject a custom C shellcode to it that prints "`Alon Alush`" 5 times in green (in place of the DOS stub):
 
 ![DOS stub shellcode injection](/assets/images/pefileformat/dosheader/doshellcode.png)
 
@@ -109,4 +109,4 @@ Now let's run this patched PE in `DOSBox`, a very popular MS-DOS emulator:
 
 ![Injected code in DOSBox](/assets/images/pefileformat/dosheader/result.png)
 
-As you can see, instead of printing the generic "This program cannot be run in DOS mode", it printed our name in green 5 times, as we expected.
+As you can see, instead of printing the generic "This program cannot be run in DOS mode", it ran our injected code that printed `@AlonAlush` name in green 5 times, as we expected. Of course, you can modify the DOS stub to run any 16-bit machine code you'd like.
