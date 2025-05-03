@@ -1,5 +1,5 @@
 ---
-title: "Shapes, Inc got mass-purged by Discord!"
+title: "Shapes, Inc got mass-terminated by Discord!"
 classes: wide
 header:
   teaser: /assets/images/AI%20world/shapesinc/logo.png
