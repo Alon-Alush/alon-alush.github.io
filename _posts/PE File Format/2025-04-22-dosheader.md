@@ -101,7 +101,7 @@ Looking back, this *"might've"* been a mistake move by Microsoft😅. The PE for
 
 The DOS header (and the DOS stub) **can be modified to inject custom code**. Back in the days of DOS-MZ, malware authors would inject their custom 16-bit DOS code into the DOS header itself. Then, when a DOS machine tries to run the modified `.exe`, it will execute the injected DOS code instead of the boring "This program cannot be run in DOS mode" message. 
 
-To demonstrate how this is done, I'll take a random PE executable and modify its DOS stub to inject a custom 16-bit shellcode to it that prints "`Alon Alush`" 5 times in green.
+To demonstrate how this is done, I'll take a random PE executable and replace its DOS stub with a custom 16-bit shellcode to it that prints "`@AlonAlush`" 5 times in green.
 
 To correctly exit the program after executing our payload, we'll add the bytes `0x4C01` right after the `PE\0\0` signature. In 16-bit MS-DOS assembly, the opcode `4C` corresponds to the `INT 21h` function `4CH`, which terminates a process with a return code. Following it, `01` is the exit code passed.
 
