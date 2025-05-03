@@ -15,18 +15,32 @@ toc: true
 
 [Shapes.inc](https://shapes.inc/), a platform that allowed users to create and host their own AI-powered chatbots known as "Shapes", **just got mass-purged by Discord** in a ***giant mass-takedown campaign*** that completely erased *entire Discord server*, *Applications* and even *chats* users had with Shapes during this time.
 
-![Reddit post following Shapes Inc's Discord takedown](/assets/images/AI%20world/shapesinc/post.png)
-
 Shapes, Inc had a ***massive*** Discord precense, reaching over **10 million!** members in their Discord server prior to the takedown.
 
-Shapes's admins quickly responded with a  call to action–instructing its members to submit *mass-appeals* under the reason "`Shapes did not train AI models on discord user data and messages"`:
+After Discord started banning Shapes' Applications, the admins quickly responded with a  call to action–instructing its members to submit *mass-appeals* under the reason "`Shapes did not train AI models on discord user data and messages"`:
 
 ![Call to action](/assets/images/AI%20world/shapesinc/announcement.png)
+
+Looking back, this only made the situation worse; Discord later **completely erased** their Discord server totalling over 10 million members at the time.
+
+Then, posts became flooding!
 
 
 ![Shapes application termination](/assets/images/AI%20world/shapesinc/termination.png)
 
 ![Shapes application termination](/assets/images/AI%20world/shapesinc/termination1.png)
+
+
+
+# The community's reaction
+
+Some people harshly criticized Discord's perceived overreach when it comes to mass-slace projects like these:
+
+![Reddit comment criticizing Discord over the takedown](/assets/images/AI%20world/shapesinc/comment.png)
+
+Others were skeptic regarding Shapes Inc's supposed "innocency", mentioning how their actions have played a role in the takedown:
+
+![Reddit comment defending Discord's actions](/assets/images/AI%20world/shapesinc/defend.png)
 
 
 
