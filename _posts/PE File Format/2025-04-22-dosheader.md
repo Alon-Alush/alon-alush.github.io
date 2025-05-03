@@ -46,7 +46,7 @@ Can see you see the `PE\0\0` signature that I highlighted?
 
 ![PE\0\0 sig](/assets/images/pefileformat/dosheader/sig.png)
 
-This it marks the start of the **IMAGE_NT_HEADERS** structure, and Windows uses `e_lfanew` to find the offset to that structure.
+This marks the start of the **IMAGE_NT_HEADERS** structure, and Windows uses `e_lfanew` to find the offset to that structure.
 
 Below is a diagram I made, illustrating it:
 
@@ -54,7 +54,7 @@ Below is a diagram I made, illustrating it:
 
 # C representation of IMAGE_DOS_HEADER
 
-We can take a look at the contents of that structure by looking at the `IMAGE_DOS_HEADER` structure definition from `winnt.h`
+To better structurally understand the DOS header, let's take a look at the  `IMAGE_DOS_HEADER` structure definition from `winnt.h`
 ```c
 typedef struct _IMAGE_DOS_HEADER {  
     WORD e_magic;    // Magic number (MZ)
