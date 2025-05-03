@@ -48,5 +48,5 @@ Others took a more balanced stance, expressing skepticism regarding Shapes's cla
 
 # Moving forward
 
-I think this is a massive hit to Shapes Inc's reputation in the human-AI interaction space, both [as a company](https://www.linkedin.com/company/shapesinc) and as [a community](https://discord.com/invite/shapes). Not only did they handle the situation unprofessionally (instructing clients to appeal in favor of them), but they also didn't properly report their data collection practices to Discord, as reported by multiple sources. After all, this isn't a mom-and-pop shop, and we're talking about potentially *millions* of users who sent their private information to these chatbots.
+I think this is a massive hit to Shapes Inc's reputation in the human-AI interaction space, both [as a company](https://www.linkedin.com/company/shapesinc) and as [a community](https://discord.com/invite/shapes). Not only did they handle the situation unprofessionally (instructing clients to appeal in favor of them), but they also didn't properly report their data collection practices to Discord, as reported by multiple sources. This isn't a mom-and-pop shop, after all; we're talking about potentially *millions* of users who sent private information to these chatbots.
 
