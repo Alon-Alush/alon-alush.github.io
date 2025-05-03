@@ -83,7 +83,7 @@ Total size: 30 * 2 + 4 = exactly **64 bytes**.
 
 2 words: **backwards compatibility**. 
 
-See, the PE format was designed *as an extension* of the old [DOS MZ executable format](https://en.wikipedia.org/wiki/DOS_MZ_executable). Back then, the Portable Executable format was a *new kid on the block*. Both DOS-MZ and PE executables were distributed with a `.exe` extension, so whenever a user attempted to run a PE `.exe` on MS-DOS, **the DOS loaders would freak out** because they expected a DOS MZ format for `.exe` extensions, not Portable Executable. 
+See, the PE format was designed *as an extension* of the old [DOS MZ executable format](https://en.wikipedia.org/wiki/DOS_MZ_executable). Back then, the Portable Executable format was a *new kid on the block*. Both DOS-MZ and PE executables were distributed with a `.exe` extension, so whenever a user attempted to run a PE `.exe` on MS-DOS, **the DOS loaders would behave unexpectedly** because they expected a DOS MZ format for `.exe` extensions, not Portable Executable. 
 
 So, in order to make the DOS loaders predictably exit the program upon running a PE executable, Microsoft distributed *every* PE file with this DOS stub inside the DOS header:
 
