@@ -79,7 +79,7 @@ The struct has 30 `WORD` fields (2 bytes each), plus the 4-byte `e_lfanew` (of s
 
 Total size: 30 * 2 + 4 = exactly **64 bytes**.
 
-# Why is the DOS header still there?
+# Historical background
 
 **A lot of you right now may be confused:** Why does every PE file need a DOS header, despite modern Windows system not even running DOS programs?
 
