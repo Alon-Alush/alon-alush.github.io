@@ -54,7 +54,7 @@ Below is a diagram I made, illustrating it:
 
 # C representation of IMAGE_DOS_HEADER
 
-To better structurally understand the DOS header, let's take a look at the  `IMAGE_DOS_HEADER` structure definition from `winnt.h`
+We can take a look at the contents of the DOS header by looking at the `IMAGE_DOS_HEADER` structure definition from `winnt.h`
 ```c
 typedef struct _IMAGE_DOS_HEADER {  
     WORD e_magic;    // Magic number (MZ)
