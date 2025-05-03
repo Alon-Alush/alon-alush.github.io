@@ -83,15 +83,15 @@ Total size: 30 * 2 + 4 = exactly **64 bytes**.
 
 2 words: **backwards compatibility**. 
 
-See, the PE format was designed *as an extension* of the old [DOS MZ executable format](https://en.wikipedia.org/wiki/DOS_MZ_executable). Back then, the Portable Executable format was a *new kid on the block*. Both the old DOS MZ format and PE format ended with a `.exe` extension, so whenever a user attempted to run a PE `.exe` on MS-DOS, **the DOS loaders would freak out** because they expected a DOS MZ format for `.exe` extensions, not PE. 
+See, the PE format was designed *as an extension* of the old [DOS MZ executable format](https://en.wikipedia.org/wiki/DOS_MZ_executable). Back then, the Portable Executable format was a *new kid on the block*. Both DOS-MZ and PE executables were distributed with a `.exe` extension, so whenever a user attempted to run a PE `.exe` on MS-DOS, **the DOS loaders would freak out** because they expected a DOS MZ format for `.exe` extensions, not Portable Executable. 
 
-So, in order to make the DOS loaders respond properly upon seeing an PE executable, they required *every* PE file contain this DOS stub inside the DOS header:
+So, in order to make the DOS loaders predictably exit the program upon running a PE executable, Microsoft distributed *every* PE file with this DOS stub inside the DOS header:
 
 ```c
 This program cannot be run in DOS mode
 ```
 
-So that if a DOS loader (or a user in DOS) tries to execute a PE file, they don't crash or hang; instead, they immediately see this message in the console:
+So that if a DOS loader tries to execute a PE file, they don't crash or hang; instead, they immediately see this message in the console and exit:
 
 ![This program cannot be run in DOS mode](/assets/images/pefileformat/dosheader/loader.png)
 
@@ -101,7 +101,7 @@ Looking back, this *"might've"* been a mistake move by Microsoft😅. The PE for
 
 The DOS header (and the DOS stub) **can be modified to inject custom code**. Back in the days of DOS-MZ, malware authors would inject their custom 16-bit DOS code into the DOS header itself. Then, when a DOS machine tries to run the modified `.exe`, it will execute the injected DOS code instead of the boring "This program cannot be run in DOS mode" message. 
 
-To demonstrate, I'll take a random PE executable and inject a custom C shellcode to it that prints "`Alon Alush`" 5 times in green (in place of the DOS stub).
+To demonstrate how this is done, I'll take a random PE executable and modify its DOS stub to inject a custom 16-bit shellcode to it that prints "`Alon Alush`" 5 times in green.
 
 To correctly exit the program after executing our payload, we'll add the bytes `0x4C01` right after the `PE\0\0` signature. In 16-bit MS-DOS assembly, the opcode `4C` corresponds to the `INT 21h` function `4CH`, which terminates a process with a return code. Following it, `01` is the exit code passed.
 
