@@ -85,7 +85,7 @@ Total size: 2 + (13 × 2) + (10 × 4) = 2 + 26 + 40 = exactly **64 bytes without
 
 See, the PE format was designed *as an extension* of the old [DOS MZ executable format](https://en.wikipedia.org/wiki/DOS_MZ_executable). Back then, the Portable Executable format was a *new kid on the block*. Both the old DOS MZ format and PE format ended with a `.exe` extension, so whenever a user attempted to run a PE `.exe` on MS-DOS, **the DOS loaders would freak out** because they expected a DOS MZ format for `.exe` extensions, not PE. 
 
-So, in order to not make the DOS loaders freak out when they see a PE executable, they required *every* PE file contain this DOS stub inside the DOS header:
+So, in order to make the DOS loaders respond properly upon seeing an PE executable, they required *every* PE file contain this DOS stub inside the DOS header:
 
 ```c
 This program cannot be run in DOS mode
@@ -99,4 +99,14 @@ Looking back, this *"might've"* been a mistake move by Microsoft😅. The PE for
 
 # DOS stub code injection
 
-The DOS header (and the DOS stub) **can technically be modified to inject custom code**. Back in the days of DOS-MZ, malware authors would inject their custom 16-bit DOS code into the DOS header itself. Then, when a DOS machine tries to run the modified `.exe`, it will execute the injected DOS code instead of the boring "This program cannot be run in DOS mode" message. 
+The DOS header (and the DOS stub) **can be modified to inject custom code**. Back in the days of DOS-MZ, malware authors would inject their custom 16-bit DOS code into the DOS header itself. Then, when a DOS machine tries to run the modified `.exe`, it will execute the injected DOS code instead of the boring "This program cannot be run in DOS mode" message. 
+
+To demonstrate, I'll inject a custom C shellcode that prints "`Alon Alush`" 5 times in green (in place of the DOS stub):
+
+![DOS stub shellcode injection](/assets/images/pefileformat/dosheader/doshellcode.png)
+
+Now let's run this patched PE in `DOSBox`, a very popular MS-DOS emulator:
+
+![Injected code in DOSBox](/assets/images/pefileformat/dosheader/result.png)
+
+As you can see, instead of printing the generic "This program cannot be run in DOS mode", it printed our name in green 5 times, as we expected.
