@@ -38,7 +38,7 @@ Some people harshly criticized Discord's perceived overreach when it comes to ma
 
 ![Reddit comment criticizing Discord over the takedown](/assets/images/AI%20world/shapesinc/comment.png)
 
-Others were skeptic regarding Shapes Inc's supposed "innocency", mentioning how their actions have played a role in the takedown:
+Others were skeptic regarding Shapes Inc's claim of "innocency", mentioning how their questionable actions have played a role in the takedown:
 
 ![Reddit comment defending Discord's actions](/assets/images/AI%20world/shapesinc/defend.png)
 
