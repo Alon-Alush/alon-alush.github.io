@@ -14,11 +14,11 @@ toc: true
 
 **First of all, what's the DOS header?**
 
-The DOS header is a structure at the very start of executables in the DOS MZ format, and preserved on PE files for backwards compatibility. It's often called the **MZ header** because the first two bytes are the ASCII characters "`MZ`"—the initials of Mark Zbikowski, one of its designers.
+The DOS header is a structure at the very start of executables in the DOS MZ format, and preserved on PE files for backwards compatibility. The beginining of the DOS header is marked by the ASCII sequence "`MZ`" (`4D 5A` in hex). Those are the initials of Mark Zbikowski, the designer of the format.
 
 ![MZ](/assets/images/pefileformat/dosheader/image.png)
 
-In Portable Executable files, the DOS header contains an additional DOS stub that contains the following ASCII sequence:
+In Portable Executable files, the DOS header contains an additional DOS stub containing the following ASCII sequence:
 
 ```
 "This program cannot be run in DOS mode."
@@ -30,7 +30,7 @@ In Portable Executable files, the DOS header contains an additional DOS stub tha
 
 `e_magic`: a 2-byte signature that must equal to `MZ` (`0x4D5A` in hexadecimal). This sequence lets the loader know that the file is a valid DOS executable (and by extension, a valid PE file).
 
-`e_lfanew`: a 4-byte field that contains the offset (relative to the start of `MZ` signature) where the NT header begins.
+`e_lfanew`: a 4-byte field that contains the offset (relative to the start of `MZ` signature) where the NT header begins. It's located of 
 
 ![e_lfanew field](/assets/images/pefileformat/dosheader/image-2.png)
 
