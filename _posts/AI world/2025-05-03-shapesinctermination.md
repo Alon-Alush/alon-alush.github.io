@@ -4,7 +4,7 @@ classes: wide
 header:
   teaser: /assets/images/AI%20world/shapesinc/logo.png
 ribbon: DodgerBlue
-description: "Shapes, Inc got mass-purged by Discord; and it doesn't look good (Quick rundown)."
+description: "Shapes, Inc, a Discord hub for creating and talking to customized AI chatbots, just got terminated; and it doesn't look good. Quick rundown."
 categories:
   - AI world
 toc: true
