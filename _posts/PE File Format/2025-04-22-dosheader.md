@@ -103,7 +103,7 @@ The DOS header (and the DOS stub) **can be modified to inject custom code**. Bac
 
 To demonstrate, I'll take a random PE executable and inject a custom C shellcode to it that prints "`Alon Alush`" 5 times in green (in place of the DOS stub).
 
-To correctly exit the program after executing our payload, we'll add the bytes `0x4C01` right after the `PE\0\0` signature. In 16-bit MS-DOS assembly, the opcode `4C` corresponds to the `INT 21h` function `4CH`, which terminates the current process with a return code. Following it, `01` is the exit code passed.
+To correctly exit the program after executing our payload, we'll add the bytes `0x4C01` right after the `PE\0\0` signature. In 16-bit MS-DOS assembly, the opcode `4C` corresponds to the `INT 21h` function `4CH`, which terminates a process with a return code. Following it, `01` is the exit code passed.
 
 ![DOS stub shellcode injection](/assets/images/pefileformat/dosheader/doshellcode.png)
 
