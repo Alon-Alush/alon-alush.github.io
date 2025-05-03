@@ -14,11 +14,11 @@ toc: true
 
 **First of all, what's the DOS header?**
 
-The DOS header is a structure right at the start of DOS-MZ executables, and preserved on the newer PE format for backwards compatibility. The beginining of the DOS header is marked by the ASCII sequence "`MZ`" (`4D 5A` in hex). Those are the initials of Mark Zbikowski, the designer of the DOS-MZ format.
+The DOS header is a structure located right at the start of DOS-MZ executables, and preserved on the newer PE format for backwards compatibility. The beginining of the DOS header is marked by the ASCII sequence "`MZ`" (`4D 5A` in hex). Those are the initials of Mark Zbikowski, the designer of the DOS-MZ format.
 
 ![MZ](/assets/images/pefileformat/dosheader/image.png)
 
-In Portable Executable files, the DOS header contains an additional DOS stub containing the following ASCII sequence:
+In Portable Executable files, the DOS header contains an additional [DOS stub](https://learn.microsoft.com/en-us/cpp/build/reference/stub-ms-dos-stub-file-name?view=msvc-170) containing the following ASCII sequence:
 
 ```
 "This program cannot be run in DOS mode."
