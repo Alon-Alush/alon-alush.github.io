@@ -73,9 +73,9 @@ typedef struct _IMAGE_DOS_HEADER {
 } IMAGE_DOS_HEADER, *PIMAGE_DOS_HEADER;
 ```
 
-The struct has 14 `WORD` fields (2 bytes each) and 10 `DWORD` fields (4 bytes each), plus the 2-byte `e_magic`.
+The struct has 30 `WORD` fields (2 bytes each), plus the 4-byte `e_lfanew` (of size `LONG`).
 
-Total size: 2 + (13 × 2) + (10 × 4) = 2 + 26 + 40 = exactly **64 bytes without paddling**.
+Total size: 30 * 2 + 4 = exactly **64 bytes**.
 
 # Why is the DOS header still there?
 
