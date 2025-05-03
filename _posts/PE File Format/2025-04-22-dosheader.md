@@ -42,7 +42,11 @@ In the following example, `e_lfanew` field corresponds to the byte sequence `C8 
 
 ![New PE header](/assets/images/pefileformat/dosheader/header.gif)
 
-Can see you see the `PE` signature that I highlighted? it marks the start of the **IMAGE_NT_HEADERS** structure, and Windows uses `e_lfanew` to find the offset to that structure.
+Can see you see the `PE\0\0` signature that I highlighted?
+
+![PE\0\0 sig](/assets/images/pefileformat/dosheader/sig.png)
+
+This it marks the start of the **IMAGE_NT_HEADERS** structure, and Windows uses `e_lfanew` to find the offset to that structure.
 
 Below is a diagram I made, illustrating it:
 
