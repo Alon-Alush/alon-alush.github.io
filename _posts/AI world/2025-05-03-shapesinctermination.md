@@ -12,12 +12,12 @@ toc: true
 
 # Explaining the Discord controversy
 
-[Shapes.inc](https://shapes.inc/), a platform that allowed users to create and host their own AI-powered chatbots known as "Shapes", **just got mass-purged by Discord** in a ***giant mass-takedown campaign*** that completely erased *entire Discord server*, *Applications* and even *chats* users had with Shapes during this time.
+[Shapes.inc](https://shapes.inc/), a platform that allowed users to create and host their own AI-powered chatbots known as "Shapes", **just got purged by Discord** in a ***giant mass-takedown campaign*** that completely erased *entire Discord server*, *Applications* and even *chats* users had with Shapes during this time.
 
 Shapes, Inc had a ***massive*** Discord precense, reaching over **10 million!** members in their Discord server prior to the takedown.
 
 
-After Discord started banning Shapes' Applications, the admins quickly responded with a  call to action–instructing its members to submit *mass-appeals* under the reason "`Shapes did not train AI models on discord user data and messages"`:
+After Discord started banning Shapes' Applications, the admins quickly responded with a  call to action instructing its members to submit *mass-appeals* under the reason "`Shapes did not train AI models on discord user data and messages"`:
 
 ![Call to action](/assets/images/AI%20world/shapesinc/announcement.png)
 
@@ -39,14 +39,13 @@ Then, posts became flooding from users expressing their frustrations!
 
 # The community's reaction
 
-Some people harshly criticized Discord's perceived overreach when it comes to mass-slace projects like these:
+Some people harshly criticized Discord's perceived overreach when it comes to Discord-hosted projects like these:
 
 ![Reddit comment criticizing Discord over the takedown](/assets/images/AI%20world/shapesinc/comment.png)
 
 Others were skeptic regarding Shapes Inc's claim of "innocency", mentioning how their questionable data collection practices have played a role in the takedown:
 
 ![Reddit comment defending Discord's actions](/assets/images/AI%20world/shapesinc/defend.png)
-
 
 ![Reddit comment defending Discord's actions](/assets/images/AI%20world/shapesinc/defend1.png)
 
