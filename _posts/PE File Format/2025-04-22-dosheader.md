@@ -14,16 +14,15 @@ toc: true
 
 **First of all, what's the DOS header?**
 
+The DOS header is a structure at the very start of executables in the DOS MZ format, and preserved on PE files for backwards compatibility. It's often called the **MZ header** because the first two bytes are the ASCII characters "`MZ`"—the initials of Mark Zbikowski, one of its designers.
+
 ![MZ](/assets/images/pefileformat/dosheader/image.png)
 
-The DOS header is a structure of 2-byte fields containing data about the execution environment of a legacy DOS-MZ executable. In Portable Executable files, the DOS header is preserved for backwards compatibility and contains an additional DOS stub that includes this signature:
-
-In Portable Executable files, the DOS header contains an additional DOS stub that displays the following sequence:
+If you try to run the executable in a DOS environment, the stub typically displays this famous message:
 ```
 "This program cannot be run in DOS mode."
 ```
 ![DOS header stub](/assets/images/pefileformat/dosheader/image-1.png)
-```
 
 # Key fields in the DOS header
 
