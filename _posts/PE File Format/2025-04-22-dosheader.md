@@ -14,7 +14,7 @@ toc: true
 
 **First of all, what's the DOS header?**
 
-The DOS header is a structure at the very start of executables in the DOS MZ format, and preserved on PE files for backwards compatibility. The beginining of the DOS header is marked by the ASCII sequence "`MZ`" (`4D 5A` in hex). Those are the initials of Mark Zbikowski, the designer of the format.
+The DOS header is a structure right at the start of DOS-MZ executables, and preserved on the newer PE format for backwards compatibility. The beginining of the DOS header is marked by the ASCII sequence "`MZ`" (`4D 5A` in hex). Those are the initials of Mark Zbikowski, the designer of the DOS-MZ format.
 
 ![MZ](/assets/images/pefileformat/dosheader/image.png)
 
@@ -34,9 +34,9 @@ In Portable Executable files, the DOS header contains an additional DOS stub con
 
 ![e_lfanew field](/assets/images/pefileformat/dosheader/image-2.png)
 
-Here, we can see that `e_lfanew` field corresponds to the byte sequence `C8 00 00 00`. That means the offset to the NT headers is `0xC8`, ignoring the null values.
+In this example, we can see that `e_lfanew` field corresponds to the byte sequence `C8 00 00 00`. That means that `0xC8` (ignoring the null values) is the offset to the NT header in modern PE files.
 
-So, **to find the NT header in HxD**, let's go to offset `C8` that we got from the `e_lfanew` field, this offset is relative to the file start (`begin`):
+**To find the NT header in HxD**, let's go to offset `C8` that we got from the `e_lfanew` field, this offset is relative to the file start (`0x0`):
 
 ![Going to offset 0xC8](/assets/images/pefileformat/dosheader/image-3.png)
 
