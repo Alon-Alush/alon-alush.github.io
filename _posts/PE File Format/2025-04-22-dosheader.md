@@ -18,11 +18,13 @@ The DOS header is a structure at the very start of executables in the DOS MZ for
 
 ![MZ](/assets/images/pefileformat/dosheader/image.png)
 
-If you try to run the executable in a DOS environment, the stub typically displays this famous message:
+In Portable Executable files, the DOS header contains an additional DOS stub that contains the following ASCII sequence:
+
 ```
 "This program cannot be run in DOS mode."
 ```
 ![DOS header stub](/assets/images/pefileformat/dosheader/image-1.png)
+
 
 # Key fields in the DOS header
 
