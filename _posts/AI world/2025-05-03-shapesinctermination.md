@@ -37,13 +37,13 @@ Then, posts became flooding from users expressing their frustrations!
 
 
 
-# The community's reaction
+# The community's perspective
 
-Some people harshly criticized Discord's perceived overreach when it comes to Discord-hosted projects like these:
+The community's opinions were mixed. Some people harshly criticized Discord's perceived overreach when it comes to Discord-hosted projects like these:
 
 ![Reddit comment criticizing Discord over the takedown](/assets/images/AI%20world/shapesinc/comment.png)
 
-Others were skeptic regarding Shapes Inc's claim of "innocency", mentioning how their questionable data collection practices have played a role in the takedown:
+Others took a more balanced stance, expressing skepticism regarding Shapes Inc's claim of "innocency" and mentioning how their questionable data collection practices have played a role in the takedown:
 
 ![Reddit comment defending Discord's actions](/assets/images/AI%20world/shapesinc/defend.png)
 
