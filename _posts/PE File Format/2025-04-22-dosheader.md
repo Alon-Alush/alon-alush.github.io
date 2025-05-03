@@ -91,11 +91,11 @@ So, in order to make the DOS loaders predictably exit the program upon running a
 This program cannot be run in DOS mode
 ```
 
-So that if a DOS loader tries to execute a PE file, they don't crash or hang; instead, they immediately see this message in the console and exit:
+So that if a DOS loader tries to execute a PE file, they don't crash or hang; instead, they immediately print this message in the console and exit the process.
 
 ![This program cannot be run in DOS mode](/assets/images/pefileformat/dosheader/loader.png)
 
-Looking back, this *"might've"* been a mistake move by Microsoft😅. The PE format evolved to be a much more powerful and modular format afterward, *way* more than originally speculated, and leaving the old DOS-MZ format to be forgotten in the shadows. Yet, every PE file in existence *still* contains those 36 bytes worth of ASCII bloat, to remind *DOS loaders* from 40 years ago that our modern `.exe` file cannot be run on DOS systems.
+Looking back, making this ASCII sequence native to *every* PE file *"might've"* been a mistake move by Microsoft😅. The PE format evolved to be a much more powerful and modular format afterward, *way* more than originally speculated, leaving the DOS-MZ forma to die in the shadows. Yet, every PE file in existence *still* contains those 36 bytes worth of ASCII bloat, to remind *DOS loaders* from 40 years ago that our modern `.exe` file cannot be run on DOS systems.
 
 # DOS stub code injection
 
