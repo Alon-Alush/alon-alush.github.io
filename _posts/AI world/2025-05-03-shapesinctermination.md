@@ -23,9 +23,9 @@ Immediately following Discord's ban of these bots, the admins quickly responded 
 
 ![Shapes application termination](/assets/images/AI%20world/shapesinc/termination1.png)
 
-Allegedly, Shapes violated Discord's [Developer Terms of Service](https://support-dev.discord.com/hc/en-us/articles/8562894815383-Discord-Developer-Terms-of-Service) by ilegally collecting the messages that users sent to these bots.
+Allegedly, Shapes violated Discord's [Developer Terms of Service](https://support-dev.discord.com/hc/en-us/articles/8562894815383-Discord-Developer-Terms-of-Service) by illegally collecting the messages that users sent to these bots.
 
-Looking back, this "mass-appeal" campaign ended up harming their reputation even more, because, according to users, they wouldn't have denied the claims so blatanly if they truly didn't collect such data.
+Looking back, this "mass-appeal" campaign ended up harming their reputation even more, because, according to users, they wouldn't have insistently denied those claims so blatanly if such data truly wasn't collected.
 
 Discord later removed the Discord server itself, as mentioned eariler, and then, posts became flooding from users expressing their frustrations.
 
@@ -49,4 +49,5 @@ Others took a more balanced stance, expressing skepticism regarding Shapes's cla
 
 # Moving forward
 
+I think this is a massive hit to Shapes Inc's reputation in the human-AI interaction space, both [as a company](https://www.linkedin.com/company/shapesinc) and as [a community](https://discord.com/invite/shapes). Not only did they handle the situation unprofessionally (instructing clients to appeal in favor of them), but they also didn't properly report their data collection practices to Discord. After all, this isn't a mom-and-pop shop, and we're talking about potentially *millions* of users who sent private information to these chatbots.
 
