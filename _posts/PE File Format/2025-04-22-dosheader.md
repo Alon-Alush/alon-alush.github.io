@@ -36,7 +36,7 @@ In Portable Executable files, the DOS header contains an additional [DOS stub](h
 
 In the following example, `e_lfanew` field corresponds to the byte sequence `C8 00 00 00`. That means that `0xC8` (ignoring the null values) is the offset to the NT header in modern PE files.
 
-**To find the NT header in HxD**, let's go to offset `C8` that we got from the `e_lfanew` field, this offset is relative to the file start (`0x0`):
+**To find the NT header in HxD**, let's go to offset `C8` found in the `e_lfanew` field, this offset is relative to the file start (`0x0`):
 
 ![Going to offset 0xC8](/assets/images/pefileformat/dosheader/image-3.png)
 
