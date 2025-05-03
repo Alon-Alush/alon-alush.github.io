@@ -16,6 +16,8 @@ toc: true
 
 Shapes, Inc had a ***massive*** Discord precense, reaching over **10 million!** members in their Discord server prior to the takedown.
 
+![Shapes application termination](/assets/images/AI%20world/shapesinc/email.png)
+
 After Discord started banning Shapes' Applications, the admins quickly responded with a  call to action–instructing its members to submit *mass-appeals* under the reason "`Shapes did not train AI models on discord user data and messages"`:
 
 ![Call to action](/assets/images/AI%20world/shapesinc/announcement.png)
