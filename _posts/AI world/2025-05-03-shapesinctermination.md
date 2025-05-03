@@ -23,7 +23,7 @@ After Discord started banning Shapes' Applications, the admins quickly responded
 
 ![Shapes application termination](/assets/images/AI%20world/shapesinc/termination1.png)
 
-Looking back, this only made the situation worse; Discord later **completely erased** their Discord server totalling over 10 million members at the time.
+Looking back, this only made the situation worse, because Discord later removed the Discord server itself, as mentioned eariler.
 
 Then, posts became flooding from users expressing their frustrations!
 
