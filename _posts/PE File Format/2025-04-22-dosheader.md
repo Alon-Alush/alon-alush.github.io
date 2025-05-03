@@ -28,13 +28,13 @@ In Portable Executable files, the DOS header contains an additional [DOS stub](h
 
 # Key fields in the DOS header
 
-`e_magic`: a 2-byte signature that must equal to `MZ` (`0x4D5A` in hexadecimal). This sequence lets the loader know that the file is a valid DOS executable (and by extension, a valid PE file).
+`WORD e_magic`: a 2-byte signature that must equal to `MZ` (`0x4D5A` in hexadecimal). This sequence lets the loader know that the file is a valid DOS executable (and by extension, a valid PE file).
 
-`e_lfanew`: a 4-byte field that contains the offset (relative to the start of `MZ` signature) where the NT header begins. It's located of 
+`LONG e_lfanew`: In PE files, this newer 4-byte field contains the offset to the NT header. It's relative to `e_magic`, the `MZ` signature) which is the start of the file.
 
 ![e_lfanew field](/assets/images/pefileformat/dosheader/image-2.png)
 
-In this example, we can see that `e_lfanew` field corresponds to the byte sequence `C8 00 00 00`. That means that `0xC8` (ignoring the null values) is the offset to the NT header in modern PE files.
+In the following example, `e_lfanew` field corresponds to the byte sequence `C8 00 00 00`. That means that `0xC8` (ignoring the null values) is the offset to the NT header in modern PE files.
 
 **To find the NT header in HxD**, let's go to offset `C8` that we got from the `e_lfanew` field, this offset is relative to the file start (`0x0`):
 
