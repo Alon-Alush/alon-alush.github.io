@@ -2,7 +2,7 @@
 title: "Shapes, Inc got mass-purged by Discord!"
 classes: wide
 header:
-  teaser: /assets/images/AI%20world/shapesinc/post.png
+  teaser: /assets/images/AI%20world/shapesinc/logo.png
 ribbon: DodgerBlue
 description: "Shapes, Inc got mass-purged by Discord; and it doesn't look good (Quick rundown)."
 categories:
