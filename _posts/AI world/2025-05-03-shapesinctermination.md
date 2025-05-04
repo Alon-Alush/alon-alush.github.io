@@ -1,7 +1,6 @@
 ---
 title: "Shapes, Inc got mass-terminated by Discord!"
 classes: wide
-comments: true
 header:
   teaser: /assets/images/AI%20world/shapesinc/logo.png
 ribbon: DodgerBlue
