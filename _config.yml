@@ -32,14 +32,12 @@ words_per_minute         : 170
 comments:
   provider: "giscus"
   giscus:
-    repo:                "anotherlab/anotherlab.github.io"
-    repo-id:             "R_kgDOObwnXA"
-    category:            "Comments"
-    category-id:         "DIC_kwDOObwnXM4CpwzY"
-    mapping:             "pathname"
-    reactions-enabled:    "1"
-    theme:               "light"
-    crossorigin:         "anonymous"    
+    repo_id              : "R_kgDOObwnXA" # Shown during giscus setup at https://giscus.app
+    category_name        : "Comments"
+    category_id          : "DIC_kwDOObwnXM4CpwzY" # Shown during giscus setup at https://giscus.app
+    discussion_term      : "pathname" # "pathname" (default), "url", "title", "og:title"
+    reactions_enabled    : '1' # '1' for enabled (default), '0' for disabled
+    theme                : "dark" # "light" (default), "dark", "dark_dimmed", "transparent_dark", "preferred_color_scheme" 
 reCaptcha:
   siteKey                :
   secret                 :
