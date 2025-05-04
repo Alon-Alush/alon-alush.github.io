@@ -1,0 +1,24 @@
+<script>
+    'use strict';
+  
+    (function () {
+      var commentContainer = document.querySelector('#giscus-comments');
+  
+      if (!commentContainer) {
+        return;
+      }
+  
+      var script = document.createElement('script');
+      script.setAttribute('src', 'https://giscus.app/client.js');
+      script.setAttribute('data-repo', 'anotherlab/anotherlab.github.io');
+      script.setAttribute('data-repo-id', '');
+      script.setAttribute('data-category', '');
+      script.setAttribute('data-category-id', '');
+      script.setAttribute('data-mapping', 'pathname');
+      script.setAttribute('data-reactions-enabled', '1');
+      script.setAttribute('data-theme', 'light');
+      script.setAttribute('crossorigin', 'anonymous');
+  
+      commentContainer.appendChild(script);
+    })();
+  </script>
