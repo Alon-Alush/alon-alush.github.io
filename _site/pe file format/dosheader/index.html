@@ -1,0 +1,942 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>PE file format: DOS Header - Alon Alush</title>
+<meta name="description" content="Explaining the DOS header in Windows executable formats ">
+
+
+  <meta name="author" content="Alon Alush">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Alon Alush">
+<meta property="og:title" content="PE file format: DOS Header">
+<meta property="og:url" content="https://github.com/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/dosheader/">
+
+
+  <meta property="og:description" content="Explaining the DOS header in Windows executable formats ">
+
+
+
+  <meta property="og:image" content="https://github.com/pages/Alon-Alush/alonalush.github.io/assets/images/pefileformat/iat/image.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://github.com/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/dosheader/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Alon Alush",
+      "url": "https://github.com/pages/Alon-Alush/alonalush.github.io/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="hDFFgz2dwyDgZl9ZHL-5_AhkPhNOb31bi5gN5KD1tyI" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/pages/Alon-Alush/alonalush.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Alon Alush Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pages/Alon-Alush/alonalush.github.io/assets/css/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+<!-- favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/site_data/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/site_data/favicon-16x16.png">
+<meta name="theme-color" content="#ffffff">
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/pages/Alon-Alush/alonalush.github.io/"><img src="/pages/Alon-Alush/alonalush.github.io/assets/images/site_data/logo.png" alt=""></a>
+        
+        <a class="site-title" href="/pages/Alon-Alush/alonalush.github.io/">
+          Alon Alush
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/pages/Alon-Alush/alonalush.github.io/categories/#unpacking">Unpacking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/pages/Alon-Alush/alonalush.github.io/categories/#evadingavs">AV Evasion</a>
+            </li><li class="masthead__menu-item">
+              <a href="/pages/Alon-Alush/alonalush.github.io/categories/#Injection">Injection</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/site-data/bio-photo.jpg" alt="Alon Alush" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Alon Alush</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Simple blog that documents my reverse engineering / malware analysis endeavors on Windows.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+        
+          
+            <li><a href="mailto:alonalush5@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://discordapp.com/users/450639647106662402" rel="nofollow noopener noreferrer"><i class="fab fa-discord" aria-hidden="true"></i><span class="label">Discord</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/Alon-Alush" rel="nofollow noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="PE file format: DOS Header">
+    <meta itemprop="description" content="DOS headerFirst of all, what’s the DOS header?The DOS header is a structure located right at the start of DOS-MZ executables, and preserved on the newer PE format for backwards compatibility. The beginining of the DOS header is marked by the ASCII sequence “MZ” (4D 5A in hex). Those are the initials of Mark Zbikowski, the designer of the DOS-MZ format.In Portable Executable files, the DOS header contains an additional DOS stub containing the following ASCII sequence:&quot;This program cannot be run in DOS mode.&quot;Key fields in the DOS headerWORD e_magic: a 2-byte signature that must equal to MZ (0x4D5A in hexadecimal). This sequence lets the loader know that the file is a valid DOS executable (and by extension, a valid PE file).LONG e_lfanew: In PE files, this newer 4-byte field contains the offset to the NT header. It’s relative to e_magic, the MZ signature) which is the start of the file.In the following example, e_lfanew field corresponds to the byte sequence C8 00 00 00. That means that 0xC8 (ignoring the null values) is the offset to the NT header in modern PE files.To find the NT header in HxD, let’s go to offset C8 found in the e_lfanew field, this offset is relative to the file start (0x0):Can see you see the PE\0\0 signature that I highlighted?This marks the start of the IMAGE_NT_HEADERS structure, and Windows uses e_lfanew to find the offset to that structure.Below is a diagram I made, illustrating it:C representation of IMAGE_DOS_HEADERWe can take a look at the contents of the DOS header by looking at the IMAGE_DOS_HEADER structure definition from winnt.htypedef struct _IMAGE_DOS_HEADER {      WORD e_magic;    // Magic number (MZ)    WORD e_cblp;     // Bytes on last page of file    WORD e_cp;       // Pages in file    WORD e_crlc;     // Relocations    WORD e_cparhdr;  // Size of header in paragraphs    WORD e_minalloc; // Minimum extra paragraphs needed    WORD e_maxalloc; // Maximum extra paragraphs needed    WORD e_ss;       // Initial (relative) SS value    WORD e_sp;       // Initial SP value    WORD e_csum;     // Checksum    WORD e_ip;       // Initial IP value    WORD e_cs;       // Initial (relative) CS value    WORD e_lfarlc;   // File address of relocation table    WORD e_ovno;     // Overlay number    WORD e_res[4];   // Reserved words    WORD e_oemid;    // OEM identifier (for e_oeminfo)    WORD e_oeminfo;  // OEM information; e_oemid specific    WORD e_res2[10]; // Reserved words    LONG e_lfanew;   // File address of new exe header (important!)} IMAGE_DOS_HEADER, *PIMAGE_DOS_HEADER;The struct has 30 WORD fields (2 bytes each), plus the 4-byte e_lfanew (of size LONG).Total size: 30 * 2 + 4 = exactly 64 bytes.Historical backgroundA lot of you right now may be confused: Why does every PE file need a DOS header, despite modern Windows system not even running DOS programs?2 words: backwards compatibility.See, the PE format was designed as an extension of the old DOS MZ executable format. Back then, the Portable Executable format was a new kid on the block. Both DOS-MZ and PE executables were distributed with a .exe extension, so whenever a user attempted to run a PE .exe on MS-DOS, the DOS loaders would behave unexpectedly because they expected a DOS MZ format for .exe extensions, not Portable Executable.So, in order to make the DOS loaders predictably exit the program upon running a PE executable, Microsoft distributed every PE file with this DOS stub inside the DOS header:This program cannot be run in DOS modeSo that if a DOS loader tries to execute a PE file, they don’t crash or hang; instead, they immediately print this message in the console and exit the process.Looking back, making this ASCII sequence native to every PE file “might’ve” been a mistake move by Microsoft😅. The PE format evolved to be a much more powerful and modular format afterward, way more than originally speculated, leaving the DOS-MZ forma to die in the shadows. Yet, every PE file in existence still contains those 36 bytes worth of ASCII bloat, to remind DOS loaders from 40 years ago that our modern .exe file cannot be run on DOS systems.DOS stub code injectionThe DOS header (and the DOS stub) can be modified to inject custom code. Back in the days of DOS-MZ, malware authors would inject their custom 16-bit DOS code into the DOS header itself. Then, when a DOS machine tries to run the modified .exe, it will execute the injected DOS code instead of the boring “This program cannot be run in DOS mode” message.To demonstrate how this is done, I’ll take a random PE executable and replace its DOS stub with a custom 16-bit shellcode to it that prints “@AlonAlush” 5 times in green.To correctly exit the program after executing our payload, we’ll add the bytes 0x4C01 right after the PE\0\0 signature. In 16-bit MS-DOS assembly, the opcode 4C corresponds to the INT 21h function 4CH, which terminates a process with a return code. Following it, 01 is the exit code passed.Now let’s run this patched PE in DOSBox, a very popular MS-DOS emulator:As you can see, instead of printing the generic “This program cannot be run in DOS mode”, our exe ran the injected code that printed @AlonAlush name in green 5 times, as we expected. Of course, you can modify the DOS stub to run any 16-bit machine code you’d like.">
+    <meta itemprop="datePublished" content="2025-04-22T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">PE file format: DOS Header
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#dos-header">DOS header</a></li>
+  <li><a href="#key-fields-in-the-dos-header">Key fields in the DOS header</a></li>
+  <li><a href="#c-representation-of-image_dos_header">C representation of IMAGE_DOS_HEADER</a></li>
+  <li><a href="#historical-background">Historical background</a></li>
+  <li><a href="#dos-stub-code-injection">DOS stub code injection</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="dos-header">DOS header</h1>
+
+<p><strong>First of all, what’s the DOS header?</strong></p>
+
+<p>The DOS header is a structure located right at the start of DOS-MZ executables, and preserved on the newer PE format for backwards compatibility. The beginining of the DOS header is marked by the ASCII sequence “<code class="language-plaintext highlighter-rouge">MZ</code>” (<code class="language-plaintext highlighter-rouge">4D 5A</code> in hex). Those are the initials of Mark Zbikowski, the designer of the DOS-MZ format.</p>
+
+<p><img src="/assets/images/pefileformat/dosheader/image.png" alt="MZ" /></p>
+
+<p>In Portable Executable files, the DOS header contains an additional <a href="https://learn.microsoft.com/en-us/cpp/build/reference/stub-ms-dos-stub-file-name?view=msvc-170">DOS stub</a> containing the following ASCII sequence:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"This program cannot be run in DOS mode."
+</code></pre></div></div>
+<p><img src="/assets/images/pefileformat/dosheader/image-1.png" alt="DOS header stub" /></p>
+
+<h1 id="key-fields-in-the-dos-header">Key fields in the DOS header</h1>
+
+<p><code class="language-plaintext highlighter-rouge">WORD e_magic</code>: a 2-byte signature that must equal to <code class="language-plaintext highlighter-rouge">MZ</code> (<code class="language-plaintext highlighter-rouge">0x4D5A</code> in hexadecimal). This sequence lets the loader know that the file is a valid DOS executable (and by extension, a valid PE file).</p>
+
+<p><code class="language-plaintext highlighter-rouge">LONG e_lfanew</code>: In PE files, this newer 4-byte field contains the offset to the NT header. It’s relative to <code class="language-plaintext highlighter-rouge">e_magic</code>, the <code class="language-plaintext highlighter-rouge">MZ</code> signature) which is the start of the file.</p>
+
+<p><img src="/assets/images/pefileformat/dosheader/image-2.png" alt="e_lfanew field" /></p>
+
+<p>In the following example, <code class="language-plaintext highlighter-rouge">e_lfanew</code> field corresponds to the byte sequence <code class="language-plaintext highlighter-rouge">C8 00 00 00</code>. That means that <code class="language-plaintext highlighter-rouge">0xC8</code> (ignoring the null values) is the offset to the NT header in modern PE files.</p>
+
+<p><strong>To find the NT header in HxD</strong>, let’s go to offset <code class="language-plaintext highlighter-rouge">C8</code> found in the <code class="language-plaintext highlighter-rouge">e_lfanew</code> field, this offset is relative to the file start (<code class="language-plaintext highlighter-rouge">0x0</code>):</p>
+
+<p><img src="/assets/images/pefileformat/dosheader/image-3.png" alt="Going to offset 0xC8" /></p>
+
+<p><img src="/assets/images/pefileformat/dosheader/header.gif" alt="New PE header" /></p>
+
+<p>Can see you see the <code class="language-plaintext highlighter-rouge">PE\0\0</code> signature that I highlighted?</p>
+
+<p><img src="/assets/images/pefileformat/dosheader/sig.png" alt="PE\0\0 sig" /></p>
+
+<p>This marks the start of the <strong>IMAGE_NT_HEADERS</strong> structure, and Windows uses <code class="language-plaintext highlighter-rouge">e_lfanew</code> to find the offset to that structure.</p>
+
+<p>Below is a diagram I made, illustrating it:</p>
+
+<p><img src="/assets/images/pefileformat/dosheader/diagram.png" alt="Sections diagram I made" /></p>
+
+<h1 id="c-representation-of-image_dos_header">C representation of IMAGE_DOS_HEADER</h1>
+
+<p>We can take a look at the contents of the DOS header by looking at the <code class="language-plaintext highlighter-rouge">IMAGE_DOS_HEADER</code> structure definition from <code class="language-plaintext highlighter-rouge">winnt.h</code></p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_IMAGE_DOS_HEADER</span> <span class="p">{</span>  
+    <span class="n">WORD</span> <span class="n">e_magic</span><span class="p">;</span>    <span class="c1">// Magic number (MZ)</span>
+    <span class="n">WORD</span> <span class="n">e_cblp</span><span class="p">;</span>     <span class="c1">// Bytes on last page of file</span>
+    <span class="n">WORD</span> <span class="n">e_cp</span><span class="p">;</span>       <span class="c1">// Pages in file</span>
+    <span class="n">WORD</span> <span class="n">e_crlc</span><span class="p">;</span>     <span class="c1">// Relocations</span>
+    <span class="n">WORD</span> <span class="n">e_cparhdr</span><span class="p">;</span>  <span class="c1">// Size of header in paragraphs</span>
+    <span class="n">WORD</span> <span class="n">e_minalloc</span><span class="p">;</span> <span class="c1">// Minimum extra paragraphs needed</span>
+    <span class="n">WORD</span> <span class="n">e_maxalloc</span><span class="p">;</span> <span class="c1">// Maximum extra paragraphs needed</span>
+    <span class="n">WORD</span> <span class="n">e_ss</span><span class="p">;</span>       <span class="c1">// Initial (relative) SS value</span>
+    <span class="n">WORD</span> <span class="n">e_sp</span><span class="p">;</span>       <span class="c1">// Initial SP value</span>
+    <span class="n">WORD</span> <span class="n">e_csum</span><span class="p">;</span>     <span class="c1">// Checksum</span>
+    <span class="n">WORD</span> <span class="n">e_ip</span><span class="p">;</span>       <span class="c1">// Initial IP value</span>
+    <span class="n">WORD</span> <span class="n">e_cs</span><span class="p">;</span>       <span class="c1">// Initial (relative) CS value</span>
+    <span class="n">WORD</span> <span class="n">e_lfarlc</span><span class="p">;</span>   <span class="c1">// File address of relocation table</span>
+    <span class="n">WORD</span> <span class="n">e_ovno</span><span class="p">;</span>     <span class="c1">// Overlay number</span>
+    <span class="n">WORD</span> <span class="n">e_res</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>   <span class="c1">// Reserved words</span>
+    <span class="n">WORD</span> <span class="n">e_oemid</span><span class="p">;</span>    <span class="c1">// OEM identifier (for e_oeminfo)</span>
+    <span class="n">WORD</span> <span class="n">e_oeminfo</span><span class="p">;</span>  <span class="c1">// OEM information; e_oemid specific</span>
+    <span class="n">WORD</span> <span class="n">e_res2</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span> <span class="c1">// Reserved words</span>
+    <span class="n">LONG</span> <span class="n">e_lfanew</span><span class="p">;</span>   <span class="c1">// File address of new exe header (important!)</span>
+<span class="p">}</span> <span class="n">IMAGE_DOS_HEADER</span><span class="p">,</span> <span class="o">*</span><span class="n">PIMAGE_DOS_HEADER</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The struct has 30 <code class="language-plaintext highlighter-rouge">WORD</code> fields (2 bytes each), plus the 4-byte <code class="language-plaintext highlighter-rouge">e_lfanew</code> (of size <code class="language-plaintext highlighter-rouge">LONG</code>).</p>
+
+<p>Total size: 30 * 2 + 4 = exactly <strong>64 bytes</strong>.</p>
+
+<h1 id="historical-background">Historical background</h1>
+
+<p><strong>A lot of you right now may be confused:</strong> Why does every PE file need a DOS header, despite modern Windows system not even running DOS programs?</p>
+
+<p>2 words: <strong>backwards compatibility</strong>.</p>
+
+<p>See, the PE format was designed <em>as an extension</em> of the old <a href="https://en.wikipedia.org/wiki/DOS_MZ_executable">DOS MZ executable format</a>. Back then, the Portable Executable format was a <em>new kid on the block</em>. Both DOS-MZ and PE executables were distributed with a <code class="language-plaintext highlighter-rouge">.exe</code> extension, so whenever a user attempted to run a PE <code class="language-plaintext highlighter-rouge">.exe</code> on MS-DOS, <strong>the DOS loaders would behave unexpectedly</strong> because they expected a DOS MZ format for <code class="language-plaintext highlighter-rouge">.exe</code> extensions, not Portable Executable.</p>
+
+<p>So, in order to make the DOS loaders predictably exit the program upon running a PE executable, Microsoft distributed <em>every</em> PE file with this DOS stub inside the DOS header:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">This</span> <span class="n">program</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">run</span> <span class="n">in</span> <span class="n">DOS</span> <span class="n">mode</span>
+</code></pre></div></div>
+
+<p>So that if a DOS loader tries to execute a PE file, they don’t crash or hang; instead, they immediately print this message in the console and exit the process.</p>
+
+<p><img src="/assets/images/pefileformat/dosheader/loader.png" alt="This program cannot be run in DOS mode" /></p>
+
+<p>Looking back, making this ASCII sequence native to <em>every</em> PE file <em>“might’ve”</em> been a mistake move by Microsoft😅. The PE format evolved to be a much more powerful and modular format afterward, <em>way</em> more than originally speculated, leaving the DOS-MZ forma to die in the shadows. Yet, every PE file in existence <em>still</em> contains those 36 bytes worth of ASCII bloat, to remind <em>DOS loaders</em> from 40 years ago that our modern <code class="language-plaintext highlighter-rouge">.exe</code> file cannot be run on DOS systems.</p>
+
+<h1 id="dos-stub-code-injection">DOS stub code injection</h1>
+
+<p>The DOS header (and the DOS stub) <strong>can be modified to inject custom code</strong>. Back in the days of DOS-MZ, malware authors would inject their custom 16-bit DOS code into the DOS header itself. Then, when a DOS machine tries to run the modified <code class="language-plaintext highlighter-rouge">.exe</code>, it will execute the injected DOS code instead of the boring “This program cannot be run in DOS mode” message.</p>
+
+<p>To demonstrate how this is done, I’ll take a random PE executable and replace its DOS stub with a custom 16-bit shellcode to it that prints “<code class="language-plaintext highlighter-rouge">@AlonAlush</code>” 5 times in green.</p>
+
+<p>To correctly exit the program after executing our payload, we’ll add the bytes <code class="language-plaintext highlighter-rouge">0x4C01</code> right after the <code class="language-plaintext highlighter-rouge">PE\0\0</code> signature. In 16-bit MS-DOS assembly, the opcode <code class="language-plaintext highlighter-rouge">4C</code> corresponds to the <code class="language-plaintext highlighter-rouge">INT 21h</code> function <code class="language-plaintext highlighter-rouge">4CH</code>, which terminates a process with a return code. Following it, <code class="language-plaintext highlighter-rouge">01</code> is the exit code passed.</p>
+
+<p><img src="/assets/images/pefileformat/dosheader/doshellcode.png" alt="DOS stub shellcode injection" /></p>
+
+<p>Now let’s run this patched PE in <code class="language-plaintext highlighter-rouge">DOSBox</code>, a very popular MS-DOS emulator:</p>
+
+<p><img src="/assets/images/pefileformat/dosheader/result.png" alt="Injected code in DOSBox" /></p>
+
+<p>As you can see, instead of printing the generic “This program cannot be run in DOS mode”, our exe ran the injected code that printed <code class="language-plaintext highlighter-rouge">@AlonAlush</code> name in green 5 times, as we expected. Of course, you can modify the DOS stub to run any 16-bit machine code you’d like.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/pages/Alon-Alush/alonalush.github.io/categories/#pe-file-format" class="page__taxonomy-item" rel="tag">PE File Format</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2025-04-22T00:00:00+00:00">April 22, 2025</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=PE+file+format%3A+DOS+Header%20https%3A%2F%2Fgithub.com%2Fpages%2FAlon-Alush%2Falonalush.github.io%2Fpe%2520file%2520format%2Fdosheader%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgithub.com%2Fpages%2FAlon-Alush%2Falonalush.github.io%2Fpe%2520file%2520format%2Fdosheader%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fgithub.com%2Fpages%2FAlon-Alush%2Falonalush.github.io%2Fpe%2520file%2520format%2Fdosheader%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/importaddresstable/" class="pagination--pager" title="PE file format: Import Address Table
+">Previous</a>
+    
+    
+      <a href="/pages/Alon-Alush/alonalush.github.io/unpacking/vmprotectleak/" class="pagination--pager" title="The breach of VMProtect: 2 major incidents
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+<a href="/pages/Alon-Alush/alonalush.github.io/ai%20world/shapesinctermination/" class="post-blog-card" style="text-decoration: none; 
+    --image-url: url(/assets/images/AI%20world/shapesinc/logo.png);
+    --ribbon: DodgerBlue;">
+
+  <div class="post-meta">
+    <div class="post-ribbon">
+      <span class="post-ribbon4">AI world</span>
+    </div>
+  </div>
+
+  <div class="post-description">
+    <h1>Shapes, Inc got mass-terminated by Discord!
+</h1>
+    <p>  Shapes, Inc, a Discord hub for creating and talking to customized AI chatbots, just got terminated; and it doesn't lo...</p>
+    
+    <p class="post-date page__meta">
+      03 May 2025
+    </p>
+  
+    
+      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+
+  </div>
+</a>
+
+
+
+<!-- <div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/AI%20world/shapesinc/logo.png" alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/pages/Alon-Alush/alonalush.github.io/ai%20world/shapesinctermination/" rel="permalink">Shapes, Inc got mass-terminated by Discord!
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Explaining the Discord controversy
+
+Shapes.inc is a platform that allows users to create and host their so-called “Shapes”, which are AI-powered chatbots tha...</p>
+    
+
+  </article>
+</div> -->
+
+        
+          
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+<a href="/pages/Alon-Alush/alonalush.github.io/unpacking/vmprotectleak/" class="post-blog-card" style="text-decoration: none; 
+    --image-url: url(/assets/images/unpacking/vmprotectleak/dump.png);
+    --ribbon: DodgerBlue;">
+
+  <div class="post-meta">
+    <div class="post-ribbon">
+      <span class="post-ribbon4">Unpacking</span>
+    </div>
+  </div>
+
+  <div class="post-description">
+    <h1>The breach of VMProtect: 2 major incidents
+</h1>
+    <p>  Discussing the breaches of VMProtect's source code that emerged in 2023</p>
+    
+    <p class="post-date page__meta">
+      26 Apr 2025
+    </p>
+  
+    
+      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+
+  </div>
+</a>
+
+
+
+<!-- <div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/unpacking/vmprotectleak/dump.png" alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/pages/Alon-Alush/alonalush.github.io/unpacking/vmprotectleak/" rel="permalink">The breach of VMProtect: 2 major incidents
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">VMProtect leak
+
+In 2023, VMProtect, a commercial virtualization-based protector for executable files, was leaked — not once, but twice.
+
+First, a dump of the...</p>
+    
+
+  </article>
+</div> -->
+
+        
+          
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+<a href="/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/importaddresstable/" class="post-blog-card" style="text-decoration: none; 
+    --image-url: url(/assets/images/pefileformat/iat/image.png);
+    --ribbon: DodgerBlue;">
+
+  <div class="post-meta">
+    <div class="post-ribbon">
+      <span class="post-ribbon4">PE File Format</span>
+    </div>
+  </div>
+
+  <div class="post-description">
+    <h1>PE file format: Import Address Table
+</h1>
+    <p>  Explaining in detail the Import Address Table (IAT) structure in Portable Executable (PE) file</p>
+    
+    <p class="post-date page__meta">
+      21 Apr 2025
+    </p>
+  
+    
+      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+
+  </div>
+</a>
+
+
+
+<!-- <div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/pefileformat/iat/image.png" alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/importaddresstable/" rel="permalink">PE file format: Import Address Table
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">PE file format: Import Address Table
+
+The Import Address Table stores the memory addresses of external functions that the program uses
+Example
+
+Here, we can ...</p>
+    
+
+  </article>
+</div> -->
+
+        
+          
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+<a href="/pages/Alon-Alush/alonalush.github.io/malware%20analysis/pythonransomware/" class="post-blog-card" style="text-decoration: none; 
+    --image-url: url(/assets/images/malwareanalysis/pyinstaller/image-1.png);
+    --ribbon: DodgerBlue;">
+
+  <div class="post-meta">
+    <div class="post-ribbon">
+      <span class="post-ribbon4">Malware Analysis</span>
+    </div>
+  </div>
+
+  <div class="post-description">
+    <h1>Decoding a Pyinstaller ransomware sample
+</h1>
+    <p>  Decoding a ransomware sample made in Python, step by step</p>
+    
+    <p class="post-date page__meta">
+      20 Apr 2025
+    </p>
+  
+    
+      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+
+  </div>
+</a>
+
+
+
+<!-- <div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/malwareanalysis/pyinstaller/image-1.png" alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/pages/Alon-Alush/alonalush.github.io/malware%20analysis/pythonransomware/" rel="permalink">Decoding a Pyinstaller ransomware sample
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Note: if you want to download this ransomware sample for educational purposes, feel free to do so by clicking here: password: infected
+
+Introduction
+
+Recentl...</p>
+    
+
+  </article>
+</div> -->
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/pages/Alon-Alush/alonalush.github.io/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Alon Alush. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/pages/Alon-Alush/alonalush.github.io/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/pages/Alon-Alush/alonalush.github.io/assets/js/lunr/lunr.min.js"></script>
+<script src="/pages/Alon-Alush/alonalush.github.io/assets/js/lunr/lunr-store.js"></script>
+<script src="/pages/Alon-Alush/alonalush.github.io/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+  ga('create','','auto');
+  ga('set', 'anonymizeIp', false);
+  ga('send','pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+
+
+
+
+
+
+    <script>
+    'use strict';
+  
+    (function () {
+      var commentContainer = document.querySelector('#giscus-comments');
+  
+      if (!commentContainer) {
+        return;
+      }
+  
+      var script = document.createElement('script');
+  
+      script.setAttribute('src', 'https://giscus.app/client.js');
+      script.setAttribute('data-repo', 'alon-alush/alonalush.github.io');
+      script.setAttribute('data-repo-id', 'R_kgDOObwnXA');
+      script.setAttribute('data-category', 'Comments');
+      script.setAttribute('data-category-id', 'DIC_kwDOObwnXM4CpwzY');
+      script.setAttribute('data-mapping', 'pathname');
+      script.setAttribute('data-strict', '0');
+      script.setAttribute('data-reactions-enabled', '1');
+      script.setAttribute('data-emit-metadata', '0');
+      script.setAttribute('data-input-position', 'top');
+      script.setAttribute('data-theme', 'dark');
+      script.setAttribute('data-lang',  'en');
+      script.setAttribute('crossorigin', 'anonymous');
+  
+      script.setAttribute('async', '');
+  
+      commentContainer.appendChild(script);
+    })();
+  </script>
+  
+
+
+
+
+
+  </body>
+</html>

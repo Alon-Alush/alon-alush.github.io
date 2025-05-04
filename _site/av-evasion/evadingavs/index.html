@@ -1,0 +1,1009 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>AV Evasion: Custom WinAPI function implementations - Alon Alush</title>
+<meta name="description" content="Learn how malware bypassses AV evasion (includes code examples) ">
+
+
+  <meta name="author" content="Alon Alush">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Alon Alush">
+<meta property="og:title" content="AV Evasion: Custom WinAPI function implementations">
+<meta property="og:url" content="https://github.com/pages/Alon-Alush/alonalush.github.io/av-evasion/evadingavs/">
+
+
+  <meta property="og:description" content="Learn how malware bypassses AV evasion (includes code examples) ">
+
+
+
+  <meta property="og:image" content="https://github.com/pages/Alon-Alush/alonalush.github.io/assets/images/evadingavs/customfunctions/detections.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-04-18T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://github.com/pages/Alon-Alush/alonalush.github.io/av-evasion/evadingavs/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Alon Alush",
+      "url": "https://github.com/pages/Alon-Alush/alonalush.github.io/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="hDFFgz2dwyDgZl9ZHL-5_AhkPhNOb31bi5gN5KD1tyI" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/pages/Alon-Alush/alonalush.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Alon Alush Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pages/Alon-Alush/alonalush.github.io/assets/css/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+<!-- favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/site_data/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/site_data/favicon-16x16.png">
+<meta name="theme-color" content="#ffffff">
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/pages/Alon-Alush/alonalush.github.io/"><img src="/pages/Alon-Alush/alonalush.github.io/assets/images/site_data/logo.png" alt=""></a>
+        
+        <a class="site-title" href="/pages/Alon-Alush/alonalush.github.io/">
+          Alon Alush
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/pages/Alon-Alush/alonalush.github.io/categories/#unpacking">Unpacking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/pages/Alon-Alush/alonalush.github.io/categories/#evadingavs">AV Evasion</a>
+            </li><li class="masthead__menu-item">
+              <a href="/pages/Alon-Alush/alonalush.github.io/categories/#Injection">Injection</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/site-data/bio-photo.jpg" alt="Alon Alush" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Alon Alush</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Simple blog that documents my reverse engineering / malware analysis endeavors on Windows.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+        
+          
+            <li><a href="mailto:alonalush5@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://discordapp.com/users/450639647106662402" rel="nofollow noopener noreferrer"><i class="fab fa-discord" aria-hidden="true"></i><span class="label">Discord</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/Alon-Alush" rel="nofollow noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="AV Evasion: Custom WinAPI function implementations">
+    <meta itemprop="description" content="Reducing AV detectionsMalware authors work 24/7 to find breakthroughs that will allow them to create FUD (Fully Undetected) malware.There’s even a dedicated marketplace on YouTube and Telegram for people selling their so-called “FUD crypters”  that will claim to make any exe payload (including actual rat builds) “have almost 0 detections on virustotal:”And here’s an example of how one of these FUD crypters look like:How do they do this?It’s a combination of many different techniques. In this post, we’ll cover the most basic one:  Custom WinAPI function implementationsLet’s start with custom WinAPI function implementations:As you may know, AVs look for programs that use “suspicious” WinAPI functions. We’re talking GetModuleHandle, GetProcAddress, VirtualAlloc, etc.Of course, these functions have legitimate uses, but they’re frequently used by malware authors.The solutionInstead of directly calling a CRT function like VirtualAlloc, malware authors will create their own “custom implementations” of these functions.For example, instead of calling GetModuleHandleW directly from the CRT (which is hooked to death by AV solutions):They will create a custom function (myGetModuleHandle) that is meant to functionally replicate the original GetModuleHandleW, so that, instead of calling GetModuleHandleW, we will call myGetModuleHandle which looks a lot less suspicious, since it looks like a normal function in our code.Here’s an example of a custom myGetModuleHandle implementation that I used in my custom .exe packer:As you can see, it manually walks over the linked list of modules (inside the PEB), copies the target module name (ModuleName) and the current module’s full path (FullDllName) into buffers, and checks if the current module name contains (or matches) the target name (case-insensitive partial match).If it matches, we return the base address (DllBase) of the loaded module:return (HMODULE)pEntry-&gt;DllBase;If it walks through all modules without a match:return NULL;We can then call this custom function in our code. So, instead of doing:GetModuleHandleW(L&quot;ntdll.dll&quot;) // ❌ &lt;-- Hooked!We will call our custom function:myGetModuleHandleW(L&quot;ntdll.dll&quot;) // ✅ &lt;-- Looks like a normal function!For my custom packer, I implemented these custom functions: myVirtualAlloc, MyLoadLibrary, myGetModuleHandle, myGetProcAddress.Below is the code for them:Custom GetProcAddress:FARPROC myGetProcAddress(HMODULE hModule, LPCSTR lpProcName) {	PIMAGE_DOS_HEADER dosHeader = (PIMAGE_DOS_HEADER)hModule;	PIMAGE_NT_HEADERS64 ntHeaders = (PIMAGE_NT_HEADERS64)((BYTE*)hModule + dosHeader-&gt;e_lfanew);	PIMAGE_EXPORT_DIRECTORY exportDirectory = (PIMAGE_EXPORT_DIRECTORY)((BYTE*)hModule + ntHeaders-&gt;OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress);	DWORD* addressOfFunctions = (DWORD*)((BYTE*)hModule + exportDirectory-&gt;AddressOfFunctions);	WORD* addressOfNameOrdinals = (WORD*)((BYTE*)hModule + exportDirectory-&gt;AddressOfNameOrdinals);	DWORD* addressOfNames = (DWORD*)((BYTE*)hModule + exportDirectory-&gt;AddressOfNames);	for (DWORD i = 0; i &lt; exportDirectory-&gt;NumberOfNames; i++) {		if (strcmp(lpProcName, (const char*)hModule + addressOfNames[i]) == 0) {			return (FARPROC)((BYTE*)hModule + addressOfFunctions[addressOfNameOrdinals[i]]);		}	}	return NULL;}Custom GetModuleHandle:HMODULE myGetModuleHandle(LPCWSTR ModuleName) {	PEB* pPeb = (PEB*)__readgsqword(0x60);	PEB_LDR_DATA* Ldr = pPeb-&gt;Ldr;	LIST_ENTRY* ModuleList = &amp;Ldr-&gt;InMemoryOrderModuleList;	LIST_ENTRY* pStartListEntry = ModuleList-&gt;Flink;	WCHAR inputModule[MAX_PATH] = { 0 };	WCHAR targetModule[MAX_PATH] = { 0 };	for (LIST_ENTRY* pListEntry = pStartListEntry; pListEntry != ModuleList; pListEntry = pListEntry-&gt;Flink) {				LDR_DATA_TABLE_ENTRY* pEntry = (LDR_DATA_TABLE_ENTRY*)((BYTE*)pListEntry - sizeof(LIST_ENTRY));		wcscpy_s(targetModule, MAX_PATH, ModuleName);		wcscpy_s(inputModule, MAX_PATH, pEntry-&gt;FullDllName.Buffer);		if (StrStrW(inputModule, targetModule) != NULL) {			return (HMODULE)pEntry-&gt;DllBase;		}	}	return NULL;}Custom LoadLibrary:typedef NTSTATUS(NTAPI* pLdrLoadDll) (	PWCHAR PathToFile,	ULONG Flags,	PUNICODE_STRING ModuleFileName,	PHANDLE ModuleHandle	);HMODULE MyLoadLibrary(LPCWSTR lpFileName) {	UNICODE_STRING ustrModule;	HANDLE hModule = NULL;	HMODULE hNtdll = myGetModuleHandle((LPCWSTR)L&quot;ntdll.dll&quot;);	pRtlInitUnicodeString RtlInitUnicodeString = (pRtlInitUnicodeString)myGetProcAddress(hNtdll, &quot;RtlInitUnicodeString&quot;);	RtlInitUnicodeString(&amp;ustrModule, lpFileName);	pLdrLoadDll myLdrLoadDll = (pLdrLoadDll)myGetProcAddress(myGetModuleHandle(L&quot;ntdll.dll&quot;), &quot;LdrLoadDll&quot;);	if (!myLdrLoadDll) {		return NULL;	}	NTSTATUS status = myLdrLoadDll(NULL, 0, &amp;ustrModule, &amp;hModule);	return (HMODULE)hModule;}Custom VirtualAlloc:typedef NTSTATUS(NTAPI* pNtAllocateVirtualMemory)(	HANDLE ProcessHandle,	PVOID* BaseAddress,	ULONG_PTR ZeroBits,	PSIZE_T RegionSize,	ULONG AllocationType,	ULONG Protect	);LPVOID myVirtualAlloc(SIZE_T size, DWORD allocationType, DWORD protect) {	HMODULE ntdll = myGetModuleHandle((LPCWSTR)L&quot;ntdll.dll&quot;);	if (ntdll == NULL) {		printf(&quot;Failed to get address of NtAllocateVirtualMemory\n&quot;);		return NULL;	}	pNtAllocateVirtualMemory myAllocateVirtualMemory = (pNtAllocateVirtualMemory)myGetProcAddress(ntdll, &quot;NtAllocateVirtualMemory&quot;);	if (!myAllocateVirtualMemory) {		printf(&quot;Failed to get address of NtAllocateVirtualMemory\n&quot;);		return NULL;	}	PVOID baseAddress = NULL;	SIZE_T regionSize = size;	NTSTATUS status = myAllocateVirtualMemory(		GetCurrentProcess(),		&amp;baseAddress,		0,		&amp;regionSize,		allocationType,		protect	);	return baseAddress;}Combined with some other tricks, these custom functions reduced the detections of my packer to around 5 detections on VirusTotal:Before the custom functions, my packer was at around 19 detections.">
+    <meta itemprop="datePublished" content="2025-04-18T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">AV Evasion: Custom WinAPI function implementations
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#reducing-av-detections">Reducing AV detections</a></li>
+  <li><a href="#how-do-they-do-this">How do they do this?</a></li>
+  <li><a href="#the-solution">The solution</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="reducing-av-detections">Reducing AV detections</h1>
+
+<p>Malware authors work 24/7 to find breakthroughs that will allow them to create <strong>FUD</strong> (<strong>Fully Undetected</strong>) malware.</p>
+
+<p>There’s even a dedicated marketplace on YouTube and Telegram for people selling their so-called “<code class="language-plaintext highlighter-rouge">FUD crypters</code>”  that will claim to make <em>any</em> exe payload (including actual rat builds) <em>“have almost 0 detections on virustotal:”</em></p>
+
+<p><img src="/assets/images/evadingavs/customfunctions/videos.png" alt="Video results for searching &quot;FUD Crypter&quot; on Youtube" /></p>
+
+<p><img src="/assets/images/evadingavs/customfunctions/marketplace.png" alt="FUD crypter marketplace on Telegram" /></p>
+
+<p>And here’s an example of how one of these FUD crypters look like:</p>
+
+<p><img src="/assets/images/evadingavs/customfunctions/crypter.png" alt="Video results for searching &quot;FUD Crypter&quot; on Youtube" /></p>
+
+<h1 id="how-do-they-do-this">How do they do this?</h1>
+
+<p>It’s a combination of many different techniques. In this post, we’ll cover the most basic one:</p>
+
+<ul>
+  <li>Custom WinAPI function implementations</li>
+</ul>
+
+<p>Let’s start with custom WinAPI function implementations:</p>
+
+<p>As you may know, AVs look for programs that use “suspicious” WinAPI functions. We’re talking <code class="language-plaintext highlighter-rouge">GetModuleHandle</code>, <code class="language-plaintext highlighter-rouge">GetProcAddress</code>, <code class="language-plaintext highlighter-rouge">VirtualAlloc</code>, etc.</p>
+
+<p>Of course, these functions have legitimate uses, <strong>but they’re frequently used by malware authors</strong>.</p>
+
+<h1 id="the-solution">The solution</h1>
+
+<p>Instead of directly calling a CRT function like <code class="language-plaintext highlighter-rouge">VirtualAlloc</code>, malware authors will create their own “custom implementations” of these functions.</p>
+
+<p>For example, instead of calling <code class="language-plaintext highlighter-rouge">GetModuleHandleW</code> directly from the CRT (which is <em>hooked to death</em> by AV solutions):</p>
+
+<p><img src="/assets/images/evadingavs/customfunctions/crtfunction.png" alt="Direct WinAPI function usage" /></p>
+
+<p>They will create a custom function (<code class="language-plaintext highlighter-rouge">myGetModuleHandle</code>) that is meant to <strong>functionally replicate</strong> the original <code class="language-plaintext highlighter-rouge">GetModuleHandleW</code>, so that, instead of calling <code class="language-plaintext highlighter-rouge">GetModuleHandleW</code>, we will call <code class="language-plaintext highlighter-rouge">myGetModuleHandle</code> which looks a lot less suspicious, since it looks like a normal function in our code.</p>
+
+<p>Here’s an example of a custom <code class="language-plaintext highlighter-rouge">myGetModuleHandle</code> implementation that I used in my custom .exe packer:</p>
+
+<p><img src="/assets/images/evadingavs/customfunctions/customfunction.png" alt="Custom WinAPI function implementation" /></p>
+
+<p>As you can see, it manually walks over the linked list of modules (inside the PEB), copies the target module name (<code class="language-plaintext highlighter-rouge">ModuleName</code>) and the current module’s full path (<code class="language-plaintext highlighter-rouge">FullDllName</code>) into buffers, and checks if the current module name contains (or matches) the target name (case-insensitive partial match).</p>
+
+<p>If it matches, we return the base address (DllBase) of the loaded module:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="p">(</span><span class="n">HMODULE</span><span class="p">)</span><span class="n">pEntry</span><span class="o">-&gt;</span><span class="n">DllBase</span><span class="p">;</span>
+</code></pre></div></div>
+<p>If it walks through all modules without a match:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>return NULL;
+</code></pre></div></div>
+
+<p>We can then call this custom function in our code. So, instead of doing:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">GetModuleHandleW</span><span class="p">(</span><span class="s">L"ntdll.dll"</span><span class="p">)</span> <span class="c1">// ❌ &lt;-- Hooked!</span>
+</code></pre></div></div>
+<p>We will call our custom function:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myGetModuleHandleW</span><span class="p">(</span><span class="s">L"ntdll.dll"</span><span class="p">)</span> <span class="c1">// ✅ &lt;-- Looks like a normal function!</span>
+</code></pre></div></div>
+<p>For my custom packer, I implemented these custom functions: <code class="language-plaintext highlighter-rouge">myVirtualAlloc</code>, <code class="language-plaintext highlighter-rouge">MyLoadLibrary</code>, <code class="language-plaintext highlighter-rouge">myGetModuleHandle</code>, <code class="language-plaintext highlighter-rouge">myGetProcAddress</code>.</p>
+
+<p>Below is the code for them:</p>
+
+<p>Custom <code class="language-plaintext highlighter-rouge">GetProcAddress</code>:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FARPROC</span> <span class="nf">myGetProcAddress</span><span class="p">(</span><span class="n">HMODULE</span> <span class="n">hModule</span><span class="p">,</span> <span class="n">LPCSTR</span> <span class="n">lpProcName</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">PIMAGE_DOS_HEADER</span> <span class="n">dosHeader</span> <span class="o">=</span> <span class="p">(</span><span class="n">PIMAGE_DOS_HEADER</span><span class="p">)</span><span class="n">hModule</span><span class="p">;</span>
+	<span class="n">PIMAGE_NT_HEADERS64</span> <span class="n">ntHeaders</span> <span class="o">=</span> <span class="p">(</span><span class="n">PIMAGE_NT_HEADERS64</span><span class="p">)((</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)</span><span class="n">hModule</span> <span class="o">+</span> <span class="n">dosHeader</span><span class="o">-&gt;</span><span class="n">e_lfanew</span><span class="p">);</span>
+	<span class="n">PIMAGE_EXPORT_DIRECTORY</span> <span class="n">exportDirectory</span> <span class="o">=</span> <span class="p">(</span><span class="n">PIMAGE_EXPORT_DIRECTORY</span><span class="p">)((</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)</span><span class="n">hModule</span> <span class="o">+</span> <span class="n">ntHeaders</span><span class="o">-&gt;</span><span class="n">OptionalHeader</span><span class="p">.</span><span class="n">DataDirectory</span><span class="p">[</span><span class="n">IMAGE_DIRECTORY_ENTRY_EXPORT</span><span class="p">].</span><span class="n">VirtualAddress</span><span class="p">);</span>
+
+	<span class="n">DWORD</span><span class="o">*</span> <span class="n">addressOfFunctions</span> <span class="o">=</span> <span class="p">(</span><span class="n">DWORD</span><span class="o">*</span><span class="p">)((</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)</span><span class="n">hModule</span> <span class="o">+</span> <span class="n">exportDirectory</span><span class="o">-&gt;</span><span class="n">AddressOfFunctions</span><span class="p">);</span>
+	<span class="n">WORD</span><span class="o">*</span> <span class="n">addressOfNameOrdinals</span> <span class="o">=</span> <span class="p">(</span><span class="n">WORD</span><span class="o">*</span><span class="p">)((</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)</span><span class="n">hModule</span> <span class="o">+</span> <span class="n">exportDirectory</span><span class="o">-&gt;</span><span class="n">AddressOfNameOrdinals</span><span class="p">);</span>
+	<span class="n">DWORD</span><span class="o">*</span> <span class="n">addressOfNames</span> <span class="o">=</span> <span class="p">(</span><span class="n">DWORD</span><span class="o">*</span><span class="p">)((</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)</span><span class="n">hModule</span> <span class="o">+</span> <span class="n">exportDirectory</span><span class="o">-&gt;</span><span class="n">AddressOfNames</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="n">DWORD</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">exportDirectory</span><span class="o">-&gt;</span><span class="n">NumberOfNames</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">lpProcName</span><span class="p">,</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">hModule</span> <span class="o">+</span> <span class="n">addressOfNames</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="p">(</span><span class="n">FARPROC</span><span class="p">)((</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)</span><span class="n">hModule</span> <span class="o">+</span> <span class="n">addressOfFunctions</span><span class="p">[</span><span class="n">addressOfNameOrdinals</span><span class="p">[</span><span class="n">i</span><span class="p">]]);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Custom <code class="language-plaintext highlighter-rouge">GetModuleHandle</code>:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HMODULE</span> <span class="nf">myGetModuleHandle</span><span class="p">(</span><span class="n">LPCWSTR</span> <span class="n">ModuleName</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">PEB</span><span class="o">*</span> <span class="n">pPeb</span> <span class="o">=</span> <span class="p">(</span><span class="n">PEB</span><span class="o">*</span><span class="p">)</span><span class="n">__readgsqword</span><span class="p">(</span><span class="mh">0x60</span><span class="p">);</span>
+	<span class="n">PEB_LDR_DATA</span><span class="o">*</span> <span class="n">Ldr</span> <span class="o">=</span> <span class="n">pPeb</span><span class="o">-&gt;</span><span class="n">Ldr</span><span class="p">;</span>
+	<span class="n">LIST_ENTRY</span><span class="o">*</span> <span class="n">ModuleList</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Ldr</span><span class="o">-&gt;</span><span class="n">InMemoryOrderModuleList</span><span class="p">;</span>
+	<span class="n">LIST_ENTRY</span><span class="o">*</span> <span class="n">pStartListEntry</span> <span class="o">=</span> <span class="n">ModuleList</span><span class="o">-&gt;</span><span class="n">Flink</span><span class="p">;</span>
+	<span class="n">WCHAR</span> <span class="n">inputModule</span><span class="p">[</span><span class="n">MAX_PATH</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+	<span class="n">WCHAR</span> <span class="n">targetModule</span><span class="p">[</span><span class="n">MAX_PATH</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+	<span class="k">for</span> <span class="p">(</span><span class="n">LIST_ENTRY</span><span class="o">*</span> <span class="n">pListEntry</span> <span class="o">=</span> <span class="n">pStartListEntry</span><span class="p">;</span> <span class="n">pListEntry</span> <span class="o">!=</span> <span class="n">ModuleList</span><span class="p">;</span> <span class="n">pListEntry</span> <span class="o">=</span> <span class="n">pListEntry</span><span class="o">-&gt;</span><span class="n">Flink</span><span class="p">)</span> <span class="p">{</span>
+		
+		<span class="n">LDR_DATA_TABLE_ENTRY</span><span class="o">*</span> <span class="n">pEntry</span> <span class="o">=</span> <span class="p">(</span><span class="n">LDR_DATA_TABLE_ENTRY</span><span class="o">*</span><span class="p">)((</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)</span><span class="n">pListEntry</span> <span class="o">-</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">LIST_ENTRY</span><span class="p">));</span>
+		<span class="n">wcscpy_s</span><span class="p">(</span><span class="n">targetModule</span><span class="p">,</span> <span class="n">MAX_PATH</span><span class="p">,</span> <span class="n">ModuleName</span><span class="p">);</span>
+		<span class="n">wcscpy_s</span><span class="p">(</span><span class="n">inputModule</span><span class="p">,</span> <span class="n">MAX_PATH</span><span class="p">,</span> <span class="n">pEntry</span><span class="o">-&gt;</span><span class="n">FullDllName</span><span class="p">.</span><span class="n">Buffer</span><span class="p">);</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="n">StrStrW</span><span class="p">(</span><span class="n">inputModule</span><span class="p">,</span> <span class="n">targetModule</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="p">(</span><span class="n">HMODULE</span><span class="p">)</span><span class="n">pEntry</span><span class="o">-&gt;</span><span class="n">DllBase</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Custom <code class="language-plaintext highlighter-rouge">LoadLibrary</code>:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="nf">NTSTATUS</span><span class="p">(</span><span class="n">NTAPI</span><span class="o">*</span> <span class="n">pLdrLoadDll</span><span class="p">)</span> <span class="p">(</span>
+	<span class="n">PWCHAR</span> <span class="n">PathToFile</span><span class="p">,</span>
+	<span class="n">ULONG</span> <span class="n">Flags</span><span class="p">,</span>
+	<span class="n">PUNICODE_STRING</span> <span class="n">ModuleFileName</span><span class="p">,</span>
+	<span class="n">PHANDLE</span> <span class="n">ModuleHandle</span>
+	<span class="p">);</span>
+<span class="n">HMODULE</span> <span class="nf">MyLoadLibrary</span><span class="p">(</span><span class="n">LPCWSTR</span> <span class="n">lpFileName</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">UNICODE_STRING</span> <span class="n">ustrModule</span><span class="p">;</span>
+	<span class="n">HANDLE</span> <span class="n">hModule</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+	<span class="n">HMODULE</span> <span class="n">hNtdll</span> <span class="o">=</span> <span class="n">myGetModuleHandle</span><span class="p">((</span><span class="n">LPCWSTR</span><span class="p">)</span><span class="s">L"ntdll.dll"</span><span class="p">);</span>
+	<span class="n">pRtlInitUnicodeString</span> <span class="n">RtlInitUnicodeString</span> <span class="o">=</span> <span class="p">(</span><span class="n">pRtlInitUnicodeString</span><span class="p">)</span><span class="n">myGetProcAddress</span><span class="p">(</span><span class="n">hNtdll</span><span class="p">,</span> <span class="s">"RtlInitUnicodeString"</span><span class="p">);</span>
+
+	<span class="n">RtlInitUnicodeString</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ustrModule</span><span class="p">,</span> <span class="n">lpFileName</span><span class="p">);</span>
+
+	<span class="n">pLdrLoadDll</span> <span class="n">myLdrLoadDll</span> <span class="o">=</span> <span class="p">(</span><span class="n">pLdrLoadDll</span><span class="p">)</span><span class="n">myGetProcAddress</span><span class="p">(</span><span class="n">myGetModuleHandle</span><span class="p">(</span><span class="s">L"ntdll.dll"</span><span class="p">),</span> <span class="s">"LdrLoadDll"</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">myLdrLoadDll</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="n">NTSTATUS</span> <span class="n">status</span> <span class="o">=</span> <span class="n">myLdrLoadDll</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ustrModule</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hModule</span><span class="p">);</span>
+	<span class="k">return</span> <span class="p">(</span><span class="n">HMODULE</span><span class="p">)</span><span class="n">hModule</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Custom <code class="language-plaintext highlighter-rouge">VirtualAlloc</code>:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="nf">NTSTATUS</span><span class="p">(</span><span class="n">NTAPI</span><span class="o">*</span> <span class="n">pNtAllocateVirtualMemory</span><span class="p">)(</span>
+	<span class="n">HANDLE</span> <span class="n">ProcessHandle</span><span class="p">,</span>
+	<span class="n">PVOID</span><span class="o">*</span> <span class="n">BaseAddress</span><span class="p">,</span>
+	<span class="n">ULONG_PTR</span> <span class="n">ZeroBits</span><span class="p">,</span>
+	<span class="n">PSIZE_T</span> <span class="n">RegionSize</span><span class="p">,</span>
+	<span class="n">ULONG</span> <span class="n">AllocationType</span><span class="p">,</span>
+	<span class="n">ULONG</span> <span class="n">Protect</span>
+	<span class="p">);</span>
+
+<span class="n">LPVOID</span> <span class="nf">myVirtualAlloc</span><span class="p">(</span><span class="n">SIZE_T</span> <span class="n">size</span><span class="p">,</span> <span class="n">DWORD</span> <span class="n">allocationType</span><span class="p">,</span> <span class="n">DWORD</span> <span class="n">protect</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">HMODULE</span> <span class="n">ntdll</span> <span class="o">=</span> <span class="n">myGetModuleHandle</span><span class="p">((</span><span class="n">LPCWSTR</span><span class="p">)</span><span class="s">L"ntdll.dll"</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">ntdll</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"Failed to get address of NtAllocateVirtualMemory</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+		<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">pNtAllocateVirtualMemory</span> <span class="n">myAllocateVirtualMemory</span> <span class="o">=</span> <span class="p">(</span><span class="n">pNtAllocateVirtualMemory</span><span class="p">)</span><span class="n">myGetProcAddress</span><span class="p">(</span><span class="n">ntdll</span><span class="p">,</span> <span class="s">"NtAllocateVirtualMemory"</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">myAllocateVirtualMemory</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"Failed to get address of NtAllocateVirtualMemory</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+		<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">PVOID</span> <span class="n">baseAddress</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">SIZE_T</span> <span class="n">regionSize</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
+
+	<span class="n">NTSTATUS</span> <span class="n">status</span> <span class="o">=</span> <span class="n">myAllocateVirtualMemory</span><span class="p">(</span>
+		<span class="n">GetCurrentProcess</span><span class="p">(),</span>
+		<span class="o">&amp;</span><span class="n">baseAddress</span><span class="p">,</span>
+		<span class="mi">0</span><span class="p">,</span>
+		<span class="o">&amp;</span><span class="n">regionSize</span><span class="p">,</span>
+		<span class="n">allocationType</span><span class="p">,</span>
+		<span class="n">protect</span>
+	<span class="p">);</span>
+	<span class="k">return</span> <span class="n">baseAddress</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Combined with some other tricks, these custom functions reduced the detections of my packer to around <strong>5 detections</strong> on VirusTotal:</p>
+
+<p><img src="/assets/images/evadingavs/customfunctions/detections.png" alt="Direct WinAPI function usage" /></p>
+
+<p>Before the custom functions, my packer was at around <strong>19 detections</strong>.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/pages/Alon-Alush/alonalush.github.io/categories/#av-evasion" class="page__taxonomy-item" rel="tag">AV-evasion</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2025-04-18T00:00:00+00:00">April 18, 2025</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=AV+Evasion%3A+Custom+WinAPI+function+implementations%20https%3A%2F%2Fgithub.com%2Fpages%2FAlon-Alush%2Falonalush.github.io%2Fav-evasion%2Fevadingavs%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgithub.com%2Fpages%2FAlon-Alush%2Falonalush.github.io%2Fav-evasion%2Fevadingavs%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fgithub.com%2Fpages%2FAlon-Alush%2Falonalush.github.io%2Fav-evasion%2Fevadingavs%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/pages/Alon-Alush/alonalush.github.io/av-evasion/antidebug/" class="pagination--pager" title="AV Evasion: Anti-debug tricks
+">Previous</a>
+    
+    
+      <a href="/pages/Alon-Alush/alonalush.github.io/unpacking/encryptedstrings/" class="pagination--pager" title="Explaining encrypted strings in .exe files
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+<a href="/pages/Alon-Alush/alonalush.github.io/ai%20world/shapesinctermination/" class="post-blog-card" style="text-decoration: none; 
+    --image-url: url(/assets/images/AI%20world/shapesinc/logo.png);
+    --ribbon: DodgerBlue;">
+
+  <div class="post-meta">
+    <div class="post-ribbon">
+      <span class="post-ribbon4">AI world</span>
+    </div>
+  </div>
+
+  <div class="post-description">
+    <h1>Shapes, Inc got mass-terminated by Discord!
+</h1>
+    <p>  Shapes, Inc, a Discord hub for creating and talking to customized AI chatbots, just got terminated; and it doesn't lo...</p>
+    
+    <p class="post-date page__meta">
+      03 May 2025
+    </p>
+  
+    
+      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+
+  </div>
+</a>
+
+
+
+<!-- <div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/AI%20world/shapesinc/logo.png" alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/pages/Alon-Alush/alonalush.github.io/ai%20world/shapesinctermination/" rel="permalink">Shapes, Inc got mass-terminated by Discord!
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Explaining the Discord controversy
+
+Shapes.inc is a platform that allows users to create and host their so-called “Shapes”, which are AI-powered chatbots tha...</p>
+    
+
+  </article>
+</div> -->
+
+        
+          
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+<a href="/pages/Alon-Alush/alonalush.github.io/unpacking/vmprotectleak/" class="post-blog-card" style="text-decoration: none; 
+    --image-url: url(/assets/images/unpacking/vmprotectleak/dump.png);
+    --ribbon: DodgerBlue;">
+
+  <div class="post-meta">
+    <div class="post-ribbon">
+      <span class="post-ribbon4">Unpacking</span>
+    </div>
+  </div>
+
+  <div class="post-description">
+    <h1>The breach of VMProtect: 2 major incidents
+</h1>
+    <p>  Discussing the breaches of VMProtect's source code that emerged in 2023</p>
+    
+    <p class="post-date page__meta">
+      26 Apr 2025
+    </p>
+  
+    
+      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+
+  </div>
+</a>
+
+
+
+<!-- <div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/unpacking/vmprotectleak/dump.png" alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/pages/Alon-Alush/alonalush.github.io/unpacking/vmprotectleak/" rel="permalink">The breach of VMProtect: 2 major incidents
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">VMProtect leak
+
+In 2023, VMProtect, a commercial virtualization-based protector for executable files, was leaked — not once, but twice.
+
+First, a dump of the...</p>
+    
+
+  </article>
+</div> -->
+
+        
+          
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+<a href="/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/dosheader/" class="post-blog-card" style="text-decoration: none; 
+    --image-url: url(/assets/images/pefileformat/iat/image.png);
+    --ribbon: DodgerBlue;">
+
+  <div class="post-meta">
+    <div class="post-ribbon">
+      <span class="post-ribbon4">PE File Format</span>
+    </div>
+  </div>
+
+  <div class="post-description">
+    <h1>PE file format: DOS Header
+</h1>
+    <p>  Explaining the DOS header in Windows executable formats</p>
+    
+    <p class="post-date page__meta">
+      22 Apr 2025
+    </p>
+  
+    
+      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+
+  </div>
+</a>
+
+
+
+<!-- <div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/pefileformat/iat/image.png" alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/dosheader/" rel="permalink">PE file format: DOS Header
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DOS header
+
+First of all, what’s the DOS header?
+
+The DOS header is a structure located right at the start of DOS-MZ executables, and preserved on the newer ...</p>
+    
+
+  </article>
+</div> -->
+
+        
+          
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+<a href="/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/importaddresstable/" class="post-blog-card" style="text-decoration: none; 
+    --image-url: url(/assets/images/pefileformat/iat/image.png);
+    --ribbon: DodgerBlue;">
+
+  <div class="post-meta">
+    <div class="post-ribbon">
+      <span class="post-ribbon4">PE File Format</span>
+    </div>
+  </div>
+
+  <div class="post-description">
+    <h1>PE file format: Import Address Table
+</h1>
+    <p>  Explaining in detail the Import Address Table (IAT) structure in Portable Executable (PE) file</p>
+    
+    <p class="post-date page__meta">
+      21 Apr 2025
+    </p>
+  
+    
+      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+
+  </div>
+</a>
+
+
+
+<!-- <div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/pefileformat/iat/image.png" alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/importaddresstable/" rel="permalink">PE file format: Import Address Table
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">PE file format: Import Address Table
+
+The Import Address Table stores the memory addresses of external functions that the program uses
+Example
+
+Here, we can ...</p>
+    
+
+  </article>
+</div> -->
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/pages/Alon-Alush/alonalush.github.io/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Alon Alush. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/pages/Alon-Alush/alonalush.github.io/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/pages/Alon-Alush/alonalush.github.io/assets/js/lunr/lunr.min.js"></script>
+<script src="/pages/Alon-Alush/alonalush.github.io/assets/js/lunr/lunr-store.js"></script>
+<script src="/pages/Alon-Alush/alonalush.github.io/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+  ga('create','','auto');
+  ga('set', 'anonymizeIp', false);
+  ga('send','pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+
+
+
+
+
+
+    <script>
+    'use strict';
+  
+    (function () {
+      var commentContainer = document.querySelector('#giscus-comments');
+  
+      if (!commentContainer) {
+        return;
+      }
+  
+      var script = document.createElement('script');
+  
+      script.setAttribute('src', 'https://giscus.app/client.js');
+      script.setAttribute('data-repo', 'alon-alush/alonalush.github.io');
+      script.setAttribute('data-repo-id', 'R_kgDOObwnXA');
+      script.setAttribute('data-category', 'Comments');
+      script.setAttribute('data-category-id', 'DIC_kwDOObwnXM4CpwzY');
+      script.setAttribute('data-mapping', 'pathname');
+      script.setAttribute('data-strict', '0');
+      script.setAttribute('data-reactions-enabled', '1');
+      script.setAttribute('data-emit-metadata', '0');
+      script.setAttribute('data-input-position', 'top');
+      script.setAttribute('data-theme', 'dark');
+      script.setAttribute('data-lang',  'en');
+      script.setAttribute('crossorigin', 'anonymous');
+  
+      script.setAttribute('async', '');
+  
+      commentContainer.appendChild(script);
+    })();
+  </script>
+  
+
+
+
+
+
+  </body>
+</html>

@@ -33,7 +33,7 @@ comments:
   provider: "giscus"
   giscus:
     repo_id              : "R_kgDOObwnXA" # Shown during giscus setup at https://giscus.app
-    category_name        : "General"
+    category_name        : "Comments"
     category_id          : "DIC_kwDOObwnXM4CpwzY" # Shown during giscus setup at https://giscus.app
     discussion_term      : "pathname" # "pathname" (default), "url", "title", "og:title"
     reactions_enabled    : '1' # '1' for enabled (default), '0' for disabled

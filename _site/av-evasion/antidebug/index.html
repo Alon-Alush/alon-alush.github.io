@@ -1,0 +1,903 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>AV Evasion: Anti-debug tricks - Alon Alush</title>
+<meta name="description" content="Learn how malware evades anti-viruses (includes code examples) ">
+
+
+  <meta name="author" content="Alon Alush">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Alon Alush">
+<meta property="og:title" content="AV Evasion: Anti-debug tricks">
+<meta property="og:url" content="https://github.com/pages/Alon-Alush/alonalush.github.io/av-evasion/antidebug/">
+
+
+  <meta property="og:description" content="Learn how malware evades anti-viruses (includes code examples) ">
+
+
+
+  <meta property="og:image" content="https://github.com/pages/Alon-Alush/alonalush.github.io/assets/images/evadingavs/anti-debug/image.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-04-18T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://github.com/pages/Alon-Alush/alonalush.github.io/av-evasion/antidebug/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Alon Alush",
+      "url": "https://github.com/pages/Alon-Alush/alonalush.github.io/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="hDFFgz2dwyDgZl9ZHL-5_AhkPhNOb31bi5gN5KD1tyI" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/pages/Alon-Alush/alonalush.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Alon Alush Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pages/Alon-Alush/alonalush.github.io/assets/css/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+<!-- favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/site_data/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/site_data/favicon-16x16.png">
+<meta name="theme-color" content="#ffffff">
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/pages/Alon-Alush/alonalush.github.io/"><img src="/pages/Alon-Alush/alonalush.github.io/assets/images/site_data/logo.png" alt=""></a>
+        
+        <a class="site-title" href="/pages/Alon-Alush/alonalush.github.io/">
+          Alon Alush
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/pages/Alon-Alush/alonalush.github.io/categories/#unpacking">Unpacking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/pages/Alon-Alush/alonalush.github.io/categories/#evadingavs">AV Evasion</a>
+            </li><li class="masthead__menu-item">
+              <a href="/pages/Alon-Alush/alonalush.github.io/categories/#Injection">Injection</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/site-data/bio-photo.jpg" alt="Alon Alush" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Alon Alush</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Simple blog that documents my reverse engineering / malware analysis endeavors on Windows.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+        
+          
+            <li><a href="mailto:alonalush5@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://discordapp.com/users/450639647106662402" rel="nofollow noopener noreferrer"><i class="fab fa-discord" aria-hidden="true"></i><span class="label">Discord</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/Alon-Alush" rel="nofollow noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="AV Evasion: Anti-debug tricks">
+    <meta itemprop="description" content="Reducing AV detectionsOne of the most common techniques malware authors use to create FUD (Fully Undetectable) malware is anti-debugging.Practically every anti-virus solution opens the target executable with some form of debugging or inspection enabled— Sometimes obvious, sometimes very stealthy.Here’s an example of function hooking in VirusTotal Jujubox:What you have to knowSurprisingly: it’s often the least suspicious reactions (like a program immediately exiting without modifying anything), that trigger antivirus detection the most.This is why instead of simply terminating when a debugger is detected, it’s better to reroute execution and behave like an entirely different (but still “normal-looking”) program.For example: instead of exiting the program when a debugger is detected:if (IsDebuggerPresent()) {    // Debugger found    ExitProcess();    return 1;}Do something like:if (IsDebuggerPresent()) {    // Debugger found    printf(&quot;%s&quot;, &quot;Welcome to my Fibonacci number printer!&quot;);    unsigned long long sum = 0;    unsigned long long num1 = 0;    unsigned long long num2 = 1;    unsigned long long upto;    printf(&quot;Generate fibonacci numbers up to:&quot;);    scanf(&quot;%d&quot;, upto);    printf(&quot;%d\n&quot;, num1);    printf(&quot;%d\n&quot;, num2);    while (sum &lt; upto) {        sum = num1 + num2;        printf(&quot;%d\n&quot;, sum);        num1 = num2;        num2 = sum;    }    return 1;}// Nefarious code goes here!route execution to an entirely different “legit” routine that acts as a random number generator, for example, and only then close the program.Anti-debugging methodsA classic “one-liner” anti-debug trick I used in my crackme looks like this:if (*(BYTE*)(__readgsqword(0x60) + 2)) {    // Debugger detectedThe logic behind this line is simple.__readgsqword(0x60) // &lt;-- gets the Process Environment Block address + 2 // &lt;-- 0x02 bytes offset from PEB contains the BeingDebugged field👉 BeingDebugged is a boolean (1 byte) that tells whether a debugger is attached to the process!If BeingDebugged == 1, then you are being debugged (proabably by x64dbg)If BeingDebugged == 0, then no debugger attached.(*(BYTE*) // A dereference that reads the BeingDebugged boolean">
+    <meta itemprop="datePublished" content="2025-04-18T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">AV Evasion: Anti-debug tricks
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#reducing-av-detections">Reducing AV detections</a></li>
+  <li><a href="#what-you-have-to-know">What you have to know</a></li>
+  <li><a href="#anti-debugging-methods">Anti-debugging methods</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="reducing-av-detections">Reducing AV detections</h1>
+
+<p>One of the most common techniques malware authors use to create <strong>FUD</strong> (Fully Undetectable) malware is <strong>anti-debugging</strong>.</p>
+
+<p>Practically <em>every</em> anti-virus solution <strong>opens the target executable with <em>some</em> form of debugging or inspection enabled</strong>— Sometimes obvious, sometimes very stealthy.
+Here’s an example of function hooking in VirusTotal Jujubox:</p>
+
+<p><img src="/assets/images/evadingavs/anti-debug/jujubox.png" alt="VirusTotal Jujubox function hooking" /></p>
+
+<h1 id="what-you-have-to-know">What you have to know</h1>
+
+<p>Surprisingly: it’s often the <em>least</em> suspicious reactions (like a program immediately exiting without modifying anything), that trigger antivirus detection the most.</p>
+
+<p>This is why <strong>instead of simply terminating when a debugger is detected</strong>, it’s better to <strong>reroute execution and behave like an entirely <em>different</em> (but still “normal-looking”</strong>) program.</p>
+
+<p>For example: <strong>instead of exiting</strong> the program when a debugger is detected:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">IsDebuggerPresent</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// Debugger found</span>
+    <span class="n">ExitProcess</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Do something like:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">IsDebuggerPresent</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// Debugger found</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="s">"Welcome to my Fibonacci number printer!"</span><span class="p">);</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">num1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">upto</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Generate fibonacci numbers up to:"</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="n">upto</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">num1</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">num2</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">sum</span> <span class="o">&lt;</span> <span class="n">upto</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sum</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="p">;</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+        <span class="n">num1</span> <span class="o">=</span> <span class="n">num2</span><span class="p">;</span>
+        <span class="n">num2</span> <span class="o">=</span> <span class="n">sum</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// Nefarious code goes here!</span>
+</code></pre></div></div>
+
+<p><strong>route</strong> execution to an entirely different “legit” routine that acts as a random number generator, for example, and <em>only then</em> close the program.</p>
+
+<h1 id="anti-debugging-methods">Anti-debugging methods</h1>
+
+<p>A classic “one-liner” anti-debug trick I used in my crackme looks like this:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)(</span><span class="n">__readgsqword</span><span class="p">(</span><span class="mh">0x60</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// Debugger detected</span>
+</code></pre></div></div>
+<p>The logic behind this line is simple.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">__readgsqword</span><span class="p">(</span><span class="mh">0x60</span><span class="p">)</span> <span class="c1">// &lt;-- gets the Process Environment Block address </span>
+</code></pre></div></div>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">+</span> <span class="mi">2</span> <span class="c1">// &lt;-- 0x02 bytes offset from PEB contains the BeingDebugged field</span>
+</code></pre></div></div>
+<p>👉 <code class="language-plaintext highlighter-rouge">BeingDebugged</code> is a boolean (1 byte) that tells whether a debugger is attached to the process!</p>
+
+<p>If <code class="language-plaintext highlighter-rouge">BeingDebugged == 1</code>, then you are being debugged (proabably by x64dbg)</p>
+
+<p>If <code class="language-plaintext highlighter-rouge">BeingDebugged == 0</code>, then no debugger attached.</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)</span> <span class="c1">// A dereference that reads the BeingDebugged boolean</span>
+</code></pre></div></div>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/pages/Alon-Alush/alonalush.github.io/categories/#av-evasion" class="page__taxonomy-item" rel="tag">AV-evasion</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2025-04-18T00:00:00+00:00">April 18, 2025</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=AV+Evasion%3A+Anti-debug+tricks%20https%3A%2F%2Fgithub.com%2Fpages%2FAlon-Alush%2Falonalush.github.io%2Fav-evasion%2Fantidebug%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgithub.com%2Fpages%2FAlon-Alush%2Falonalush.github.io%2Fav-evasion%2Fantidebug%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fgithub.com%2Fpages%2FAlon-Alush%2Falonalush.github.io%2Fav-evasion%2Fantidebug%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/pages/Alon-Alush/alonalush.github.io/av-evasion/evadingavs/" class="pagination--pager" title="AV Evasion: Custom WinAPI function implementations
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+<a href="/pages/Alon-Alush/alonalush.github.io/ai%20world/shapesinctermination/" class="post-blog-card" style="text-decoration: none; 
+    --image-url: url(/assets/images/AI%20world/shapesinc/logo.png);
+    --ribbon: DodgerBlue;">
+
+  <div class="post-meta">
+    <div class="post-ribbon">
+      <span class="post-ribbon4">AI world</span>
+    </div>
+  </div>
+
+  <div class="post-description">
+    <h1>Shapes, Inc got mass-terminated by Discord!
+</h1>
+    <p>  Shapes, Inc, a Discord hub for creating and talking to customized AI chatbots, just got terminated; and it doesn't lo...</p>
+    
+    <p class="post-date page__meta">
+      03 May 2025
+    </p>
+  
+    
+      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+
+  </div>
+</a>
+
+
+
+<!-- <div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/AI%20world/shapesinc/logo.png" alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/pages/Alon-Alush/alonalush.github.io/ai%20world/shapesinctermination/" rel="permalink">Shapes, Inc got mass-terminated by Discord!
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Explaining the Discord controversy
+
+Shapes.inc is a platform that allows users to create and host their so-called “Shapes”, which are AI-powered chatbots tha...</p>
+    
+
+  </article>
+</div> -->
+
+        
+          
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+<a href="/pages/Alon-Alush/alonalush.github.io/unpacking/vmprotectleak/" class="post-blog-card" style="text-decoration: none; 
+    --image-url: url(/assets/images/unpacking/vmprotectleak/dump.png);
+    --ribbon: DodgerBlue;">
+
+  <div class="post-meta">
+    <div class="post-ribbon">
+      <span class="post-ribbon4">Unpacking</span>
+    </div>
+  </div>
+
+  <div class="post-description">
+    <h1>The breach of VMProtect: 2 major incidents
+</h1>
+    <p>  Discussing the breaches of VMProtect's source code that emerged in 2023</p>
+    
+    <p class="post-date page__meta">
+      26 Apr 2025
+    </p>
+  
+    
+      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+
+  </div>
+</a>
+
+
+
+<!-- <div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/unpacking/vmprotectleak/dump.png" alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/pages/Alon-Alush/alonalush.github.io/unpacking/vmprotectleak/" rel="permalink">The breach of VMProtect: 2 major incidents
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">VMProtect leak
+
+In 2023, VMProtect, a commercial virtualization-based protector for executable files, was leaked — not once, but twice.
+
+First, a dump of the...</p>
+    
+
+  </article>
+</div> -->
+
+        
+          
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+<a href="/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/dosheader/" class="post-blog-card" style="text-decoration: none; 
+    --image-url: url(/assets/images/pefileformat/iat/image.png);
+    --ribbon: DodgerBlue;">
+
+  <div class="post-meta">
+    <div class="post-ribbon">
+      <span class="post-ribbon4">PE File Format</span>
+    </div>
+  </div>
+
+  <div class="post-description">
+    <h1>PE file format: DOS Header
+</h1>
+    <p>  Explaining the DOS header in Windows executable formats</p>
+    
+    <p class="post-date page__meta">
+      22 Apr 2025
+    </p>
+  
+    
+      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+
+  </div>
+</a>
+
+
+
+<!-- <div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/pefileformat/iat/image.png" alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/dosheader/" rel="permalink">PE file format: DOS Header
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DOS header
+
+First of all, what’s the DOS header?
+
+The DOS header is a structure located right at the start of DOS-MZ executables, and preserved on the newer ...</p>
+    
+
+  </article>
+</div> -->
+
+        
+          
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+<a href="/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/importaddresstable/" class="post-blog-card" style="text-decoration: none; 
+    --image-url: url(/assets/images/pefileformat/iat/image.png);
+    --ribbon: DodgerBlue;">
+
+  <div class="post-meta">
+    <div class="post-ribbon">
+      <span class="post-ribbon4">PE File Format</span>
+    </div>
+  </div>
+
+  <div class="post-description">
+    <h1>PE file format: Import Address Table
+</h1>
+    <p>  Explaining in detail the Import Address Table (IAT) structure in Portable Executable (PE) file</p>
+    
+    <p class="post-date page__meta">
+      21 Apr 2025
+    </p>
+  
+    
+      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+
+  </div>
+</a>
+
+
+
+<!-- <div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/pefileformat/iat/image.png" alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/importaddresstable/" rel="permalink">PE file format: Import Address Table
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">PE file format: Import Address Table
+
+The Import Address Table stores the memory addresses of external functions that the program uses
+Example
+
+Here, we can ...</p>
+    
+
+  </article>
+</div> -->
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/pages/Alon-Alush/alonalush.github.io/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Alon Alush. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/pages/Alon-Alush/alonalush.github.io/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/pages/Alon-Alush/alonalush.github.io/assets/js/lunr/lunr.min.js"></script>
+<script src="/pages/Alon-Alush/alonalush.github.io/assets/js/lunr/lunr-store.js"></script>
+<script src="/pages/Alon-Alush/alonalush.github.io/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+  ga('create','','auto');
+  ga('set', 'anonymizeIp', false);
+  ga('send','pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+
+
+
+
+
+
+    <script>
+    'use strict';
+  
+    (function () {
+      var commentContainer = document.querySelector('#giscus-comments');
+  
+      if (!commentContainer) {
+        return;
+      }
+  
+      var script = document.createElement('script');
+  
+      script.setAttribute('src', 'https://giscus.app/client.js');
+      script.setAttribute('data-repo', 'alon-alush/alonalush.github.io');
+      script.setAttribute('data-repo-id', 'R_kgDOObwnXA');
+      script.setAttribute('data-category', 'Comments');
+      script.setAttribute('data-category-id', 'DIC_kwDOObwnXM4CpwzY');
+      script.setAttribute('data-mapping', 'pathname');
+      script.setAttribute('data-strict', '0');
+      script.setAttribute('data-reactions-enabled', '1');
+      script.setAttribute('data-emit-metadata', '0');
+      script.setAttribute('data-input-position', 'top');
+      script.setAttribute('data-theme', 'dark');
+      script.setAttribute('data-lang',  'en');
+      script.setAttribute('crossorigin', 'anonymous');
+  
+      script.setAttribute('async', '');
+  
+      commentContainer.appendChild(script);
+    })();
+  </script>
+  
+
+
+
+
+
+  </body>
+</html>

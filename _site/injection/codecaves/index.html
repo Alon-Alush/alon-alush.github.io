@@ -1,0 +1,1162 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Using code caves to inject custom shellcode - Alon Alush</title>
+<meta name="description" content="Learn how to use code caves to inject custom code into a .exe file ">
+
+
+  <meta name="author" content="Alon Alush">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Alon Alush">
+<meta property="og:title" content="Using code caves to inject custom shellcode">
+<meta property="og:url" content="https://github.com/pages/Alon-Alush/alonalush.github.io/injection/codecaves/">
+
+
+  <meta property="og:description" content="Learn how to use code caves to inject custom code into a .exe file ">
+
+
+
+  <meta property="og:image" content="https://github.com/pages/Alon-Alush/alonalush.github.io/assets/images/injection/codecaves/codecaves.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-04-19T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://github.com/pages/Alon-Alush/alonalush.github.io/injection/codecaves/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Alon Alush",
+      "url": "https://github.com/pages/Alon-Alush/alonalush.github.io/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="hDFFgz2dwyDgZl9ZHL-5_AhkPhNOb31bi5gN5KD1tyI" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/pages/Alon-Alush/alonalush.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="Alon Alush Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/pages/Alon-Alush/alonalush.github.io/assets/css/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+<!-- favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/site_data/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/site_data/favicon-16x16.png">
+<meta name="theme-color" content="#ffffff">
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/pages/Alon-Alush/alonalush.github.io/"><img src="/pages/Alon-Alush/alonalush.github.io/assets/images/site_data/logo.png" alt=""></a>
+        
+        <a class="site-title" href="/pages/Alon-Alush/alonalush.github.io/">
+          Alon Alush
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/pages/Alon-Alush/alonalush.github.io/categories/#unpacking">Unpacking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/pages/Alon-Alush/alonalush.github.io/categories/#evadingavs">AV Evasion</a>
+            </li><li class="masthead__menu-item">
+              <a href="/pages/Alon-Alush/alonalush.github.io/categories/#Injection">Injection</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/site-data/bio-photo.jpg" alt="Alon Alush" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Alon Alush</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Simple blog that documents my reverse engineering / malware analysis endeavors on Windows.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+        
+          
+            <li><a href="mailto:alonalush5@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://discordapp.com/users/450639647106662402" rel="nofollow noopener noreferrer"><i class="fab fa-discord" aria-hidden="true"></i><span class="label">Discord</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/Alon-Alush" rel="nofollow noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Using code caves to inject custom shellcode">
+    <meta itemprop="description" content="Code cavesFirst of all, what are code caves?Code caves are a chunk of null bytes (0x00) in a process’s memory. Here’s how they look like in x64dbg:Instead of 0x00 caves, you can also find 0x90 (NOP) sleds which can also function as code caves:How to find these code caves?Most of the times, it’s pretty easy. Just open the target process with x64dbg and scroll down to the end until you see a bunch of these null instructions:0040269D | 0000                     | add byte ptr ds:[eax],al                |0040269F | 0000                     | add byte ptr ds:[eax],al                |004026A1 | 0000                     | add byte ptr ds:[eax],al                |004026A3 | 0000                     | add byte ptr ds:[eax],al                |004026A5 | 0000                     | add byte ptr ds:[eax],al                |004026A7 | 0000                     | add byte ptr ds:[eax],al                |004026A9 | 0000                     | add byte ptr ds:[eax],al                |You can then paste your shellcode in place of these null instructions (tutorial below).If you want, you can also use Cheat Engine’s “Scan for code caves” feature (CTRL + ALT + C in the Memory Viewer):Then untick “Also scan non-executable read only memory” (because we want to inject executable shellcode):You’ll then be able to see a list of many empty executable addresses within the process’s memory state, that you can use to write your shellcode in:Taking advantage of code caves to inject shellcodeAs you may know, we can take advantage of these unused bytes to directly inject raw executable opcodes (shellcode) within the application.We can use this simple x86 shellcode that opens a calculator (calc.exe):// open calc.exe (195 bytes x86 shellcode).unsigned char shellcode[] = &quot;\x89\xe5\x83\xec\x20\x31\xdb\x64\x8b\x5b\x30\x8b\x5b\x0c\x8b\x5b&quot;&quot;\x1c\x8b\x1b\x8b\x1b\x8b\x43\x08\x89\x45\xfc\x8b\x58\x3c\x01\xc3&quot;&quot;\x8b\x5b\x78\x01\xc3\x8b\x7b\x20\x01\xc7\x89\x7d\xf8\x8b\x4b\x24&quot;&quot;\x01\xc1\x89\x4d\xf4\x8b\x53\x1c\x01\xc2\x89\x55\xf0\x8b\x53\x14&quot;&quot;\x89\x55\xec\xeb\x32\x31\xc0\x8b\x55\xec\x8b\x7d\xf8\x8b\x75\x18&quot;&quot;\x31\xc9\xfc\x8b\x3c\x87\x03\x7d\xfc\x66\x83\xc1\x08\xf3\xa6\x74&quot;&quot;\x05\x40\x39\xd0\x72\xe4\x8b\x4d\xf4\x8b\x55\xf0\x66\x8b\x04\x41&quot;&quot;\x8b\x04\x82\x03\x45\xfc\xc3\xba\x78\x78\x65\x63\xc1\xea\x08\x52&quot;&quot;\x68\x57\x69\x6e\x45\x89\x65\x18\xe8\xb8\xff\xff\xff\x31\xc9\x51&quot;&quot;\x68\x2e\x65\x78\x65\x68\x63\x61\x6c\x63\x89\xe3\x41\x51\x53\xff&quot;&quot;\xd0\x31\xc9\xb9\x01\x65\x73\x73\xc1\xe9\x08\x51\x68\x50\x72\x6f&quot;&quot;\x63\x68\x45\x78\x69\x74\x89\x65\x18\xe8\x87\xff\xff\xff\x31\xd2&quot;&quot;\x52\xff\xd0&quot;;First, we’ll go to the code cave, and add the following instructions:pushadpushfdThe x86 instruction pushad pushes all of the general-purpose register onto the stack, and the pushfd instruction pushes all the EFLAGS register onto the stack.We need these instructions because we will need to restore the original register state and jump back to the original execution flow after executing our shellcode:We can then paste our shellcode after those 2 initial instructions:We now have this code instead of the initial 0x00 bytes:00401D5D | 60                       | pushad                                  | // &lt;--- Pushes the contents of the general-purpose registers onto the stack00401D5E | 9C                       | pushfd                                  | // &lt;--- Pushes the entire contents of the EFLAGS register onto the stack00401D5F | 89E5                     | mov ebp,esp                             | // We now paste our shellcode00401D61 | 83EC 20                  | sub esp,20                              |00401D64 | 31DB                     | xor ebx,ebx                             |00401D66 | 64:8B5B 30               | mov ebx,dword ptr fs:[ebx+30]           |00401D6A | 8B5B 0C                  | mov ebx,dword ptr ds:[ebx+C]            |00401D6D | 8B5B 1C                  | mov ebx,dword ptr ds:[ebx+1C]           |00401D70 | 8B1B                     | mov ebx,dword ptr ds:[ebx]              |00401D72 | 8B1B                     | mov ebx,dword ptr ds:[ebx]              |00401D74 | 8B43 08                  | mov eax,dword ptr ds:[ebx+8]            |00401D77 | 8945 FC                  | mov dword ptr ss:[ebp-4],eax            |00401D7A | 8B58 3C                  | mov ebx,dword ptr ds:[eax+3C]           |00401D7D | 01C3                     | add ebx,eax                             |00401D7F | 8B5B 78                  | mov ebx,dword ptr ds:[ebx+78]           |00401D82 | 01C3                     | add ebx,eax                             |00401D84 | 8B7B 20                  | mov edi,dword ptr ds:[ebx+20]           | edi:EntryPoint00401D87 | 01C7                     | add edi,eax                             | edi:EntryPoint00401D89 | 897D F8                  | mov dword ptr ss:[ebp-8],edi            | edi:EntryPoint00401D8C | 8B4B 24                  | mov ecx,dword ptr ds:[ebx+24]           | ecx:EntryPoint00401D8F | 01C1                     | add ecx,eax                             | ecx:EntryPoint00401D91 | 894D F4                  | mov dword ptr ss:[ebp-C],ecx            | ecx:EntryPoint00401D94 | 8B53 1C                  | mov edx,dword ptr ds:[ebx+1C]           | edx:EntryPoint00401D97 | 01C2                     | add edx,eax                             | edx:EntryPoint00401D99 | 8955 F0                  | mov dword ptr ss:[ebp-10],edx           | edx:EntryPoint00401D9C | 8B53 14                  | mov edx,dword ptr ds:[ebx+14]           | edx:EntryPoint00401D9F | 8955 EC                  | mov dword ptr ss:[ebp-14],edx           | edx:EntryPoint00401DA2 | EB 32                    | jmp codecaving.401DD6                   |00401DA4 | 31C0                     | xor eax,eax                             |00401DA6 | 8B55 EC                  | mov edx,dword ptr ss:[ebp-14]           | edx:EntryPoint00401DA9 | 8B7D F8                  | mov edi,dword ptr ss:[ebp-8]            | edi:EntryPoint00401DAC | 8B75 18                  | mov esi,dword ptr ss:[ebp+18]           | esi:EntryPoint00401DAF | 31C9                     | xor ecx,ecx                             | ecx:EntryPoint00401DB1 | FC                       | cld                                     |00401DB2 | 8B3C87                   | mov edi,dword ptr ds:[edi+eax*4]        | edi:EntryPoint00401DB5 | 037D FC                  | add edi,dword ptr ss:[ebp-4]            | edi:EntryPoint00401DB8 | 66:83C1 08               | add cx,8                                |00401DBC | F3:A6                    | repe cmpsb                              |00401DBE | 74 05                    | je codecaving.401DC5                    |00401DC0 | 40                       | inc eax                                 |00401DC1 | 39D0                     | cmp eax,edx                             | edx:EntryPoint00401DC3 | 72 E4                    | jb codecaving.401DA9                    |00401DC5 | 8B4D F4                  | mov ecx,dword ptr ss:[ebp-C]            | ecx:EntryPoint00401DC8 | 8B55 F0                  | mov edx,dword ptr ss:[ebp-10]           | edx:EntryPoint00401DCB | 66:8B0441                | mov ax,word ptr ds:[ecx+eax*2]          |00401DCF | 8B0482                   | mov eax,dword ptr ds:[edx+eax*4]        |00401DD2 | 0345 FC                  | add eax,dword ptr ss:[ebp-4]            |00401DD5 | C3                       | ret                                     |00401DD6 | BA 78786563              | mov edx,63657878                        | edx:EntryPoint00401DDB | C1EA 08                  | shr edx,8                               | edx:EntryPoint00401DDE | 52                       | push edx                                | edx:EntryPoint00401DDF | 68 57696E45              | push 456E6957                           |00401DE4 | 8965 18                  | mov dword ptr ss:[ebp+18],esp           |00401DE7 | E8 B8FFFFFF              | call codecaving.401DA4                  |00401DEC | 31C9                     | xor ecx,ecx                             | ecx:EntryPoint00401DEE | 51                       | push ecx                                | ecx:EntryPoint00401DEF | 68 2E657865              | push 6578652E                           |00401DF4 | 68 63616C63              | push 636C6163                           |00401DF9 | 89E3                     | mov ebx,esp                             |00401DFB | 41                       | inc ecx                                 | ecx:EntryPoint00401DFC | 51                       | push ecx                                | ecx:EntryPoint00401DFD | 53                       | push ebx                                |00401DFE | FFD0                     | call eax                                |00401E00 | E8 A5020000              | call codecaving.4020AA                  | // end of shellcodeNow, after we pasted our shellcode, we need to modify our exe’s code so that we jmp to the address of the start of the shellcode (00401D5D),and then add a jmp instruction at the end of the shellcode to jmp back to the original execution flow (so that we don’t break the program).I chose this instruction to modify:jmp 0x00401D14So first, let’s modify that instruction instruction to jmp to the start of our shellcode (at address 00401D5D) instead of 00401D14So instead of jmp 0x00401D14, it will be jmp 00401D5D:And then at the end of our shellcode, we add a jmp instruction to the address that the original jmp was meant to jump to (0x00401D14):Now, after applying our patches in x64dbg, we can see that the program also launches calc.exe alongside its original payload:Shellcode injection in x64 processesIn x64, there’s no pushad or pushfd instruction; you’d have to manually push all of the general-purpose registers.So, in an x64 process, we’ll write these instructions before writing our shellcode:push rbxpush rcxpush rdxpush rsipush rdipush rbppush r8push r9push r10push r11push r12push r13push r14push r15I will use this x64 shellcode to open calc.exe:unsigned char array[] = {    0x48, 0x31, 0xFF, 0x48, 0xF7, 0xE7, 0x65, 0x48, 0x8B, 0x58, 0x60, 0x48, 0x8B, 0x5B, 0x18, 0x48,    0x8B, 0x5B, 0x20, 0x48, 0x8B, 0x1B, 0x48, 0x8B, 0x1B, 0x48, 0x8B, 0x5B, 0x20, 0x49, 0x89, 0xD8,    0x8B, 0x5B, 0x3C, 0x4C, 0x01, 0xC3, 0x48, 0x31, 0xC9, 0x66, 0x81, 0xC1, 0xFF, 0x88, 0x48, 0xC1,    0xE9, 0x08, 0x8B, 0x14, 0x0B, 0x4C, 0x01, 0xC2, 0x4D, 0x31, 0xD2, 0x44, 0x8B, 0x52, 0x1C, 0x4D,    0x01, 0xC2, 0x4D, 0x31, 0xDB, 0x44, 0x8B, 0x5A, 0x20, 0x4D, 0x01, 0xC3, 0x4D, 0x31, 0xE4, 0x44,    0x8B, 0x62, 0x24, 0x4D, 0x01, 0xC4, 0xEB, 0x32, 0x5B, 0x59, 0x48, 0x31, 0xC0, 0x48, 0x89, 0xE2,    0x51, 0x48, 0x8B, 0x0C, 0x24, 0x48, 0x31, 0xFF, 0x41, 0x8B, 0x3C, 0x83, 0x4C, 0x01, 0xC7, 0x48,    0x89, 0xD6, 0xF3, 0xA6, 0x74, 0x05, 0x48, 0xFF, 0xC0, 0xEB, 0xE6, 0x59, 0x66, 0x41, 0x8B, 0x04,    0x44, 0x41, 0x8B, 0x04, 0x82, 0x4C, 0x01, 0xC0, 0x53, 0xC3, 0x48, 0x31, 0xC9, 0x80, 0xC1, 0x07,    0x48, 0xB8, 0x0F, 0xA8, 0x96, 0x91, 0xBA, 0x87, 0x9A, 0x9C, 0x48, 0xF7, 0xD0, 0x48, 0xC1, 0xE8,    0x08, 0x50, 0x51, 0xE8, 0xB0, 0xFF, 0xFF, 0xFF, 0x49, 0x89, 0xC6, 0x48, 0x31, 0xC9, 0x48, 0xF7,    0xE1, 0x50, 0x48, 0xB8, 0x9C, 0x9E, 0x93, 0x9C, 0xD1, 0x9A, 0x87, 0x9A, 0x48, 0xF7, 0xD0, 0x50,    0x48, 0x89, 0xE1, 0x48, 0xFF, 0xC2, 0x48, 0x83, 0xEC, 0x20, 0x41, 0xFF, 0xD6};Let’s write this shellcode after the initial push instructions:After writing our shellcode, we’ll pop the general purpose registers:Now, from somewhere within the actual process’s execution flow, we will have to jump to the start of our shellcode so that it gets executed.This is the starting instruction of our shellcode:00007FF6B14323F4 | 53                       | push rbx                                |At address 00007FF6B1431408, the Entry Point instruction is located. I will modify that instruction with a jmp to the start of our shellcode:jmp 0x00007FF6B14323F4 // this address contains the first instruction in our shellcodeAnd, at the end, we jump back to the instruction that comes right after that initial jump we made, so the program continues as if nothing happened.This is our our final shellcode looks like:push rbx // &lt;--- manually pushing all of the general-purpose registers onto the stack (for preservation)push rcxpush rdxpush rsipush rdipush rbppush r8push r9push r10push r11push r12push r13push r14push r15 // &lt;--- pushing ends herexor rdi,rdi // &lt;--- start of shellcode!mul rdimov rbx,qword ptr gs:[rax+60]mov rbx,qword ptr ds:[rbx+18]mov rbx,qword ptr ds:[rbx+20]mov rbx,qword ptr ds:[rbx]mov rbx,qword ptr ds:[rbx]mov rbx,qword ptr ds:[rbx+20]mov r8,rbxmov ebx,dword ptr ds:[rbx+3C]add rbx,r8xor rcx,rcxadd cx,88FFshr rcx,8mov edx,dword ptr ds:[rbx+rcx]add rdx,r8xor r10,r10mov r10d,dword ptr ds:[rdx+1C]add r10,r8xor r11,r11mov r11d,dword ptr ds:[rdx+20]add r11,r8xor r12,r12mov r12d,dword ptr ds:[rdx+24]add r12,r8jmp cracked27 codecave.7FF601E32494pop rbxpop rcxxor rax,raxmov rdx,rsppush rcxmov rcx,qword ptr ss:[rsp]xor rdi,rdimov edi,dword ptr ds:[r11+rax*4]add rdi,r8mov rsi,rdxrepe cmpsb je cracked27 codecave.7FF601E32485inc raxjmp cracked27 codecave.7FF601E3246Bpop rcxmov ax,word ptr ds:[r12+rax*2]mov eax,dword ptr ds:[r10+rax*4]add rax,r8push rbxret xor rcx,rcxadd cl,7mov rax,9C9A87BA9196A80Fnot raxshr rax,8push raxpush rcxcall cracked27 codecave.7FF601E32462mov r14,raxxor rcx,rcxmul rcxpush raxmov rax,9A879AD19C939E9Cnot raxpush raxmov rcx,rspinc rdxsub rsp,20call r14 // &lt;--- end of shellcode!pop r15 // &lt;--- popping all the general purpose registers from the stack (to restore register state)pop r14pop r13pop r12pop r10pop r9pop r8pop rbppop rdipop rsipop rdxpop rcxpop rbxmov qword ptr ss:[rsp+18],rbxjmp cracked27 codecave.7FF601E3140D // &lt;--- Jumping backAnd we can see that the patched file opens calc.exe alongside its original payload:">
+    <meta itemprop="datePublished" content="2025-04-19T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Using code caves to inject custom shellcode
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  10 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#code-caves">Code caves</a></li>
+  <li><a href="#how-to-find-these-code-caves">How to find these code caves?</a></li>
+  <li><a href="#taking-advantage-of-code-caves-to-inject-shellcode">Taking advantage of code caves to inject shellcode</a></li>
+  <li><a href="#shellcode-injection-in-x64-processes">Shellcode injection in x64 processes</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="code-caves">Code caves</h1>
+
+<p>First of all, <strong>what are code caves?</strong></p>
+
+<p>Code caves are a chunk of null bytes (<code class="language-plaintext highlighter-rouge">0x00</code>) in a process’s memory. Here’s how they look like in <code class="language-plaintext highlighter-rouge">x64dbg</code>:</p>
+
+<p><img src="/assets/images/injection/codecaves/codecaves.png" alt="Code cave chunk, x64dbg" /></p>
+
+<p>Instead of <code class="language-plaintext highlighter-rouge">0x00</code> caves, you can also find <code class="language-plaintext highlighter-rouge">0x90</code> (NOP) sleds which can also function as code caves:</p>
+
+<p><img src="/assets/images/injection/codecaves/nopsleds.png" alt="NOP sled, x64dbg" /></p>
+
+<h1 id="how-to-find-these-code-caves">How to find these code caves?</h1>
+
+<p>Most of the times, it’s pretty easy. Just open the target process with <code class="language-plaintext highlighter-rouge">x64dbg</code> and scroll down to the end until you see a bunch of these null instructions:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mo">004026</span><span class="mi">9</span><span class="n">D</span> <span class="o">|</span> <span class="mo">0000</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">byte</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">eax</span><span class="p">],</span><span class="n">al</span>                <span class="o">|</span>
+<span class="mo">004026</span><span class="mi">9</span><span class="n">F</span> <span class="o">|</span> <span class="mo">0000</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">byte</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">eax</span><span class="p">],</span><span class="n">al</span>                <span class="o">|</span>
+<span class="mo">004026</span><span class="n">A1</span> <span class="o">|</span> <span class="mo">0000</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">byte</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">eax</span><span class="p">],</span><span class="n">al</span>                <span class="o">|</span>
+<span class="mo">004026</span><span class="n">A3</span> <span class="o">|</span> <span class="mo">0000</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">byte</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">eax</span><span class="p">],</span><span class="n">al</span>                <span class="o">|</span>
+<span class="mo">004026</span><span class="n">A5</span> <span class="o">|</span> <span class="mo">0000</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">byte</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">eax</span><span class="p">],</span><span class="n">al</span>                <span class="o">|</span>
+<span class="mo">004026</span><span class="n">A7</span> <span class="o">|</span> <span class="mo">0000</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">byte</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">eax</span><span class="p">],</span><span class="n">al</span>                <span class="o">|</span>
+<span class="mo">004026</span><span class="n">A9</span> <span class="o">|</span> <span class="mo">0000</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">byte</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">eax</span><span class="p">],</span><span class="n">al</span>                <span class="o">|</span>
+</code></pre></div></div>
+<p>You can then paste your shellcode in place of these null instructions (tutorial below).</p>
+
+<p>If you want, you can also use Cheat Engine’s “Scan for code caves” feature (<code class="language-plaintext highlighter-rouge">CTRL + ALT + C</code> in the Memory Viewer):</p>
+
+<p><img src="/assets/images/injection/codecaves/scan.png" alt="Writing our shellcode" /></p>
+
+<p>Then untick “<em>Also scan non-executable read only memory</em>” (because we want to inject executable shellcode):</p>
+
+<p><img src="/assets/images/injection/codecaves/click.png" alt="Clicking" /></p>
+
+<p>You’ll then be able to see a list of many empty executable addresses within the process’s memory state, that you can use to write your shellcode in:
+<img src="/assets/images/injection/codecaves/addresses.png" alt="Code cave addresses" /></p>
+
+<h1 id="taking-advantage-of-code-caves-to-inject-shellcode">Taking advantage of code caves to inject shellcode</h1>
+
+<p>As you may know, we can take advantage of these unused bytes to directly inject raw executable opcodes (shellcode) within the application.</p>
+
+<p>We can use this simple <strong>x86 shellcode</strong> that opens a calculator (<code class="language-plaintext highlighter-rouge">calc.exe</code>):</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">// open calc.exe (195 bytes x86 shellcode).</span>
+<span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">shellcode</span><span class="p">[]</span> <span class="o">=</span> 
+<span class="s">"</span><span class="se">\x89\xe5\x83\xec\x20\x31\xdb\x64\x8b\x5b\x30\x8b\x5b\x0c\x8b\x5b</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x1c\x8b\x1b\x8b\x1b\x8b\x43\x08\x89\x45\xfc\x8b\x58\x3c\x01\xc3</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x8b\x5b\x78\x01\xc3\x8b\x7b\x20\x01\xc7\x89\x7d\xf8\x8b\x4b\x24</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x01\xc1\x89\x4d\xf4\x8b\x53\x1c\x01\xc2\x89\x55\xf0\x8b\x53\x14</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x89\x55\xec\xeb\x32\x31\xc0\x8b\x55\xec\x8b\x7d\xf8\x8b\x75\x18</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x31\xc9\xfc\x8b\x3c\x87\x03\x7d\xfc\x66\x83\xc1\x08\xf3\xa6\x74</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x05\x40\x39\xd0\x72\xe4\x8b\x4d\xf4\x8b\x55\xf0\x66\x8b\x04\x41</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x8b\x04\x82\x03\x45\xfc\xc3\xba\x78\x78\x65\x63\xc1\xea\x08\x52</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x68\x57\x69\x6e\x45\x89\x65\x18\xe8\xb8\xff\xff\xff\x31\xc9\x51</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x68\x2e\x65\x78\x65\x68\x63\x61\x6c\x63\x89\xe3\x41\x51\x53\xff</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\xd0\x31\xc9\xb9\x01\x65\x73\x73\xc1\xe9\x08\x51\x68\x50\x72\x6f</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x63\x68\x45\x78\x69\x74\x89\x65\x18\xe8\x87\xff\xff\xff\x31\xd2</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x52\xff\xd0</span><span class="s">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>First, we’ll go to the code cave, and add the following instructions:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pushad
+pushfd
+</code></pre></div></div>
+
+<p>The x86 instruction <code class="language-plaintext highlighter-rouge">pushad</code> pushes all of the general-purpose register onto the stack, and the <code class="language-plaintext highlighter-rouge">pushfd</code> instruction pushes all the <code class="language-plaintext highlighter-rouge">EFLAGS</code> register onto the stack.</p>
+
+<p>We need these instructions because we will need to restore the original register state and jump back to the original execution flow after executing our shellcode:
+<img src="/assets/images/injection/codecaves/codecaves1.png" alt="Writing initial instructions" /></p>
+
+<p>We can then paste our shellcode after those 2 initial instructions:</p>
+
+<p><img src="/assets/images/injection/codecaves/pasting.png" alt="Writing our shellcode" /></p>
+
+<p>We now have this code instead of the initial <code class="language-plaintext highlighter-rouge">0x00</code> bytes:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mo">00401</span><span class="n">D5D</span> <span class="o">|</span> <span class="mi">60</span>                       <span class="o">|</span> <span class="n">pushad</span>                                  <span class="o">|</span> <span class="c1">// &lt;--- Pushes the contents of the general-purpose registers onto the stack</span>
+<span class="mo">00401</span><span class="n">D5E</span> <span class="o">|</span> <span class="mi">9</span><span class="n">C</span>                       <span class="o">|</span> <span class="n">pushfd</span>                                  <span class="o">|</span> <span class="c1">// &lt;--- Pushes the entire contents of the EFLAGS register onto the stack</span>
+<span class="mo">00401</span><span class="n">D5F</span> <span class="o">|</span> <span class="mf">89E5</span>                     <span class="o">|</span> <span class="n">mov</span> <span class="n">ebp</span><span class="p">,</span><span class="n">esp</span>                             <span class="o">|</span> <span class="c1">// We now paste our shellcode</span>
+<span class="mo">00401</span><span class="n">D61</span> <span class="o">|</span> <span class="mi">83</span><span class="n">EC</span> <span class="mi">20</span>                  <span class="o">|</span> <span class="n">sub</span> <span class="n">esp</span><span class="p">,</span><span class="mi">20</span>                              <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D64</span> <span class="o">|</span> <span class="mi">31</span><span class="n">DB</span>                     <span class="o">|</span> <span class="n">xor</span> <span class="n">ebx</span><span class="p">,</span><span class="n">ebx</span>                             <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D66</span> <span class="o">|</span> <span class="mi">64</span><span class="o">:</span><span class="mi">8</span><span class="n">B5B</span> <span class="mi">30</span>               <span class="o">|</span> <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">fs</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="mi">30</span><span class="p">]</span>           <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D6A</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B5B</span> <span class="mi">0</span><span class="n">C</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="n">C</span><span class="p">]</span>            <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D6D</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B5B</span> <span class="mi">1</span><span class="n">C</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="mi">1</span><span class="n">C</span><span class="p">]</span>           <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D70</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B1B</span>                     <span class="o">|</span> <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="p">]</span>              <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D72</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B1B</span>                     <span class="o">|</span> <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="p">]</span>              <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D74</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B43</span> <span class="mi">08</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">eax</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="mi">8</span><span class="p">]</span>            <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D77</span> <span class="o">|</span> <span class="mi">8945</span> <span class="n">FC</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">4</span><span class="p">],</span><span class="n">eax</span>            <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D7A</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B58</span> <span class="mi">3</span><span class="n">C</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">eax</span><span class="o">+</span><span class="mi">3</span><span class="n">C</span><span class="p">]</span>           <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D7D</span> <span class="o">|</span> <span class="mo">01</span><span class="n">C3</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">ebx</span><span class="p">,</span><span class="n">eax</span>                             <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D7F</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B5B</span> <span class="mi">78</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="mi">78</span><span class="p">]</span>           <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D82</span> <span class="o">|</span> <span class="mo">01</span><span class="n">C3</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">ebx</span><span class="p">,</span><span class="n">eax</span>                             <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D84</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B7B</span> <span class="mi">20</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">edi</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="mi">20</span><span class="p">]</span>           <span class="o">|</span> <span class="n">edi</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D87</span> <span class="o">|</span> <span class="mo">01</span><span class="n">C7</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">edi</span><span class="p">,</span><span class="n">eax</span>                             <span class="o">|</span> <span class="n">edi</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D89</span> <span class="o">|</span> <span class="mi">897</span><span class="n">D</span> <span class="n">F8</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">8</span><span class="p">],</span><span class="n">edi</span>            <span class="o">|</span> <span class="n">edi</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D8C</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B4B</span> <span class="mi">24</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">ecx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="mi">24</span><span class="p">]</span>           <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D8F</span> <span class="o">|</span> <span class="mo">01</span><span class="n">C1</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">ecx</span><span class="p">,</span><span class="n">eax</span>                             <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D91</span> <span class="o">|</span> <span class="mi">894</span><span class="n">D</span> <span class="n">F4</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="n">C</span><span class="p">],</span><span class="n">ecx</span>            <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D94</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B53</span> <span class="mi">1</span><span class="n">C</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">edx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="mi">1</span><span class="n">C</span><span class="p">]</span>           <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D97</span> <span class="o">|</span> <span class="mo">01</span><span class="n">C2</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">edx</span><span class="p">,</span><span class="n">eax</span>                             <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D99</span> <span class="o">|</span> <span class="mi">8955</span> <span class="n">F0</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">10</span><span class="p">],</span><span class="n">edx</span>           <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D9C</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B53</span> <span class="mi">14</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">edx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="mi">14</span><span class="p">]</span>           <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D9F</span> <span class="o">|</span> <span class="mi">8955</span> <span class="n">EC</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">14</span><span class="p">],</span><span class="n">edx</span>           <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DA2</span> <span class="o">|</span> <span class="n">EB</span> <span class="mi">32</span>                    <span class="o">|</span> <span class="n">jmp</span> <span class="n">codecaving</span><span class="p">.</span><span class="mi">401</span><span class="n">DD6</span>                   <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DA4</span> <span class="o">|</span> <span class="mi">31</span><span class="n">C0</span>                     <span class="o">|</span> <span class="n">xor</span> <span class="n">eax</span><span class="p">,</span><span class="n">eax</span>                             <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DA6</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B55</span> <span class="n">EC</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">edx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">14</span><span class="p">]</span>           <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DA9</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B7D</span> <span class="n">F8</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">edi</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">8</span><span class="p">]</span>            <span class="o">|</span> <span class="n">edi</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DAC</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B75</span> <span class="mi">18</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">esi</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">+</span><span class="mi">18</span><span class="p">]</span>           <span class="o">|</span> <span class="n">esi</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DAF</span> <span class="o">|</span> <span class="mi">31</span><span class="n">C9</span>                     <span class="o">|</span> <span class="n">xor</span> <span class="n">ecx</span><span class="p">,</span><span class="n">ecx</span>                             <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DB1</span> <span class="o">|</span> <span class="n">FC</span>                       <span class="o">|</span> <span class="n">cld</span>                                     <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DB2</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B3C87</span>                   <span class="o">|</span> <span class="n">mov</span> <span class="n">edi</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">edi</span><span class="o">+</span><span class="n">eax</span><span class="o">*</span><span class="mi">4</span><span class="p">]</span>        <span class="o">|</span> <span class="n">edi</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DB5</span> <span class="o">|</span> <span class="mo">037</span><span class="n">D</span> <span class="n">FC</span>                  <span class="o">|</span> <span class="n">add</span> <span class="n">edi</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>            <span class="o">|</span> <span class="n">edi</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DB8</span> <span class="o">|</span> <span class="mi">66</span><span class="o">:</span><span class="mi">83</span><span class="n">C1</span> <span class="mi">08</span>               <span class="o">|</span> <span class="n">add</span> <span class="n">cx</span><span class="p">,</span><span class="mi">8</span>                                <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DBC</span> <span class="o">|</span> <span class="n">F3</span><span class="o">:</span><span class="n">A6</span>                    <span class="o">|</span> <span class="n">repe</span> <span class="n">cmpsb</span>                              <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DBE</span> <span class="o">|</span> <span class="mi">74</span> <span class="mo">05</span>                    <span class="o">|</span> <span class="n">je</span> <span class="n">codecaving</span><span class="p">.</span><span class="mi">401</span><span class="n">DC5</span>                    <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DC0</span> <span class="o">|</span> <span class="mi">40</span>                       <span class="o">|</span> <span class="n">inc</span> <span class="n">eax</span>                                 <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DC1</span> <span class="o">|</span> <span class="mi">39</span><span class="n">D0</span>                     <span class="o">|</span> <span class="n">cmp</span> <span class="n">eax</span><span class="p">,</span><span class="n">edx</span>                             <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DC3</span> <span class="o">|</span> <span class="mi">72</span> <span class="n">E4</span>                    <span class="o">|</span> <span class="n">jb</span> <span class="n">codecaving</span><span class="p">.</span><span class="mi">401</span><span class="n">DA9</span>                    <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DC5</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B4D</span> <span class="n">F4</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">ecx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="n">C</span><span class="p">]</span>            <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DC8</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B55</span> <span class="n">F0</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">edx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span>           <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DCB</span> <span class="o">|</span> <span class="mi">66</span><span class="o">:</span><span class="mi">8</span><span class="n">B0441</span>                <span class="o">|</span> <span class="n">mov</span> <span class="n">ax</span><span class="p">,</span><span class="n">word</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ecx</span><span class="o">+</span><span class="n">eax</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span>          <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DCF</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B0482</span>                   <span class="o">|</span> <span class="n">mov</span> <span class="n">eax</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">edx</span><span class="o">+</span><span class="n">eax</span><span class="o">*</span><span class="mi">4</span><span class="p">]</span>        <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DD2</span> <span class="o">|</span> <span class="mo">0345</span> <span class="n">FC</span>                  <span class="o">|</span> <span class="n">add</span> <span class="n">eax</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>            <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DD5</span> <span class="o">|</span> <span class="n">C3</span>                       <span class="o">|</span> <span class="n">ret</span>                                     <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DD6</span> <span class="o">|</span> <span class="n">BA</span> <span class="mi">78786563</span>              <span class="o">|</span> <span class="n">mov</span> <span class="n">edx</span><span class="p">,</span><span class="mi">63657878</span>                        <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DDB</span> <span class="o">|</span> <span class="n">C1EA</span> <span class="mi">08</span>                  <span class="o">|</span> <span class="n">shr</span> <span class="n">edx</span><span class="p">,</span><span class="mi">8</span>                               <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DDE</span> <span class="o">|</span> <span class="mi">52</span>                       <span class="o">|</span> <span class="n">push</span> <span class="n">edx</span>                                <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DDF</span> <span class="o">|</span> <span class="mi">68</span> <span class="mf">57696E45</span>              <span class="o">|</span> <span class="n">push</span> <span class="mf">456E6957</span>                           <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DE4</span> <span class="o">|</span> <span class="mi">8965</span> <span class="mi">18</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">+</span><span class="mi">18</span><span class="p">],</span><span class="n">esp</span>           <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DE7</span> <span class="o">|</span> <span class="n">E8</span> <span class="n">B8FFFFFF</span>              <span class="o">|</span> <span class="n">call</span> <span class="n">codecaving</span><span class="p">.</span><span class="mi">401</span><span class="n">DA4</span>                  <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DEC</span> <span class="o">|</span> <span class="mi">31</span><span class="n">C9</span>                     <span class="o">|</span> <span class="n">xor</span> <span class="n">ecx</span><span class="p">,</span><span class="n">ecx</span>                             <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DEE</span> <span class="o">|</span> <span class="mi">51</span>                       <span class="o">|</span> <span class="n">push</span> <span class="n">ecx</span>                                <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DEF</span> <span class="o">|</span> <span class="mi">68</span> <span class="mf">2E657865</span>              <span class="o">|</span> <span class="n">push</span> <span class="mi">6578652</span><span class="n">E</span>                           <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DF4</span> <span class="o">|</span> <span class="mi">68</span> <span class="mi">63616</span><span class="n">C63</span>              <span class="o">|</span> <span class="n">push</span> <span class="mi">636</span><span class="n">C6163</span>                           <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DF9</span> <span class="o">|</span> <span class="mf">89E3</span>                     <span class="o">|</span> <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">esp</span>                             <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DFB</span> <span class="o">|</span> <span class="mi">41</span>                       <span class="o">|</span> <span class="n">inc</span> <span class="n">ecx</span>                                 <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DFC</span> <span class="o">|</span> <span class="mi">51</span>                       <span class="o">|</span> <span class="n">push</span> <span class="n">ecx</span>                                <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DFD</span> <span class="o">|</span> <span class="mi">53</span>                       <span class="o">|</span> <span class="n">push</span> <span class="n">ebx</span>                                <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DFE</span> <span class="o">|</span> <span class="n">FFD0</span>                     <span class="o">|</span> <span class="n">call</span> <span class="n">eax</span>                                <span class="o">|</span>
+<span class="mf">00401E00</span> <span class="o">|</span> <span class="n">E8</span> <span class="n">A5020000</span>              <span class="o">|</span> <span class="n">call</span> <span class="n">codecaving</span><span class="p">.</span><span class="mi">4020</span><span class="n">AA</span>                  <span class="o">|</span> <span class="c1">// end of shellcode</span>
+</code></pre></div></div>
+
+<p>Now, after we pasted our shellcode, we need to modify our exe’s code so that we <code class="language-plaintext highlighter-rouge">jmp</code> to the address of the start of the shellcode (<code class="language-plaintext highlighter-rouge">00401D5D</code>),</p>
+
+<p>and then add a jmp instruction at the <em>end</em> of the shellcode to <code class="language-plaintext highlighter-rouge">jmp</code> back to the original execution flow (so that we don’t break the program).</p>
+
+<p>I chose this instruction to modify:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">jmp</span> <span class="mh">0x00401D14</span>
+</code></pre></div></div>
+<p>So first, let’s modify that instruction instruction to <code class="language-plaintext highlighter-rouge">jmp</code> to the start of our shellcode (at address <code class="language-plaintext highlighter-rouge">00401D5D</code>) instead of <code class="language-plaintext highlighter-rouge">00401D14</code></p>
+
+<p>So instead of <code class="language-plaintext highlighter-rouge">jmp 0x00401D14</code>, it will be <code class="language-plaintext highlighter-rouge">jmp 00401D5D</code>:
+<img src="/assets/images/injection/codecaves/oep.png" alt="Jumping to our shellcode" /></p>
+
+<p>And then at the end of our shellcode, we add a <code class="language-plaintext highlighter-rouge">jmp</code> instruction to the address that the original <code class="language-plaintext highlighter-rouge">jmp</code> was meant to jump to (<code class="language-plaintext highlighter-rouge">0x00401D14</code>):</p>
+
+<p><img src="/assets/images/injection/codecaves/end.png" alt="Jumping to our shellcode" /></p>
+
+<p>Now, after applying our patches in <code class="language-plaintext highlighter-rouge">x64dbg</code>, we can see that the program also launches <code class="language-plaintext highlighter-rouge">calc.exe</code> alongside its original payload:</p>
+
+<p><img src="/assets/images/injection/codecaves/success.png" alt="Successfully opening calc.exe" /></p>
+
+<h1 id="shellcode-injection-in-x64-processes">Shellcode injection in x64 processes</h1>
+
+<p>In x64, there’s no <code class="language-plaintext highlighter-rouge">pushad</code> or <code class="language-plaintext highlighter-rouge">pushfd</code> instruction; you’d have to manually push all of the general-purpose registers.</p>
+
+<p>So, in an x64 process, we’ll write these instructions before writing our shellcode:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>push rbx
+push rcx
+push rdx
+push rsi
+push rdi
+push rbp
+push r8
+push r9
+push r10
+push r11
+push r12
+push r13
+push r14
+push r15
+</code></pre></div></div>
+<p><img src="/assets/images/injection/codecaves/x64shellcode.png" alt="Pushing x64 registers" /></p>
+
+<p>I will use this x64 shellcode to open <code class="language-plaintext highlighter-rouge">calc.exe</code>:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">array</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">,</span> <span class="mh">0xE7</span><span class="p">,</span> <span class="mh">0x65</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x58</span><span class="p">,</span> <span class="mh">0x60</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x5B</span><span class="p">,</span> <span class="mh">0x18</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span>
+    <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x5B</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x1B</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x1B</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x5B</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x49</span><span class="p">,</span> <span class="mh">0x89</span><span class="p">,</span> <span class="mh">0xD8</span><span class="p">,</span>
+    <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x5B</span><span class="p">,</span> <span class="mh">0x3C</span><span class="p">,</span> <span class="mh">0x4C</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xC3</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xC9</span><span class="p">,</span> <span class="mh">0x66</span><span class="p">,</span> <span class="mh">0x81</span><span class="p">,</span> <span class="mh">0xC1</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x88</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xC1</span><span class="p">,</span>
+    <span class="mh">0xE9</span><span class="p">,</span> <span class="mh">0x08</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x14</span><span class="p">,</span> <span class="mh">0x0B</span><span class="p">,</span> <span class="mh">0x4C</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xC2</span><span class="p">,</span> <span class="mh">0x4D</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xD2</span><span class="p">,</span> <span class="mh">0x44</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x52</span><span class="p">,</span> <span class="mh">0x1C</span><span class="p">,</span> <span class="mh">0x4D</span><span class="p">,</span>
+    <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xC2</span><span class="p">,</span> <span class="mh">0x4D</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xDB</span><span class="p">,</span> <span class="mh">0x44</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x5A</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x4D</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xC3</span><span class="p">,</span> <span class="mh">0x4D</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xE4</span><span class="p">,</span> <span class="mh">0x44</span><span class="p">,</span>
+    <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x62</span><span class="p">,</span> <span class="mh">0x24</span><span class="p">,</span> <span class="mh">0x4D</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xC4</span><span class="p">,</span> <span class="mh">0xEB</span><span class="p">,</span> <span class="mh">0x32</span><span class="p">,</span> <span class="mh">0x5B</span><span class="p">,</span> <span class="mh">0x59</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xC0</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x89</span><span class="p">,</span> <span class="mh">0xE2</span><span class="p">,</span>
+    <span class="mh">0x51</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x0C</span><span class="p">,</span> <span class="mh">0x24</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x41</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x3C</span><span class="p">,</span> <span class="mh">0x83</span><span class="p">,</span> <span class="mh">0x4C</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xC7</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span>
+    <span class="mh">0x89</span><span class="p">,</span> <span class="mh">0xD6</span><span class="p">,</span> <span class="mh">0xF3</span><span class="p">,</span> <span class="mh">0xA6</span><span class="p">,</span> <span class="mh">0x74</span><span class="p">,</span> <span class="mh">0x05</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xC0</span><span class="p">,</span> <span class="mh">0xEB</span><span class="p">,</span> <span class="mh">0xE6</span><span class="p">,</span> <span class="mh">0x59</span><span class="p">,</span> <span class="mh">0x66</span><span class="p">,</span> <span class="mh">0x41</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">,</span>
+    <span class="mh">0x44</span><span class="p">,</span> <span class="mh">0x41</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">,</span> <span class="mh">0x82</span><span class="p">,</span> <span class="mh">0x4C</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xC0</span><span class="p">,</span> <span class="mh">0x53</span><span class="p">,</span> <span class="mh">0xC3</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xC9</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0xC1</span><span class="p">,</span> <span class="mh">0x07</span><span class="p">,</span>
+    <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xB8</span><span class="p">,</span> <span class="mh">0x0F</span><span class="p">,</span> <span class="mh">0xA8</span><span class="p">,</span> <span class="mh">0x96</span><span class="p">,</span> <span class="mh">0x91</span><span class="p">,</span> <span class="mh">0xBA</span><span class="p">,</span> <span class="mh">0x87</span><span class="p">,</span> <span class="mh">0x9A</span><span class="p">,</span> <span class="mh">0x9C</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">,</span> <span class="mh">0xD0</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xC1</span><span class="p">,</span> <span class="mh">0xE8</span><span class="p">,</span>
+    <span class="mh">0x08</span><span class="p">,</span> <span class="mh">0x50</span><span class="p">,</span> <span class="mh">0x51</span><span class="p">,</span> <span class="mh">0xE8</span><span class="p">,</span> <span class="mh">0xB0</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x49</span><span class="p">,</span> <span class="mh">0x89</span><span class="p">,</span> <span class="mh">0xC6</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xC9</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">,</span>
+    <span class="mh">0xE1</span><span class="p">,</span> <span class="mh">0x50</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xB8</span><span class="p">,</span> <span class="mh">0x9C</span><span class="p">,</span> <span class="mh">0x9E</span><span class="p">,</span> <span class="mh">0x93</span><span class="p">,</span> <span class="mh">0x9C</span><span class="p">,</span> <span class="mh">0xD1</span><span class="p">,</span> <span class="mh">0x9A</span><span class="p">,</span> <span class="mh">0x87</span><span class="p">,</span> <span class="mh">0x9A</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">,</span> <span class="mh">0xD0</span><span class="p">,</span> <span class="mh">0x50</span><span class="p">,</span>
+    <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x89</span><span class="p">,</span> <span class="mh">0xE1</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xC2</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x83</span><span class="p">,</span> <span class="mh">0xEC</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x41</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xD6</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Let’s write this shellcode after the initial <code class="language-plaintext highlighter-rouge">push</code> instructions:</p>
+
+<p><img src="/assets/images/injection/codecaves/x64shellcode1.png" alt="Writing the shellcode" /></p>
+
+<p>After writing our shellcode, we’ll pop the general purpose registers:</p>
+
+<p><img src="/assets/images/injection/codecaves/pop.png" alt="Popping the registers" /></p>
+
+<p>Now, <strong>from somewhere within the actual process’s execution flow</strong>, we will have to jump to the start of our shellcode so that it gets executed.</p>
+
+<p>This is the starting instruction of our shellcode:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mo">00007</span><span class="n">FF6B14323F4</span> <span class="o">|</span> <span class="mi">53</span>                       <span class="o">|</span> <span class="n">push</span> <span class="n">rbx</span>                                <span class="o">|</span>
+</code></pre></div></div>
+<p>At address <code class="language-plaintext highlighter-rouge">00007FF6B1431408</code>, the Entry Point instruction is located. I will modify that instruction with a jmp to the start of our shellcode:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">jmp</span> <span class="mh">0x00007FF6B14323F4</span> <span class="c1">// this address contains the first instruction in our shellcode</span>
+</code></pre></div></div>
+<p><img src="/assets/images/injection/codecaves/modification.png" alt="Jumping to the start of the shellcode" /></p>
+
+<p>And, at the end, we jump back to the instruction that comes right after that initial jump we made, so the program continues as if nothing happened.</p>
+
+<p><img src="/assets/images/injection/codecaves/jumpingback.png" alt="Jump back to the instruction that comes right after that initial jump" /></p>
+
+<p>This is our our final shellcode looks like:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">push</span> <span class="n">rbx</span> <span class="c1">// &lt;--- manually pushing all of the general-purpose registers onto the stack (for preservation)</span>
+<span class="n">push</span> <span class="n">rcx</span>
+<span class="n">push</span> <span class="n">rdx</span>
+<span class="n">push</span> <span class="n">rsi</span>
+<span class="n">push</span> <span class="n">rdi</span>
+<span class="n">push</span> <span class="n">rbp</span>
+<span class="n">push</span> <span class="n">r8</span>
+<span class="n">push</span> <span class="n">r9</span>
+<span class="n">push</span> <span class="n">r10</span>
+<span class="n">push</span> <span class="n">r11</span>
+<span class="n">push</span> <span class="n">r12</span>
+<span class="n">push</span> <span class="n">r13</span>
+<span class="n">push</span> <span class="n">r14</span>
+<span class="n">push</span> <span class="n">r15</span> <span class="c1">// &lt;--- pushing ends here</span>
+<span class="n">xor</span> <span class="n">rdi</span><span class="p">,</span><span class="n">rdi</span> <span class="c1">// &lt;--- start of shellcode!</span>
+<span class="n">mul</span> <span class="n">rdi</span>
+<span class="n">mov</span> <span class="n">rbx</span><span class="p">,</span><span class="n">qword</span> <span class="n">ptr</span> <span class="n">gs</span><span class="o">:</span><span class="p">[</span><span class="n">rax</span><span class="o">+</span><span class="mi">60</span><span class="p">]</span>
+<span class="n">mov</span> <span class="n">rbx</span><span class="p">,</span><span class="n">qword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rbx</span><span class="o">+</span><span class="mi">18</span><span class="p">]</span>
+<span class="n">mov</span> <span class="n">rbx</span><span class="p">,</span><span class="n">qword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rbx</span><span class="o">+</span><span class="mi">20</span><span class="p">]</span>
+<span class="n">mov</span> <span class="n">rbx</span><span class="p">,</span><span class="n">qword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rbx</span><span class="p">]</span>
+<span class="n">mov</span> <span class="n">rbx</span><span class="p">,</span><span class="n">qword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rbx</span><span class="p">]</span>
+<span class="n">mov</span> <span class="n">rbx</span><span class="p">,</span><span class="n">qword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rbx</span><span class="o">+</span><span class="mi">20</span><span class="p">]</span>
+<span class="n">mov</span> <span class="n">r8</span><span class="p">,</span><span class="n">rbx</span>
+<span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rbx</span><span class="o">+</span><span class="mi">3</span><span class="n">C</span><span class="p">]</span>
+<span class="n">add</span> <span class="n">rbx</span><span class="p">,</span><span class="n">r8</span>
+<span class="n">xor</span> <span class="n">rcx</span><span class="p">,</span><span class="n">rcx</span>
+<span class="n">add</span> <span class="n">cx</span><span class="p">,</span><span class="mi">88</span><span class="n">FF</span>
+<span class="n">shr</span> <span class="n">rcx</span><span class="p">,</span><span class="mi">8</span>
+<span class="n">mov</span> <span class="n">edx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rbx</span><span class="o">+</span><span class="n">rcx</span><span class="p">]</span>
+<span class="n">add</span> <span class="n">rdx</span><span class="p">,</span><span class="n">r8</span>
+<span class="n">xor</span> <span class="n">r10</span><span class="p">,</span><span class="n">r10</span>
+<span class="n">mov</span> <span class="n">r10d</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rdx</span><span class="o">+</span><span class="mi">1</span><span class="n">C</span><span class="p">]</span>
+<span class="n">add</span> <span class="n">r10</span><span class="p">,</span><span class="n">r8</span>
+<span class="n">xor</span> <span class="n">r11</span><span class="p">,</span><span class="n">r11</span>
+<span class="n">mov</span> <span class="n">r11d</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rdx</span><span class="o">+</span><span class="mi">20</span><span class="p">]</span>
+<span class="n">add</span> <span class="n">r11</span><span class="p">,</span><span class="n">r8</span>
+<span class="n">xor</span> <span class="n">r12</span><span class="p">,</span><span class="n">r12</span>
+<span class="n">mov</span> <span class="n">r12d</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rdx</span><span class="o">+</span><span class="mi">24</span><span class="p">]</span>
+<span class="n">add</span> <span class="n">r12</span><span class="p">,</span><span class="n">r8</span>
+<span class="n">jmp</span> <span class="n">cracked27</span> <span class="n">codecave</span><span class="p">.</span><span class="mi">7</span><span class="n">FF601E32494</span>
+<span class="n">pop</span> <span class="n">rbx</span>
+<span class="n">pop</span> <span class="n">rcx</span>
+<span class="n">xor</span> <span class="n">rax</span><span class="p">,</span><span class="n">rax</span>
+<span class="n">mov</span> <span class="n">rdx</span><span class="p">,</span><span class="n">rsp</span>
+<span class="n">push</span> <span class="n">rcx</span>
+<span class="n">mov</span> <span class="n">rcx</span><span class="p">,</span><span class="n">qword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">rsp</span><span class="p">]</span>
+<span class="n">xor</span> <span class="n">rdi</span><span class="p">,</span><span class="n">rdi</span>
+<span class="n">mov</span> <span class="n">edi</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">r11</span><span class="o">+</span><span class="n">rax</span><span class="o">*</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">add</span> <span class="n">rdi</span><span class="p">,</span><span class="n">r8</span>
+<span class="n">mov</span> <span class="n">rsi</span><span class="p">,</span><span class="n">rdx</span>
+<span class="n">repe</span> <span class="n">cmpsb</span> 
+<span class="n">je</span> <span class="n">cracked27</span> <span class="n">codecave</span><span class="p">.</span><span class="mi">7</span><span class="n">FF601E32485</span>
+<span class="n">inc</span> <span class="n">rax</span>
+<span class="n">jmp</span> <span class="n">cracked27</span> <span class="n">codecave</span><span class="p">.</span><span class="mi">7</span><span class="n">FF601E3246B</span>
+<span class="n">pop</span> <span class="n">rcx</span>
+<span class="n">mov</span> <span class="n">ax</span><span class="p">,</span><span class="n">word</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">r12</span><span class="o">+</span><span class="n">rax</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">mov</span> <span class="n">eax</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">r10</span><span class="o">+</span><span class="n">rax</span><span class="o">*</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">add</span> <span class="n">rax</span><span class="p">,</span><span class="n">r8</span>
+<span class="n">push</span> <span class="n">rbx</span>
+<span class="n">ret</span> 
+<span class="n">xor</span> <span class="n">rcx</span><span class="p">,</span><span class="n">rcx</span>
+<span class="n">add</span> <span class="n">cl</span><span class="p">,</span><span class="mi">7</span>
+<span class="n">mov</span> <span class="n">rax</span><span class="p">,</span><span class="mi">9</span><span class="n">C9A87BA9196A80F</span>
+<span class="n">not</span> <span class="n">rax</span>
+<span class="n">shr</span> <span class="n">rax</span><span class="p">,</span><span class="mi">8</span>
+<span class="n">push</span> <span class="n">rax</span>
+<span class="n">push</span> <span class="n">rcx</span>
+<span class="n">call</span> <span class="n">cracked27</span> <span class="n">codecave</span><span class="p">.</span><span class="mi">7</span><span class="n">FF601E32462</span>
+<span class="n">mov</span> <span class="n">r14</span><span class="p">,</span><span class="n">rax</span>
+<span class="n">xor</span> <span class="n">rcx</span><span class="p">,</span><span class="n">rcx</span>
+<span class="n">mul</span> <span class="n">rcx</span>
+<span class="n">push</span> <span class="n">rax</span>
+<span class="n">mov</span> <span class="n">rax</span><span class="p">,</span><span class="mi">9</span><span class="n">A879AD19C939E9C</span>
+<span class="n">not</span> <span class="n">rax</span>
+<span class="n">push</span> <span class="n">rax</span>
+<span class="n">mov</span> <span class="n">rcx</span><span class="p">,</span><span class="n">rsp</span>
+<span class="n">inc</span> <span class="n">rdx</span>
+<span class="n">sub</span> <span class="n">rsp</span><span class="p">,</span><span class="mi">20</span>
+<span class="n">call</span> <span class="n">r14</span> <span class="c1">// &lt;--- end of shellcode!</span>
+<span class="n">pop</span> <span class="n">r15</span> <span class="c1">// &lt;--- popping all the general purpose registers from the stack (to restore register state)</span>
+<span class="n">pop</span> <span class="n">r14</span>
+<span class="n">pop</span> <span class="n">r13</span>
+<span class="n">pop</span> <span class="n">r12</span>
+<span class="n">pop</span> <span class="n">r10</span>
+<span class="n">pop</span> <span class="n">r9</span>
+<span class="n">pop</span> <span class="n">r8</span>
+<span class="n">pop</span> <span class="n">rbp</span>
+<span class="n">pop</span> <span class="n">rdi</span>
+<span class="n">pop</span> <span class="n">rsi</span>
+<span class="n">pop</span> <span class="n">rdx</span>
+<span class="n">pop</span> <span class="n">rcx</span>
+<span class="n">pop</span> <span class="n">rbx</span>
+<span class="n">mov</span> <span class="n">qword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">rsp</span><span class="o">+</span><span class="mi">18</span><span class="p">],</span><span class="n">rbx</span>
+<span class="n">jmp</span> <span class="n">cracked27</span> <span class="n">codecave</span><span class="p">.</span><span class="mi">7</span><span class="n">FF601E3140D</span> <span class="c1">// &lt;--- Jumping back</span>
+</code></pre></div></div>
+
+<p>And we can see that the patched file opens <code class="language-plaintext highlighter-rouge">calc.exe</code> alongside its original payload:</p>
+
+<p><img src="/assets/images/injection/codecaves/calc.png" alt="x64 open calculator" /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/pages/Alon-Alush/alonalush.github.io/categories/#injection" class="page__taxonomy-item" rel="tag">Injection</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2025-04-19T00:00:00+00:00">April 19, 2025</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Using+code+caves+to+inject+custom+shellcode%20https%3A%2F%2Fgithub.com%2Fpages%2FAlon-Alush%2Falonalush.github.io%2Finjection%2Fcodecaves%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgithub.com%2Fpages%2FAlon-Alush%2Falonalush.github.io%2Finjection%2Fcodecaves%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fgithub.com%2Fpages%2FAlon-Alush%2Falonalush.github.io%2Finjection%2Fcodecaves%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/pages/Alon-Alush/alonalush.github.io/unpacking/unpackingupx/" class="pagination--pager" title="Unpacking UPX (MinGW example)
+">Previous</a>
+    
+    
+      <a href="/pages/Alon-Alush/alonalush.github.io/malware%20analysis/pythonransomware/" class="pagination--pager" title="Decoding a Pyinstaller ransomware sample
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+<a href="/pages/Alon-Alush/alonalush.github.io/ai%20world/shapesinctermination/" class="post-blog-card" style="text-decoration: none; 
+    --image-url: url(/assets/images/AI%20world/shapesinc/logo.png);
+    --ribbon: DodgerBlue;">
+
+  <div class="post-meta">
+    <div class="post-ribbon">
+      <span class="post-ribbon4">AI world</span>
+    </div>
+  </div>
+
+  <div class="post-description">
+    <h1>Shapes, Inc got mass-terminated by Discord!
+</h1>
+    <p>  Shapes, Inc, a Discord hub for creating and talking to customized AI chatbots, just got terminated; and it doesn't lo...</p>
+    
+    <p class="post-date page__meta">
+      03 May 2025
+    </p>
+  
+    
+      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+
+  </div>
+</a>
+
+
+
+<!-- <div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/AI%20world/shapesinc/logo.png" alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/pages/Alon-Alush/alonalush.github.io/ai%20world/shapesinctermination/" rel="permalink">Shapes, Inc got mass-terminated by Discord!
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Explaining the Discord controversy
+
+Shapes.inc is a platform that allows users to create and host their so-called “Shapes”, which are AI-powered chatbots tha...</p>
+    
+
+  </article>
+</div> -->
+
+        
+          
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+<a href="/pages/Alon-Alush/alonalush.github.io/unpacking/vmprotectleak/" class="post-blog-card" style="text-decoration: none; 
+    --image-url: url(/assets/images/unpacking/vmprotectleak/dump.png);
+    --ribbon: DodgerBlue;">
+
+  <div class="post-meta">
+    <div class="post-ribbon">
+      <span class="post-ribbon4">Unpacking</span>
+    </div>
+  </div>
+
+  <div class="post-description">
+    <h1>The breach of VMProtect: 2 major incidents
+</h1>
+    <p>  Discussing the breaches of VMProtect's source code that emerged in 2023</p>
+    
+    <p class="post-date page__meta">
+      26 Apr 2025
+    </p>
+  
+    
+      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+
+  </div>
+</a>
+
+
+
+<!-- <div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/unpacking/vmprotectleak/dump.png" alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/pages/Alon-Alush/alonalush.github.io/unpacking/vmprotectleak/" rel="permalink">The breach of VMProtect: 2 major incidents
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">VMProtect leak
+
+In 2023, VMProtect, a commercial virtualization-based protector for executable files, was leaked — not once, but twice.
+
+First, a dump of the...</p>
+    
+
+  </article>
+</div> -->
+
+        
+          
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+<a href="/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/dosheader/" class="post-blog-card" style="text-decoration: none; 
+    --image-url: url(/assets/images/pefileformat/iat/image.png);
+    --ribbon: DodgerBlue;">
+
+  <div class="post-meta">
+    <div class="post-ribbon">
+      <span class="post-ribbon4">PE File Format</span>
+    </div>
+  </div>
+
+  <div class="post-description">
+    <h1>PE file format: DOS Header
+</h1>
+    <p>  Explaining the DOS header in Windows executable formats</p>
+    
+    <p class="post-date page__meta">
+      22 Apr 2025
+    </p>
+  
+    
+      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+
+  </div>
+</a>
+
+
+
+<!-- <div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/pefileformat/iat/image.png" alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/dosheader/" rel="permalink">PE file format: DOS Header
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">DOS header
+
+First of all, what’s the DOS header?
+
+The DOS header is a structure located right at the start of DOS-MZ executables, and preserved on the newer ...</p>
+    
+
+  </article>
+</div> -->
+
+        
+          
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+<a href="/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/importaddresstable/" class="post-blog-card" style="text-decoration: none; 
+    --image-url: url(/assets/images/pefileformat/iat/image.png);
+    --ribbon: DodgerBlue;">
+
+  <div class="post-meta">
+    <div class="post-ribbon">
+      <span class="post-ribbon4">PE File Format</span>
+    </div>
+  </div>
+
+  <div class="post-description">
+    <h1>PE file format: Import Address Table
+</h1>
+    <p>  Explaining in detail the Import Address Table (IAT) structure in Portable Executable (PE) file</p>
+    
+    <p class="post-date page__meta">
+      21 Apr 2025
+    </p>
+  
+    
+      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+
+  </div>
+</a>
+
+
+
+<!-- <div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/pages/Alon-Alush/alonalush.github.io/assets/images/pefileformat/iat/image.png" alt="">
+      </div>
+    
+
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/importaddresstable/" rel="permalink">PE file format: Import Address Table
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">PE file format: Import Address Table
+
+The Import Address Table stores the memory addresses of external functions that the program uses
+Example
+
+Here, we can ...</p>
+    
+
+  </article>
+</div> -->
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/pages/Alon-Alush/alonalush.github.io/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Alon Alush. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/pages/Alon-Alush/alonalush.github.io/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/pages/Alon-Alush/alonalush.github.io/assets/js/lunr/lunr.min.js"></script>
+<script src="/pages/Alon-Alush/alonalush.github.io/assets/js/lunr/lunr-store.js"></script>
+<script src="/pages/Alon-Alush/alonalush.github.io/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+  ga('create','','auto');
+  ga('set', 'anonymizeIp', false);
+  ga('send','pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+
+
+
+
+
+
+    <script>
+    'use strict';
+  
+    (function () {
+      var commentContainer = document.querySelector('#giscus-comments');
+  
+      if (!commentContainer) {
+        return;
+      }
+  
+      var script = document.createElement('script');
+  
+      script.setAttribute('src', 'https://giscus.app/client.js');
+      script.setAttribute('data-repo', 'alon-alush/alonalush.github.io');
+      script.setAttribute('data-repo-id', 'R_kgDOObwnXA');
+      script.setAttribute('data-category', 'Comments');
+      script.setAttribute('data-category-id', 'DIC_kwDOObwnXM4CpwzY');
+      script.setAttribute('data-mapping', 'pathname');
+      script.setAttribute('data-strict', '0');
+      script.setAttribute('data-reactions-enabled', '1');
+      script.setAttribute('data-emit-metadata', '0');
+      script.setAttribute('data-input-position', 'top');
+      script.setAttribute('data-theme', 'dark');
+      script.setAttribute('data-lang',  'en');
+      script.setAttribute('crossorigin', 'anonymous');
+  
+      script.setAttribute('async', '');
+  
+      commentContainer.appendChild(script);
+    })();
+  </script>
+  
+
+
+
+
+
+  </body>
+</html>

