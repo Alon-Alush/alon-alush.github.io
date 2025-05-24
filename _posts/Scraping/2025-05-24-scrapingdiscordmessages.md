@@ -11,7 +11,7 @@ toc: true
 ---
 # Scraping Discord messages easily
 
-In this tutorial, we'll explore how to use [DiscordChatExporter](https://github.com/Tyrrrz/DiscordChatExporter) to scrape Discord messages.
+In this tutorial, we'll explore how to use [DiscordChatExporter](https://github.com/Tyrrrz/DiscordChatExporter) to scrape entire Discord servers.
 
 To start, go to their GitHub repository, and download the suitable release for your environment.
 
@@ -45,7 +45,15 @@ Let's run it:
 
  ![release](/assets/images/scraping/discord/scraping-cli.png)
 
-And, the scraping finished!
+And, about 20 minutes later, the scraping finished! (tip: for very large servers, just do the downloading while you sleep!)
 
 
  ![release](/assets/images/scraping/discord/success.png)
+
+ ![release](/assets/images/scraping/discord/files.png)
+
+
+As you can see, we've received neat `.html` files for every channel. (Note: you can export with different formats like `.txt`, `.json`, etc using the `-f` option!)
+
+
+
