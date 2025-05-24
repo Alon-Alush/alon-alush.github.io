@@ -1,5 +1,5 @@
 ---
-title: "Using DiscordChatExporter to scrape / export Discord servers and DMs"
+title: "How to use DiscordChatExporter to scrape / export Discord servers and DMs"
 classes: wide
 header:
   teaser: /assets/images/scraping/discord/usage.png
@@ -42,15 +42,20 @@ To find your account token, follow the manual below:
 
 you can export the data using different formats like `.txt`, `.json`, etc using the `-f` option.
 
-So the command we get is `DiscordChatExporter.Cli exportguild --g 600262311302922261 -t <mytoken>`.
+So the command we get is `DiscordChatExporter.Cli exportguild -g 600262311302922261 -t <mytoken>`.
 
 
 Let's run our command:
 
  ![Running our command](/assets/images/scraping/discord/scraping-cli.png)
 
-And, about 20 minutes later, the scraping finished! (tip: for very large servers, just do the downloading while you sleep!)
+ Let's wait a bit...
 
+ ![Running our command](/assets/images/scraping/discord/progress.png)
+ 
+ ![Scraping finished successfully](/assets/images/scraping/discord/success.png)
+
+And, about 20 minutes later, the scraping finished! (tip: for very large servers, just do the downloading while you sleep!)
 
  ![Scraping finished successfully](/assets/images/scraping/discord/success.png)
  
@@ -64,20 +69,19 @@ Let's add our scraped data to a `.zip` archive
 
  And voila, now we have the fully scraped server within our fingertips.
 
- To store the scraped data, I used created a fresh [Telegram](https://web.telegram.org) channel:
+ To store the scraped data, I created a fresh [Telegram](https://web.telegram.org) channel:
 
 ![release](/assets/images/scraping/discord/telegramchannel.jpg)
+
+And uploaded the scrapes (`.zip`) to my channel:
+
+ ![release](/assets/images/scraping/discord/upload.png)
 
 Telegram offers unlimited cloud storage (yes, you can literally upload as many files as you want).
 
 The only practical limitation is a file size limit per message: 2GB or 4GB depending on your plan (Free or Premium). So to upload large amount of data, just split to multiple uploads of 2GB/4GB.
 
-
-I uploaded the `.zip` to my Telegram channel:
-
- ![release](/assets/images/scraping/discord/upload.png)
-
- You can repeat this process as many times as you'd like!
+ You can repeat this process as many times as you'd like, effectively scraping the entirety of Discord!
 
 
 
