@@ -50,18 +50,14 @@ Let's run our command (token blurred for obvious reasons 😅):
  ![Running our command](/assets/images/scraping/discord/scraping-cli.png)
 
  Let's wait a bit...
-
- ![Running our command](/assets/images/scraping/discord/progress.png)
  
  ![Scraping finished successfully](/assets/images/scraping/discord/success.png)
 
 And, about 20 minutes later, the scraping finished! (tip: for very large servers, just do the downloading while you sleep!)
-
- ![Scraping finished successfully](/assets/images/scraping/discord/success.png)
  
-As you can see, we've received neat `.html` files for every channel. (Note: you can export with different formats like `.txt`, `.json`, etc using the `-f` option!)
-
  ![Scraped files](/assets/images/scraping/discord/files.png)
+
+As you can see, we've received neat `.html` files for every channel. (Note: you can export with different formats like `.txt`, `.json`, etc using the `-f` option!)
 
 Let's add our scraped data to a `.zip` archive
 
