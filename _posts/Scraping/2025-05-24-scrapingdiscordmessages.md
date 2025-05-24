@@ -65,8 +65,8 @@ Let's add our scraped data to a `.zip` archive
  And voila, now we have the fully scraped server within our fingertips.
 
  To store the scraped data, I used a freshly-created [Telegram](https://web.telegram.org) channel:
- 
-![release](/assets/images/scraping/discord/telegramchannel.png)
+
+![release](/assets/images/scraping/discord/telegramchannel.jpg)
 
 Telegram offers unlimited cloud storage (yes, you can literally upload as many files as you want).
 
