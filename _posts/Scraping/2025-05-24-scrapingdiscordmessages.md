@@ -64,7 +64,7 @@ Let's add our scraped data to a `.zip` archive
 
  And voila, now we have the fully scraped server within our fingertips.
 
- To store the scraped data, I used a freshly-created [Telegram](https://web.telegram.org) channel:
+ To store the scraped data, I used created a fresh [Telegram](https://web.telegram.org) channel:
 
 ![release](/assets/images/scraping/discord/telegramchannel.jpg)
 
