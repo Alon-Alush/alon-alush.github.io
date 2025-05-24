@@ -45,7 +45,7 @@ you can export the data using different formats like `.txt`, `.json`, etc using 
 So the command we get is `DiscordChatExporter.Cli exportguild -g 600262311302922261 -t <mytoken>`.
 
 
-Let's run our command:
+Let's run our command (token blurred for obvious reasons 😅):
 
  ![Running our command](/assets/images/scraping/discord/scraping-cli.png)
 
