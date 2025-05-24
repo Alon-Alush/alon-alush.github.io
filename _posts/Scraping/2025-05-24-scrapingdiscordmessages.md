@@ -32,31 +32,52 @@ So let's find now find the 2 values we need: the guild ID and our user account t
 
 First, to get the guild ID, right-click the server icon that you want to scape, and select `Copy Server ID`:
 
-![release](/assets/images/scraping/discord/copyguild.png)
+![Finding guild ID](/assets/images/scraping/discord/copyguild.png)
 
 In this case, the value we received is `600262311302922261`
-Now, to find our account token, I think DiscordChatExporter's manual explained it here pretty straightforwardly:
 
-![release](/assets/images/scraping/discord/findtoken.png)
+To find your account token, follow the manual below:
 
-you can export with different formats like `.txt`, `.json`, etc using the `-f` option.
+![Finding Discord account token](/assets/images/scraping/discord/findtoken.png)
+
+you can export the data using different formats like `.txt`, `.json`, etc using the `-f` option.
 
 So the command we get is `DiscordChatExporter.Cli exportguild --g 600262311302922261 -t <mytoken>`.
 
 
 Let's run our command:
 
- ![release](/assets/images/scraping/discord/scraping-cli.png)
+ ![Running our command](/assets/images/scraping/discord/scraping-cli.png)
 
 And, about 20 minutes later, the scraping finished! (tip: for very large servers, just do the downloading while you sleep!)
 
 
- ![release](/assets/images/scraping/discord/success.png)
-
- ![release](/assets/images/scraping/discord/files.png)
-
-
+ ![Scraping finished successfully](/assets/images/scraping/discord/success.png)
+ 
 As you can see, we've received neat `.html` files for every channel. (Note: you can export with different formats like `.txt`, `.json`, etc using the `-f` option!)
 
+ ![Scraped files](/assets/images/scraping/discord/files.png)
+
+Let's add our scraped data to a `.zip` archive
+
+ ![release](/assets/images/scraping/discord/addtoarchive.png)
+
+ And voila, now we have the fully scraped server within our fingertips.
+
+ To store the scraped data, I used a freshly-created [Telegram](https://web.telegram.org) channel:
+![release](/assets/images/scraping/discord/telegram channel.png)
+
+Telegram offers unlimited cloud storage (yes, you can literally upload as many files as you want).
+
+The only practical limitation is a file size limit per message: 2GB or 4GB depending on your plan (Free or Premium). So to upload large amount of data, just split to multiple uploads of 2GB/4GB.
+
+
+I uploaded the `.zip` to my Telegram channel:
+
+ ![release](/assets/images/scraping/discord/upload.png)
+
+ You can repeat this process as many times as you'd like!
+
+ 
 
 
