@@ -1,10 +1,10 @@
 ---
-title: "How to use DiscordChatExporter to scrape / export Discord servers and DMs"
+title: "Using DiscordChatExporter to scrape / export Discord servers and DMs"
 classes: wide
 header:
   teaser: /assets/images/scraping/discord/usage.png
 ribbon: DodgerBlue
-description: "How to use  used an open-source tool to scrape discord messages easily"
+description: "Easily scraping Discord messages with the help of DiscordChatExporter, an open-source tool"
 categories:
   - Scraping
 toc: true
