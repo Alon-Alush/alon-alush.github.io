@@ -65,21 +65,34 @@ As you can see, we've received neat `.html` files for every channel. (Note: you 
 
 Let's add our scraped data to a `.zip` archive
 
- ![release](/assets/images/scraping/discord/addtoarchive.png)
+ ![Packaging scraped files](/assets/images/scraping/discord/addtoarchive.png)
 
  And voila, now we have the fully scraped server within our fingertips.
 
  To store the scraped data, I created a fresh [Telegram](https://web.telegram.org) channel:
 
-![release](/assets/images/scraping/discord/telegramchannel.jpg)
+![Creating a Telegram channel](/assets/images/scraping/discord/telegramchannel.jpg)
 
 And uploaded the scrapes (`.zip`) to my channel:
 
- ![release](/assets/images/scraping/discord/upload.png)
+ ![Uploading scraped files](/assets/images/scraping/discord/upload.png)
 
 Telegram offers unlimited cloud storage (yes, you can literally upload as many files as you want).
 
 The only practical limitation is a file size limit per message: 2GB or 4GB depending on your plan (Free or Premium). So to upload large amount of data, just split to multiple uploads of 2GB/4GB.
+
+Here I scraped another big server, this time in `.txt` format:
+
+ ![Scraping another server](/assets/images/scraping/discord/scrape2.png)
+
+Packaged as `.zip`:
+
+ ![Scraping another server](/assets/images/scraping/discord/files2.png)
+
+ Uploaded to Telegram:
+
+ ![Scraping another server](/assets/images/scraping/discord/upload2.png)
+
 
  You can repeat this process as many times as you'd like, effectively scraping the entirety of Discord!
 
